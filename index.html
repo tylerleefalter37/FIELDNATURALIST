@@ -65,7 +65,7 @@
     color: var(--text-main);
   }
 
-  /* RUSTIC CARVED CEDAR PARK SIGN VISITOR TRACKER */
+  /* RUSTIC PARK SIGN VISITOR TRACKER */
   #park-sign-counter {
     background: #382415;
     background-image: repeating-linear-gradient(
@@ -379,7 +379,7 @@
     </div>
   </header>
 
-  <!-- RUSTIC PARK SIGN VISITOR TRACKER (Clickable to Test/Tally) -->
+  <!-- RUSTIC PARK SIGN VISITOR TRACKER -->
   <div id="park-sign-counter" onclick="recordParkVisitClick()" title="Tap sign or charter travel to record a park expedition!">
     <div class="sign-title">&#9670; Parks Visited Through Us: &#9670;</div>
     <div class="sign-odometer-box">
@@ -707,7 +707,6 @@ async function fetchGlobalVisitCount() {
 }
 
 async function recordParkVisitClick() {
-  // Optimistically increment local counter immediately
   let localCount = (parseInt(localStorage.getItem("local_park_visits_tally")) || SEED_OFFSET) + 1;
   localStorage.setItem("local_park_visits_tally", localCount);
   updateSignDisplay(localCount);
@@ -1294,7 +1293,7 @@ const FLAVOR_OBSERVATIONS = [
 ];
 
 // ============================================================================
-// 3. GLOBAL BIDDERS & AUCTION INSTITUTIONS
+// 3. EXPANDED GLOBAL BIDDERS & AUCTION INSTITUTIONS (22 INSTITUTIONS)
 // ============================================================================
 const BIDDER_DIRECTORY = [
   { name: "Smithsonian Institution (NMNH)", focus: ["Lithic", "Paleontological", "Historical"], budget: 35000000 },
@@ -1304,9 +1303,21 @@ const BIDDER_DIRECTORY = [
   { name: "Peabody Museum of Archaeology", focus: ["Lithic", "Ancestral", "Indigenous"], budget: 22000000 },
   { name: "American Museum of Natural History", focus: ["Paleontological", "Crown Jewel"], budget: 40000000 },
   { name: "The Hans Sloane Heritage Trust", focus: ["Crown Jewel", "Masterwork"], budget: 75000000 },
-  { name: "Muséum National d'Histoire Naturelle", focus: ["Botanical", "Fossil"], budget: 20000000 },
+  { name: "Muséum National d'Histoire Naturelle (Paris)", focus: ["Botanical", "Fossil"], budget: 20000000 },
   { name: "Regional State Historical Society", focus: ["Pioneer", "Historical"], budget: 3500000 },
-  { name: "United States Geological Survey", focus: ["Mineral", "Petrological"], budget: 2500000 }
+  { name: "United States Geological Survey", focus: ["Mineral", "Petrological"], budget: 2500000 },
+  { name: "Royal Tyrrell Museum of Palaeontology", focus: ["Paleontological", "Fossil"], budget: 26000000 },
+  { name: "Carnegie Museum of Natural History", focus: ["Mineral", "Paleontological"], budget: 24000000 },
+  { name: "Harvard Mineralogical & Geological Museum", focus: ["Mineral", "Petrological"], budget: 32000000 },
+  { name: "Oxford University Museum of Natural History", focus: ["Fossil", "Crown Jewel"], budget: 29000000 },
+  { name: "Denver Museum of Nature & Science", focus: ["Lithic", "Mineral", "Paleontological"], budget: 18000000 },
+  { name: "California Academy of Sciences", focus: ["Botanical", "Faunal"], budget: 21000000 },
+  { name: "Senckenberg Research Institute (Frankfurt)", focus: ["Paleontological", "Fossil"], budget: 27000000 },
+  { name: "Tokyo National Museum & Science Institute", focus: ["Volcanological", "Mineral"], budget: 31000000 },
+  { name: "Australian Museum (Sydney)", focus: ["Faunal", "Paleontological"], budget: 19000000 },
+  { name: "Chicago Botanic Garden & Herbarium", focus: ["Botanical", "Herbarium"], budget: 12000000 },
+  { name: "Natural History Museum of Los Angeles (NHMLAC)", focus: ["Paleontological", "Pioneer"], budget: 23000000 },
+  { name: "Smithsonian National Museum of the American Indian", focus: ["Indigenous", "Ancestral", "Lithic"], budget: 28000000 }
 ];
 
 // ============================================================================
@@ -1355,13 +1366,13 @@ let liveAuction = {
 };
 
 function saveGame() {
-  localStorage.setItem("living_archive_save_v7", JSON.stringify(state));
+  localStorage.setItem("living_archive_save_v8", JSON.stringify(state));
   const msg = document.getElementById("save-status-msg");
   if (msg) msg.innerText = "Status: Auto-saved " + new Date().toLocaleTimeString();
 }
 
 function loadGame() {
-  const saved = localStorage.getItem("living_archive_save_v7");
+  const saved = localStorage.getItem("living_archive_save_v8");
   if (saved) {
     try { 
       state = JSON.parse(saved); 
@@ -1806,7 +1817,7 @@ function executeAuthentication() {
 }
 
 // ============================================================================
-// 10. REAL-TIME 15-SECOND LIVE AUCTION ENGINE
+// 10. REAL-TIME 15-SECOND LIVE AUCTION ENGINE (NO SELF-BIDDING, EXPANDED ROSTER)
 // ============================================================================
 function setupAuctionConsignSelect() {
   const sel = document.getElementById("auction-item-select");
@@ -1861,9 +1872,15 @@ function startConsignmentWithItem(item) {
   const targetCeiling = Math.round(appraised * maxMultiplier);
   const openingBid = Math.max(50, Math.round(appraised * 0.40));
 
+  // Shuffled active bidder selection: 4 to 6 for standard, 7 to 10 for clashes
   let contenders = BIDDER_DIRECTORY.slice();
   contenders.sort(() => Math.random() - 0.5);
-  const activeBidders = contenders.slice(0, isClash ? 4 : 2);
+
+  const poolSize = isClash 
+    ? Math.min(contenders.length, 7 + Math.floor(Math.random() * 4)) 
+    : Math.min(contenders.length, 4 + Math.floor(Math.random() * 3));
+    
+  const activeBidders = contenders.slice(0, poolSize);
 
   liveAuction = {
     active: true,
@@ -1892,7 +1909,8 @@ function startConsignmentWithItem(item) {
   document.getElementById("btn-spur-floor").style.display = "block";
 
   addTickerLine(`[AUCTIONEER] "Lot: <strong>${item.name}</strong>."`, "ticker-event");
-  addTickerLine(`[AUCTIONEER] "Appraisal: ${formatMoney(appraised)}. Opening at ${formatMoney(openingBid)}."`);
+  addTickerLine(`[AUCTIONEER] "Appraisal: ${formatMoney(appraised)}. Opening floor reserve: ${formatMoney(openingBid)}."`);
+  addTickerLine(`[ROOM] <em>${activeBidders.length} accredited institutions have registered paddles for this lot.</em>`);
 
   updateLiveAuctionUI();
   liveAuction.timerId = setInterval(auctionHeartbeat, 1250);
@@ -1922,54 +1940,72 @@ function auctionHeartbeat() {
   const item = liveAuction.item;
   const t = 15 - liveAuction.secondsLeft;
 
+  // Opening commentary
   if (t === 1) {
     const curator = liveAuction.competingInstitutions[0].name;
     if (item.grade) {
-      addTickerLine(`&bull; <em>${curator}</em>: <span class="ticker-comment">"${item.grade} condition slab—pristine."</span>`);
+      addTickerLine(`&bull; <em>${curator}</em>: <span class="ticker-comment">"${item.grade} condition slab—pristine surface preservation."</span>`);
     } else {
-      addTickerLine(`&bull; <em>${curator}</em>: <span class="ticker-comment">"A raw find from ${item.era}."</span>`);
+      addTickerLine(`&bull; <em>${curator}</em>: <span class="ticker-comment">"A fascinating raw field discovery from ${item.era}."</span>`);
     }
   } else if (t === 2) {
     const rival = liveAuction.competingInstitutions[1].name;
     if (item.authenticated) {
-      addTickerLine(`&bull; <em>${rival}</em>: <span class="ticker-comment">"USGS spectrometry verified. Approved to bid."</span>`);
+      addTickerLine(`&bull; <em>${rival}</em>: <span class="ticker-comment">"USGS spectrometry verified. Our acquisitions board is entering the floor."</span>`);
     } else {
-      addTickerLine(`&bull; <em>${rival}</em>: <span class="ticker-comment">"Opening active paddle."</span>`);
+      addTickerLine(`&bull; <em>${rival}</em>: <span class="ticker-comment">"Significant educational merit. Raising active paddle."</span>`);
     }
   }
 
+  // Surprise mid-auction challenger entrance at second 6
+  if (t === 6 && Math.random() < 0.40) {
+    const outsiders = BIDDER_DIRECTORY.filter(b => !liveAuction.competingInstitutions.some(cb => cb.name === b.name));
+    if (outsiders.length > 0) {
+      const newcomer = outsiders[Math.floor(Math.random() * outsiders.length)];
+      liveAuction.competingInstitutions.push(newcomer);
+      addTickerLine(`[FLOOR ENTRANCE] <span class="ticker-event">${newcomer.name} steps forward to submit a late paddle!</span>`);
+    }
+  }
+
+  // Active bidding phase
   if (t >= 2 && t <= 11) {
     if (liveAuction.currentBid < liveAuction.targetCeiling) {
       const remainingMargin = liveAuction.targetCeiling - liveAuction.currentBid;
-      const bidder = liveAuction.competingInstitutions[Math.floor(Math.random() * liveAuction.competingInstitutions.length)];
+
+      // CRITICAL FIX: Filter out whoever currently holds the high bid!
+      let eligible = liveAuction.competingInstitutions.filter(b => b.name !== liveAuction.highBidder);
+      if (eligible.length === 0) eligible = liveAuction.competingInstitutions;
+
+      const bidder = eligible[Math.floor(Math.random() * eligible.length)];
 
       let jump = liveAuction.isClash 
         ? Math.round(remainingMargin * (0.20 + Math.random() * 0.35))
         : Math.round(remainingMargin * (0.15 + Math.random() * 0.25));
 
-      jump = Math.max(10, jump);
+      jump = Math.max(15, jump);
       liveAuction.currentBid = Math.min(liveAuction.targetCeiling, liveAuction.currentBid + jump);
       liveAuction.highBidder = bidder.name;
 
       addTickerLine(`&gt;&gt; <span class="ticker-bid">${bidder.name}</span>: <strong>${formatMoney(liveAuction.currentBid)}</strong>!`);
 
       if (liveAuction.isClash && Math.random() < 0.35) {
-        addTickerLine(`[CLASH] <span class="ticker-event">Heated rivalry across the floor!</span>`);
+        addTickerLine(`[CLASH] <span class="ticker-event">Heated rivalry across the floor—competing delegates refuse to back down!</span>`);
       }
     } else {
       if (liveAuction.cadenceStep === 0) {
-        addTickerLine(`[AUCTIONEER] "Floor reached reserve limit at ${formatMoney(liveAuction.currentBid)}."`);
+        addTickerLine(`[AUCTIONEER] "Floor reached reserve ceiling at ${formatMoney(liveAuction.currentBid)}."`);
         liveAuction.cadenceStep = 1;
       }
     }
   }
 
+  // Closing cadence
   if (t === 12) {
-    addTickerLine(`[AUCTIONEER] "At ${formatMoney(liveAuction.currentBid)}... Going once!"`);
+    addTickerLine(`[AUCTIONEER] "At ${formatMoney(liveAuction.currentBid)} to ${liveAuction.highBidder}... Going once!"`);
   } else if (t === 13) {
-    addTickerLine(`[AUCTIONEER] "Going twice... Room is holding."`);
+    addTickerLine(`[AUCTIONEER] "Going twice... Floor is holding."`);
   } else if (t === 14) {
-    addTickerLine(`[AUCTIONEER] "Fair warning... Last call!"`);
+    addTickerLine(`[AUCTIONEER] "Fair warning... Last call for institutional counters!"`);
   }
 
   if (liveAuction.secondsLeft <= 0) {
@@ -1992,9 +2028,9 @@ function completeAuctionSale() {
 
   addTickerLine(`------------------------------------------------`, "ticker-event");
   addTickerLine(`[GAVEL] <strong>SOLD FOR ${formatMoney(hammerPrice)}!</strong>`, "ticker-bid");
-  addTickerLine(`To: <strong>${liveAuction.highBidder}</strong>.`);
-  addTickerLine(`Filing Fee (5%): -${formatMoney(fee)}`);
-  addTickerLine(`Net Credited: <strong>+${formatMoney(net)}</strong>`, "ticker-event");
+  addTickerLine(`Acquired by: <strong>${liveAuction.highBidder}</strong>.`);
+  addTickerLine(`Consortium Filing Fee (5%): -${formatMoney(fee)}`);
+  addTickerLine(`Net Deposited into Field Trust: <strong>+${formatMoney(net)}</strong>`, "ticker-event");
   addTickerLine(`------------------------------------------------`, "ticker-event");
 
   document.getElementById("btn-hammer-early").style.display = "none";
@@ -2008,7 +2044,7 @@ function completeAuctionSale() {
 
 function hammerDownEarly() {
   if (!liveAuction.active) return;
-  addTickerLine(`[PLAYER] <strong>You hammer down early to accept!</strong>`, "ticker-event");
+  addTickerLine(`[PLAYER] <strong>You hammer down early to accept the current high offer!</strong>`, "ticker-event");
   completeAuctionSale();
 }
 
@@ -2017,17 +2053,21 @@ function spurTheFloor() {
   liveAuction.spurred = true;
   document.getElementById("btn-spur-floor").disabled = true;
 
-  addTickerLine(`[AUCTIONEER] <strong>"Consigner demands a jump from the floor!"</strong>`, "ticker-event");
+  addTickerLine(`[AUCTIONEER] <strong>"The consigner demands an aggressive jump from the room!"</strong>`, "ticker-event");
   
   if (liveAuction.currentBid < liveAuction.targetCeiling) {
-    const boost = Math.round((liveAuction.targetCeiling - liveAuction.currentBid) * 0.4);
+    // Select someone other than the high bidder to respond to the spur
+    const eligible = liveAuction.competingInstitutions.filter(b => b.name !== liveAuction.highBidder);
+    const bidder = eligible.length > 0 ? eligible[Math.floor(Math.random() * eligible.length)] : liveAuction.competingInstitutions[0];
+
+    const boost = Math.round((liveAuction.targetCeiling - liveAuction.currentBid) * 0.40);
     liveAuction.currentBid += Math.max(50, boost);
-    const bidder = liveAuction.competingInstitutions[0].name;
-    liveAuction.highBidder = bidder;
-    addTickerLine(`&gt;&gt; <span class="ticker-bid">${bidder}</span>: <strong>${formatMoney(liveAuction.currentBid)}</strong>!`);
+    liveAuction.highBidder = bidder.name;
+
+    addTickerLine(`&gt;&gt; <span class="ticker-bid">${bidder.name}</span> meets the challenge: <strong>${formatMoney(liveAuction.currentBid)}</strong>!`);
     updateLiveAuctionUI();
   } else {
-    addTickerLine(`[AUCTIONEER] "Bidders decline to advance past ceiling."`);
+    addTickerLine(`[AUCTIONEER] "Bidders decline to advance past certified institutional limits."`);
   }
 }
 
