@@ -27,7 +27,7 @@
     color: var(--text-main);
     font-family: var(--font-serif);
     line-height: 1.45;
-    padding: 8px 8px 82px 8px; /* generous bottom clearance for docked nav */
+    padding: 8px 8px 82px 8px;
     display: flex;
     justify-content: center;
   }
@@ -82,6 +82,12 @@
     margin-bottom: 12px;
     text-align: center;
     position: relative;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.08s ease;
+  }
+  #park-sign-counter:active {
+    transform: scale(0.99);
   }
   .sign-title {
     font-family: var(--font-mono);
@@ -133,7 +139,7 @@
   }
   .stat-block strong { color: var(--accent-rust); }
 
-  /* Docked Bottom Navigation Bar (Centered on PC, Swipeable on Mobile) */
+  /* Docked Bottom Navigation Bar */
   nav#bottom-nav {
     position: fixed;
     bottom: 0;
@@ -208,7 +214,7 @@
   select.mobile-select {
     width: 100%;
     font-family: var(--font-serif);
-    font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+    font-size: 16px;
     padding: 8px 10px;
     border: 1px solid var(--border-color);
     background: #fff;
@@ -373,13 +379,13 @@
     </div>
   </header>
 
-  <!-- RUSTIC PARK SIGN VISITOR TRACKER -->
-  <div id="park-sign-counter">
+  <!-- RUSTIC PARK SIGN VISITOR TRACKER (Clickable to Test/Tally) -->
+  <div id="park-sign-counter" onclick="recordParkVisitClick()" title="Tap sign or charter travel to record a park expedition!">
     <div class="sign-title">&#9670; Parks Visited Through Us: &#9670;</div>
     <div class="sign-odometer-box">
-      <span id="global-counter-display" class="odometer-digit">0,018,482</span>
+      <span id="global-counter-display" class="odometer-digit">18,482</span>
     </div>
-    <div class="sign-footer-note">TOTAL EXPEDITIONS LOGGED ACROSS ALL PARKS</div>
+    <div class="sign-footer-note">TOTAL EXPEDITIONS LOGGED &bull; TAP SIGN TO LOG VISIT</div>
   </div>
 
   <!-- Status Bar -->
@@ -640,7 +646,7 @@
   </footer>
 </div>
 
-<!-- DOCKED BOTTOM NAVIGATION (Centered on PC, Swipeable on Mobile) -->
+<!-- DOCKED BOTTOM NAVIGATION -->
 <nav id="bottom-nav">
   <button class="nav-btn active" onclick="switchView('view-combing')">Comb</button>
   <button class="nav-btn" onclick="switchView('view-inventory')">Pack</button>
@@ -670,9 +676,8 @@ function formatMoney(amount) {
 // ============================================================================
 // LIVE GLOBAL VISITOR COUNTER & REAL-TIME CLICK TRACKER
 // ============================================================================
-const COUNTER_NAMESPACE = "field-naturalist-living-archive-v1";
-const COUNTER_KEY = "parks-visited-count";
-const SEED_OFFSET = 18482; // Realistic starting expedition seed
+const COUNTER_KEY = "field_naturalist_parks_visited_2026";
+const SEED_OFFSET = 18482; // Authentic starting seed
 
 function updateSignDisplay(count) {
   const display = document.getElementById("global-counter-display");
@@ -683,36 +688,39 @@ function updateSignDisplay(count) {
 
 async function fetchGlobalVisitCount() {
   let localCount = parseInt(localStorage.getItem("local_park_visits_tally")) || SEED_OFFSET;
+  updateSignDisplay(localCount);
+
   try {
-    const res = await fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${COUNTER_KEY}`, { cache: "no-store" });
+    const res = await fetch(`https://countapi.mileshilliard.com/api/v1/get/${COUNTER_KEY}`, { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
-      if (data && typeof data.count === 'number') {
-        const total = SEED_OFFSET + data.count;
-        localStorage.setItem("local_park_visits_tally", total);
-        updateSignDisplay(total);
-        return;
+      if (data && data.value != null) {
+        const remoteTotal = SEED_OFFSET + parseInt(data.value, 10);
+        const finalCount = Math.max(localCount, remoteTotal);
+        localStorage.setItem("local_park_visits_tally", finalCount);
+        updateSignDisplay(finalCount);
       }
     }
   } catch(e) {
-    // Offline or CORS block: use local persisted count smoothly
+    // Graceful offline fallback
   }
-  updateSignDisplay(localCount);
 }
 
 async function recordParkVisitClick() {
+  // Optimistically increment local counter immediately
   let localCount = (parseInt(localStorage.getItem("local_park_visits_tally")) || SEED_OFFSET) + 1;
   localStorage.setItem("local_park_visits_tally", localCount);
   updateSignDisplay(localCount);
 
   try {
-    const res = await fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${COUNTER_KEY}/up`, { cache: "no-store" });
+    const res = await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${COUNTER_KEY}`, { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
-      if (data && typeof data.count === 'number') {
-        const total = SEED_OFFSET + data.count;
-        localStorage.setItem("local_park_visits_tally", total);
-        updateSignDisplay(total);
+      if (data && data.value != null) {
+        const remoteTotal = SEED_OFFSET + parseInt(data.value, 10);
+        const finalCount = Math.max(localCount, remoteTotal);
+        localStorage.setItem("local_park_visits_tally", finalCount);
+        updateSignDisplay(finalCount);
       }
     }
   } catch(e) {
@@ -737,7 +745,7 @@ const DISTRICTS = {
 const ALL_PARKS = [
   // District 1 (6)
   { id: "olym", name: "Olympic National Park", state: "WA", est: 1938, district: 1, zones: [
-    { title: "Hoh Rain Forest Mossy Terrace", desc: "Immense Sitka spruces and maples hung with club moss. Heavy needle duff covers nurse logs." },
+    { title: "Hoh Rain Forest Mossy Terrace", desc: "Sitka spruces and maples hung with club moss. Heavy needle duff covers nurse logs." },
     { title: "Ruby Beach Sea-Stack Shingle", desc: "Pacific surf washing sorted cobbles of weathered basalt and marine sandstone." },
     { title: "Hurricane Ridge Subalpine Scree", desc: "Sharp slate and pillow basalt talus near timberline scoured by alpine winds." }
   ]},
@@ -1945,7 +1953,7 @@ function auctionHeartbeat() {
 
       addTickerLine(`&gt;&gt; <span class="ticker-bid">${bidder.name}</span>: <strong>${formatMoney(liveAuction.currentBid)}</strong>!`);
 
-      if (liveAuction.isClash && Math.random() < 0.40) {
+      if (liveAuction.isClash && Math.random() < 0.35) {
         addTickerLine(`[CLASH] <span class="ticker-event">Heated rivalry across the floor!</span>`);
       }
     } else {
@@ -2184,9 +2192,7 @@ function travelToPark(parkId, fare) {
   state.currentZoneIndex = 0;
   saveGame();
 
-  // Increment live global & local click counter for expeditions
   recordParkVisitClick();
-
   switchView('view-combing');
 }
 
