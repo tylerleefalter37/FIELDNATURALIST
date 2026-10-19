@@ -527,8 +527,9 @@
 
   <!-- PANEL 6: CONSERVANCY & SUPPORT -->
   <div id="view-conservancy" class="view-panel">
-    <h2 style="font-size:1.15rem; margin-bottom:4px;">Preservation &amp; Support</h2>
+    <h2 style="font-size:1.15rem; margin-bottom:4px;">Preservation, Real Stewardship &amp; Support</h2>
 
+    <!-- 1. CREATOR FAMILY FUND -->
     <div class="family-letter-box">
       <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--accent-gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:3px;">
         &bull; A Note from the Trail &bull;
@@ -550,18 +551,29 @@
       </div>
     </div>
 
+    <!-- 2. NATIONAL PARK FOUNDATION -->
     <div style="background:#f1f6ed; border:1px solid var(--accent-green); padding:12px; margin-bottom:14px;">
       <h3 style="font-size:0.95rem; color:var(--accent-green); margin-bottom:4px;">Support Real Public Lands</h3>
       <p style="font-size:0.82rem; line-height:1.4; margin-bottom:8px;">
-        Help fund trail repairs, ranger educational programs, and wildlife protection across 85 million acres.
+        Help fund trail repairs, ranger educational programs, and wildlife protection across 85 million acres of protected national parkland.
       </p>
       <a href="https://give.nationalparks.org" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
         <button class="action-btn" style="background:var(--accent-green); color:#fff; font-weight:bold; border:none;">
-          &bull; Donate to National Park Foundation &bull;
+          &bull; Donate to National Park Foundation (give.nationalparks.org) &bull;
         </button>
       </a>
     </div>
 
+    <!-- 3. BIDDER INSTITUTIONS DIRECT DONATION DIRECTORY -->
+    <div style="background:#fff; border:1px solid var(--accent-blue); padding:12px; margin-bottom:14px;">
+      <h3 style="font-size:0.95rem; color:var(--accent-blue); margin-bottom:4px;">Support Scientific &amp; Cultural Institutions</h3>
+      <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
+        The museums, universities, and research trusts featured in our auction room conduct critical real-world paleontology, archaeology, and mineral conservation:
+      </p>
+      <div id="institution-donation-list" style="display:grid; grid-template-columns:1fr; gap:6px; max-height:220px; overflow-y:auto; padding-right:4px;"></div>
+    </div>
+
+    <!-- 4. IN-GAME CONSERVANCY TIERS -->
     <h3 style="font-size:1rem; margin:12px 0 6px 0; color:var(--accent-rust);">In-Game Park Endowments</h3>
     <div id="conservancy-tiers-display"></div>
   </div>
@@ -624,7 +636,7 @@
 
     <div class="manual-section">
       <h3>3. 15-Second Auctions</h3>
-      <p>In <strong>[ Auction ]</strong>, global institutions bid autonomously. If a <em>Curatorial Clash</em> occurs, bids spike dramatically. Use <strong>[ Hammer Down Early ]</strong> or <strong>[ Spur the Floor ]</strong> to steer the rostrum.</p>
+      <p>In <strong>[ Auction ]</strong>, global institutions bid autonomously without bidding against themselves. If a <em>Curatorial Clash</em> occurs, bids spike dramatically. Use <strong>[ Hammer Down Early ]</strong> or <strong>[ Spur the Floor ]</strong> to steer the rostrum.</p>
     </div>
 
     <div class="manual-section">
@@ -633,16 +645,17 @@
     </div>
 
     <div class="manual-section" style="border: 1px solid var(--accent-rust); background: #fdfaf7;">
-      <h3 style="color:var(--accent-rust);">5. Leave No Trace &amp; Legal Notice</h3>
-      <p><strong>REAL-WORLD RULE:</strong> In actual National Parks, taking rocks, fossils, plants, or artifacts is a federal crime under the <em>Antiquities Act</em> and <em>ARPA</em>. Always practice Leave No Trace.</p>
-      <p style="font-size: 0.75rem; color: var(--text-muted); border-top: 1px dashed var(--border-light); padding-top: 4px; margin-bottom: 0;">
-        <em>Notice: Field Naturalist is an independent educational tribute game. It is not affiliated with, authorized, or endorsed by the National Park Service or the U.S. Department of the Interior.</em>
+      <h3 style="color:var(--accent-rust);">5. Leave No Trace &amp; Institutional Disclaimer</h3>
+      <p><strong>LEAVE NO TRACE:</strong> In real National Parks, removing any rock, fossil, mineral, plant, animal trace, or historical artifact is strictly illegal under the <em>Antiquities Act of 1906</em> and <em>ARPA 1979</em>. Always take only pictures, leave only footprints, and leave historical discoveries in place for archaeologists.</p>
+      <p style="font-size: 0.74rem; color: var(--text-muted); border-top: 1px dashed var(--border-light); padding-top: 6px; margin-bottom: 0;">
+        <em>LEGAL DISCLAIMER: Field Naturalist: The Living Archive is an independent, non-commercial educational tribute game developed independently. It is NOT affiliated with, authorized, sponsored, or endorsed by the National Park Service, the U.S. Department of the Interior, or any referenced museum, university, trust, or scientific institution (including the Smithsonian Institution, the Natural History Museum London, AMNH, the Field Museum, the Peabody Museum, Harvard University, or Oxford University). All trademarks, registered names, and institutional titles belong to their respective entities and are used solely for educational and storytelling context.</em>
       </p>
     </div>
   </div>
 
-  <footer style="margin-top: 16px; border-top: 1px solid var(--border-light); padding-top: 8px; text-align: center; font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">
-    Field Naturalist: The Living Archive &bull; Independent Educational Tribute
+  <footer style="margin-top: 16px; border-top: 1px solid var(--border-light); padding-top: 8px; text-align: center; font-size: 0.68rem; color: var(--text-muted); font-family: var(--font-mono); line-height: 1.4;">
+    Field Naturalist: The Living Archive &bull; Independent Educational Tribute<br>
+    Not affiliated with the NPS, Dept. of the Interior, or referenced museums &bull; Practice Leave No Trace
   </footer>
 </div>
 
@@ -677,7 +690,7 @@ function formatMoney(amount) {
 // LIVE GLOBAL VISITOR COUNTER & REAL-TIME CLICK TRACKER
 // ============================================================================
 const COUNTER_KEY = "field_naturalist_parks_visited_2026";
-const SEED_OFFSET = 18482; // Authentic starting seed
+const SEED_OFFSET = 18482;
 
 function updateSignDisplay(count) {
   const display = document.getElementById("global-counter-display");
@@ -701,9 +714,7 @@ async function fetchGlobalVisitCount() {
         updateSignDisplay(finalCount);
       }
     }
-  } catch(e) {
-    // Graceful offline fallback
-  }
+  } catch(e) {}
 }
 
 async function recordParkVisitClick() {
@@ -722,9 +733,7 @@ async function recordParkVisitClick() {
         updateSignDisplay(finalCount);
       }
     }
-  } catch(e) {
-    // Graceful offline fallback
-  }
+  } catch(e) {}
 }
 
 // ============================================================================
@@ -1075,10 +1084,10 @@ const ALL_PARKS = [
 ];
 
 // ============================================================================
-// 2. MASTER SPECIMENS & CROWN JEWELS (TIER 1 - 5)
+// 2. DOUBLED MASTER SPECIMENS & CROWN JEWELS (TIER 1 - 5)
 // ============================================================================
 const MASTER_SPECIMENS = [
-  // CROWN JEWELS (Tier V: $1.2M - $8.5M+ baseline)
+  // TIER V CROWN JEWELS (10 Items: $1.2M - $8.5M+ Baseline)
   {
     id: "KOVA_TUSK",
     parkId: "kova",
@@ -1088,7 +1097,7 @@ const MASTER_SPECIMENS = [
     cat: "Paleontological Holotype",
     era: "Late Pleistocene (~24,000 BP)",
     mat: "Ivory replaced with vivianite crystal (Fe3(PO4)2·8H2O)",
-    desc: "An 11.5-foot, fully intact mammoth tusk weathered out from permafrost. Decades of iron-phosphate saturation have crystallized the outer ivory sheath into brilliant, iridescent cobalt-blue vivianite. Pristine museum holotype."
+    desc: "An 11.5-foot, fully intact mammoth tusk weathered out from permafrost. Iron-phosphate saturation has crystallized the outer ivory sheath into brilliant, iridescent cobalt-blue vivianite. Pristine museum holotype."
   },
   {
     id: "YELL_CLOVIS",
@@ -1099,7 +1108,7 @@ const MASTER_SPECIMENS = [
     cat: "Lithic Cultural Relic",
     era: "Paleoindian (~13,000 BP)",
     mat: "Translucent jet-black volcanic glass",
-    desc: "A cache of nine pristine fluted Clovis points bedded in hydrothermal gravels. Miraculously preserved with trace birch-tar hafting residue. A cornerstone of North American human archaeology."
+    desc: "A cache of nine pristine fluted Clovis points bedded in hydrothermal gravels. Preserved with trace birch-tar hafting residue. A cornerstone of North American human archaeology."
   },
   {
     id: "DRTO_ASTROLABE",
@@ -1134,8 +1143,63 @@ const MASTER_SPECIMENS = [
     mat: "Wet-plate collodion on glass / zinc-lined cedar",
     desc: "A sealed cedar field case containing six uncracked 18x22-inch mammoth-plate collodion negatives documenting Yosemite Valley before European settlement. Intact archival silver image layers."
   },
+  {
+    id: "ZION_FRESCO",
+    parkId: "zion",
+    name: "Fremont Ochre Shield Pictograph Slab",
+    tier: 5,
+    baseVal: 3100000,
+    cat: "Indigenous Rock Art Relic",
+    era: "Fremont Culture (~1050 CE)",
+    mat: "Navajo Sandstone with hematite & charcoal pigment",
+    desc: "A clean spall slab sheared from a protected alcove overhang. Depicts a ceremonial circular warrior shield with radiating star motifs in brilliant natural cinnabar and iron ochre."
+  },
+  {
+    id: "GRCA_SLOTH",
+    parkId: "grca",
+    name: "Rampart Cave Shasta Ground Sloth Skull",
+    tier: 5,
+    baseVal: 4200000,
+    cat: "Paleontological Holotype",
+    era: "Late Pleistocene (~11,000 BP)",
+    mat: "Desiccated keratin, bone & tendon",
+    desc: "A completely desiccated cranium and claw core of Nothrotheriops shastensis preserved by dry desert cave air. Intact golden keratin claw sheath still attached."
+  },
+  {
+    id: "PEFO_AETOSAUR",
+    parkId: "pefo",
+    name: "Desmatosuchus Articulated Dorsal Carapace",
+    tier: 5,
+    baseVal: 2700000,
+    cat: "Paleontological Masterwork",
+    era: "Late Triassic (~220 Million Years)",
+    mat: "Silicified dermal scutes in Chinle shale",
+    desc: "A three-foot articulated section of dermal armor plates from the herbivorous archosaur Desmatosuchus, featuring intact curved shoulder spikes preserved in purple jasper matrix."
+  },
+  {
+    id: "GLAC_BIGHORN",
+    parkId: "glac",
+    name: "Ice-Preserved Pleistocene Bighorn Cranium",
+    tier: 5,
+    baseVal: 1900000,
+    cat: "Paleontological Specimen",
+    era: "Late Pleistocene (~14,500 BP)",
+    mat: "Subfossil bone & mineralized horn sheath",
+    desc: "Melted out from a high permanent firn ice field near Logan Pass. A massive ram skull boasting complete 42-inch curled horn sheaths with zero predatory gnawing."
+  },
+  {
+    id: "HALE_METEORITE",
+    parkId: "hale",
+    name: "The Haleakalā Pallasite Iron-Nickel Mass",
+    tier: 5,
+    baseVal: 3800000,
+    cat: "Extraterrestrial Meteorite",
+    era: "Solar System Formation (~4.5 Billion Years)",
+    mat: "Kamacite, taenite & translucent peridot olivine",
+    desc: "A 36-pound orienting pallasite meteorite found nestled in high cinder scree. Cut face reveals gem-quality translucent emerald-green olivine crystals suspended in etched Widmanstätten nickel iron."
+  },
 
-  // TIER 4: MASTERWORKS ($65k - $450k)
+  // TIER IV MASTERWORKS (9 Items: $65,000 - $450,000)
   {
     id: "GRCA_TRILO",
     parkId: "grca",
@@ -1180,8 +1244,63 @@ const MASTER_SPECIMENS = [
     mat: "Native Copper with Malachite and Cuprite",
     desc: "A 48-pound water-smoothed boulder of pure native copper washed from high greenstone lodes. Glacial striations cut through emerald malachite skin."
   },
+  {
+    id: "DENA_MAMMOTH_MOLAR",
+    parkId: "dena",
+    name: "Stegodon-Grade Mammoth Molar Block",
+    tier: 4,
+    baseVal: 195000,
+    cat: "Paleontological Specimen",
+    era: "Pleistocene (~50,000 BP)",
+    mat: "Mineralized enamel, dentine & cementum",
+    desc: "A massive, perfectly rooted lower third molar exhibiting 28 alternating enamel plates without flaking. Washed clean from glacial till along Stony Creek."
+  },
+  {
+    id: "CANY_CRINOID",
+    parkId: "cany",
+    name: "Honaker Trail Crinoid Colony Slab",
+    tier: 4,
+    baseVal: 210000,
+    cat: "Paleontological Masterwork",
+    era: "Pennsylvanian (~305 Million Years)",
+    mat: "Bioclastic marine limestone",
+    desc: "A three-foot display bench holding eleven articulated sea lily (crinoid) calyxes with complete feathery feeding arms spread across gray calcarenite."
+  },
+  {
+    id: "ARCH_DINOSAUR",
+    parkId: "arch",
+    name: "Morrison Allosaurus Predatory Ungual",
+    tier: 4,
+    baseVal: 380000,
+    cat: "Vertebrate Dinosaur Fossil",
+    era: "Late Jurassic (~152 Million Years)",
+    mat: "Silicified fossil bone with agate infill",
+    desc: "A seven-inch hand claw of Allosaurus fragilis recovered from a gravel wash. The blood grooves along the lateral margins are preserved in dark carnelian."
+  },
+  {
+    id: "ACAD_CARLETON",
+    parkId: "acad",
+    name: "1880s Bar Harbor Gilded Yacht Binnacle",
+    tier: 4,
+    baseVal: 145000,
+    cat: "Maritime Historical Relic",
+    era: "Gilded Age (~1888 CE)",
+    mat: "Engine-turned brass & liquid card compass",
+    desc: "Recovered from a storm cobble chasm near Otter Cliff. An engraved brass binnacle bearing the private pennant of a Mount Desert Island shipping magnate."
+  },
+  {
+    id: "CAVE_HELICTITE",
+    parkId: "cave",
+    name: "Aragonite Helictite 'Medusa' Cluster",
+    tier: 4,
+    baseVal: 275000,
+    cat: "Speleothemic Mineral Wonder",
+    era: "Pleistocene Hydrothermal",
+    mat: "Acicular Aragonite & Calcite Spar",
+    desc: "A gravity-defying cluster of curved, spiraling snow-white helictites preserved on a dolomitic breakdown block from an airless side gallery."
+  },
 
-  // TIER 3: RARE STRATIGRAPHIC ($5k - $45k)
+  // TIER III RARE STRATIGRAPHIC (10 Items: $5,000 - $45,000)
   {
     id: "SHEN_BLAST",
     parkId: "shen",
@@ -1226,8 +1345,74 @@ const MASTER_SPECIMENS = [
     mat: "Navajo Shinarump chert",
     desc: "Exquisite pressure-flaked projectile point exhibiting expanding stem notches and razor-sharp serrations without field damage."
   },
+  {
+    id: "OLYM_BASKETRY",
+    parkId: "olym",
+    name: "Ozette Wet-Site Woven Spruce Root Shard",
+    tier: 3,
+    baseVal: 28000,
+    cat: "Indigenous Botanical Artifact",
+    era: "Pre-Contact (~1500 CE)",
+    mat: "Split Sitka spruce root & cedar bast",
+    desc: "Preserved in anaerobic seaside clay. Exhibits tight checker-weave basketry with intact geometric black dyed mud-stain patterns."
+  },
+  {
+    id: "DEVA_BORAX_TOKEN",
+    parkId: "deva",
+    name: "1885 Harmony Borax Twenty-Mule Token",
+    tier: 3,
+    baseVal: 14000,
+    cat: "Frontier Industrial Relic",
+    era: "Mining Era (1885 CE)",
+    mat: "Stamped copper-nickel alloy",
+    desc: "Company store wage scrip stamped 'W.T. COLEMAN CO. HARMONY WORKS' recovered from dry desert silt near the historic roasting vats."
+  },
+  {
+    id: "ROMO_PEGMATITE",
+    parkId: "romo",
+    name: "Boudinaged Microcline Pegmatite Core",
+    tier: 3,
+    baseVal: 22000,
+    cat: "Structural Geology Float",
+    era: "Precambrian (~1.7 Billion Years)",
+    mat: "Salmon-pink microcline & smoky quartz",
+    desc: "A geological core showing intense ductile shear and sausage-string stretching (boudinage) from the deep roots of the ancestral Rockies."
+  },
+  {
+    id: "CUVA_CANAL_BELL",
+    parkId: "cuva",
+    name: "1852 Ohio & Erie Canal Packet Bell",
+    tier: 3,
+    baseVal: 19500,
+    cat: "Canal Era Historical Relic",
+    era: "Canal Boom (1852 CE)",
+    mat: "Cast bronze with green river patina",
+    desc: "A ten-pound warning bell dredged from lock silts along the Cuyahoga River, stamped with the foundry mark of Cleveland Brass."
+  },
+  {
+    id: "VOYA_GOLD_QUARTZ",
+    parkId: "voya",
+    name: "Little American Mine Native Gold Ribbon",
+    tier: 3,
+    baseVal: 34000,
+    cat: "Mineralogical Specimen",
+    era: "Archean Greenstone Belt",
+    mat: "Native crystalline gold in smoky quartz",
+    desc: "A river cobble displaying an undulating ribbon of crystalline native gold trapped inside banded greenstone-hosted shear quartz."
+  },
+  {
+    id: "NERI_MINE_LAMP",
+    parkId: "neri",
+    name: "1898 Wolf Carbide Safety Flame Lamp",
+    tier: 3,
+    baseVal: 12500,
+    cat: "Appalachian Mining Relic",
+    era: "Coal Boom (1898 CE)",
+    mat: "Brass bonnet, lead seal & glass chimney",
+    desc: "Used by fire-boss inspectors at the Nuttallburg coal seam to detect methane gas. Found intact in a dry sandstone ledge niche."
+  },
 
-  // TIER 2: DIAGNOSTIC FLOAT ($600 - $3,500)
+  // TIER II DIAGNOSTIC FLOAT (12 Items: $600 - $3,500)
   {
     id: "GLAC_ARGILLITE",
     parkId: "glac",
@@ -1237,7 +1422,7 @@ const MASTER_SPECIMENS = [
     cat: "Paleontological Float",
     era: "Mesoproterozoic (~1.4 Billion Years)",
     mat: "Siliceous Argillite (Belt Supergroup)",
-    desc: "A river-polished green argillite pebble displaying fine concentric laminations created by ancient cyanobacterial colonies."
+    desc: "A river-polished green argillite pebble displaying concentric laminations created by ancient cyanobacterial colonies."
   },
   {
     id: "PEFO_LOG",
@@ -1248,7 +1433,7 @@ const MASTER_SPECIMENS = [
     cat: "Silicified Paleobotanical Wood",
     era: "Late Triassic (~218 Million Years)",
     mat: "Carnelian & Jasper silica replacement",
-    desc: "A five-inch complete cylinder of fossilized wood displaying microscopic cell walls and growth rings replaced with brilliant scarlet jasper."
+    desc: "A five-inch complete cylinder of fossilized wood displaying cell walls and rings replaced with scarlet jasper."
   },
   {
     id: "EVER_SHELL",
@@ -1258,8 +1443,8 @@ const MASTER_SPECIMENS = [
     baseVal: 1850,
     cat: "Indigenous Shell Implement",
     era: "Glades Culture (~900 CE)",
-    mat: "Robust Lightning Whelk (Sinistrofulgur perversum)",
-    desc: "Fashioned from the thick columella of a large whelk shell, exhibiting a ground beveled cutting edge used for carving dugout cypress canoes."
+    mat: "Robust Lightning Whelk (Sinistrofulgur)",
+    desc: "Fashioned from the thick columella of a large whelk shell, exhibiting a ground beveled edge for canoe crafting."
   },
   {
     id: "HAVO_PELE",
@@ -1270,10 +1455,99 @@ const MASTER_SPECIMENS = [
     cat: "Volcanological Glass Specimen",
     era: "Modern Eruptive (~1959 CE)",
     mat: "Basaltic pyroclastic glass fiber",
-    desc: "Delicate golden threads of drawn volcanic glass created by gas bubbles bursting through molten lava fountains. Brittle and luminous."
+    desc: "Delicate golden threads of drawn volcanic glass created by gas bubbles bursting through lava fountains."
+  },
+  {
+    id: "JOTR_CHONDRITE",
+    parkId: "jotr",
+    name: "Desert Varnish Ordinary Chondrite",
+    tier: 2,
+    baseVal: 2400,
+    cat: "Meteoritic Stone Float",
+    era: "Pre-Terrestrial Fall",
+    mat: "Silicate matrix with nickel-iron flecks",
+    desc: "A dense stony meteorite showing a chocolate-brown weathered fusion crust and magnetic pull found on desert pavement."
+  },
+  {
+    id: "REDW_BURL",
+    parkId: "redw",
+    name: "Subfossil Mineralized Redwood Burl Core",
+    tier: 2,
+    baseVal: 1650,
+    cat: "Paleobotanical Specimen",
+    era: "Holocene Alluvial Peat",
+    mat: "Tannic iron-infiltrated Sequoia wood",
+    desc: "Dense, heavy redwood burl wood stained blue-black by iron tannins after lying centuries in river gravels."
+  },
+  {
+    id: "WICA_CALCITE",
+    parkId: "wica",
+    name: "Spearfish Dogtooth Calcite Spar Cluster",
+    tier: 2,
+    baseVal: 1950,
+    cat: "Mineralogical Crystal",
+    era: "Mississippian Paleokarst",
+    mat: "Prismatic scalenohedral Calcite (CaCO3)",
+    desc: "A cluster of sharp, amber-tinted scalenohedral calcite crystals weathering cleanly from a limestone creek outcrop."
+  },
+  {
+    id: "SAGU_VARNISH",
+    parkId: "sagu",
+    name: "Desert Varnish Rhyolite Scraper Core",
+    tier: 2,
+    baseVal: 2100,
+    cat: "Archaic Lithic Float",
+    era: "Middle Archaic (~2000 BCE)",
+    mat: "Dark-patinated porphyritic rhyolite",
+    desc: "A flaked stone core displaying gleaming black manganese desert varnish over old negative flake scars."
+  },
+  {
+    id: "GUMO_SPONGE",
+    parkId: "gumo",
+    name: "Capitan Reef Fossil Glass Sponge Dome",
+    tier: 2,
+    baseVal: 1800,
+    cat: "Paleontological Marine Fossil",
+    era: "Permian (~265 Million Years)",
+    mat: "Silicified sponge matrix (Guadalupia)",
+    desc: "A rounded calcified sponge colony displaying internal honeycomb pore canals that once anchored an ancient Permian reef."
+  },
+  {
+    id: "KEFJ_GARNET",
+    parkId: "kefj",
+    name: "Glacial Flour Almandine Garnet Sand",
+    tier: 2,
+    baseVal: 950,
+    cat: "Petrological Placer Lens",
+    era: "Modern Glacial Outwash",
+    mat: "Sub-millimeter Almandine Garnet crystals",
+    desc: "A heavy crimson sand pocket sorted by glacier meltwater, composed of microscopic dodecahedral garnet crystals."
+  },
+  {
+    id: "BISC_CORAL",
+    parkId: "bisc",
+    name: "Pleistocene Star Coral Colony Head",
+    tier: 2,
+    baseVal: 2600,
+    cat: "Marine Paleontological Fossil",
+    era: "Pleistocene (~125,000 BP)",
+    mat: "Aragonite-replaced Montastraea coral",
+    desc: "An eight-inch hemispherical coral head weathered from Key Largo limestone, with pristine star-shaped corallite cups."
+  },
+  {
+    id: "THRO_CLINKER",
+    parkId: "thro",
+    name: "Burned Lignite Porcelainite 'Scoria' Tile",
+    tier: 2,
+    baseVal: 1250,
+    cat: "Pyrometamorphic Rock Specimen",
+    era: "Paleocene Fort Union Formation",
+    mat: "Vitreous brick-red baked clayey siltstone",
+    desc: "Created when natural subterranean coal seam fires baked overlying mudstones into dense, resonant red porcelainite tiles."
   }
 ];
 
+// DOUBLED PROCEDURAL TYPES (16 Varieties)
 const PROCEDURAL_TYPES = [
   { prefix: "River-Polished", name: "Banded Lake Agate", cat: "Mineral Specimen", baseVal: 450, tier: 1 },
   { prefix: "Glacial Till", name: "Striated Granodiorite Cobble", cat: "Petrological Float", baseVal: 120, tier: 1 },
@@ -1281,43 +1555,58 @@ const PROCEDURAL_TYPES = [
   { prefix: "High-Calibre", name: "Chert Scraper on Flake", cat: "Lithic Tool Float", baseVal: 1450, tier: 2 },
   { prefix: "Desiccated", name: "Ancient Ponderosa Cone Cluster", cat: "Botanical Herbarium", baseVal: 85, tier: 1 },
   { prefix: "Subalpine", name: "Shed Elk Antler Crown", cat: "Faunal Track & Sign", baseVal: 950, tier: 2 },
-  { prefix: "19th-Century", name: "Square-Cut Forged Iron Spike", cat: "Pioneer Relic", baseVal: 320, tier: 1 }
+  { prefix: "19th-Century", name: "Square-Cut Forged Iron Spike", cat: "Pioneer Relic", baseVal: 320, tier: 1 },
+  { prefix: "Translucent", name: "Obsidian Prismatic Blade Core", cat: "Lithic Debitage", baseVal: 680, tier: 2 },
+  { prefix: "Fossilized", name: "Marine Brachiopod Shell Shingle", cat: "Invertebrate Paleontology", baseVal: 280, tier: 1 },
+  { prefix: "Alluvial", name: "Native Placer Gold Dust Float", cat: "Heavy Mineral Placer", baseVal: 1150, tier: 2 },
+  { prefix: "Desert Pavement", name: "Chalcedony Nodular Float", cat: "Mineral Specimen", baseVal: 390, tier: 1 },
+  { prefix: "Calcified", name: "Freshwater Gastropod Coquina", cat: "Fossil Shell Deposit", baseVal: 210, tier: 1 },
+  { prefix: "1890s Surveyor", name: "Stamped Brass Benchmark Tack", cat: "Early Expedition Relic", baseVal: 880, tier: 2 },
+  { prefix: "Subfossil", name: "Porcupine Quill & Lichen Roost", cat: "Faunal Trace", baseVal: 140, tier: 1 },
+  { prefix: "Botryoidal", name: "Hematite Kidney Ore Pebble", cat: "Iron Mineral Float", baseVal: 310, tier: 1 },
+  { prefix: "Aerodynamic", name: "Volcanic Basalt Spindle Bomb", cat: "Pyroclastic Float", baseVal: 520, tier: 1 }
 ];
 
+// EXPANDED BACKCOUNTRY OBSERVATIONS
 const FLAVOR_OBSERVATIONS = [
   "You scan the gravel matrix centimeter by centimeter. Midday sunlight glints off common quartz grains; water has recently shifted the silt.",
   "A cool mountain breeze moves through the timber. You sift two scoops of sorted river gravel—only well-rounded country rock pebbles.",
   "You inspect a fresh erosion shelf with your hand lens. Clean strata, but no cultural debitage or fossil horizons exposed here.",
   "A raven calls across the canyon. You turn over several shale slabs; only barren slate and damp rootlets lie beneath.",
-  "You glass the high scree apron through your optics. Sharp angles reveal loose talus frost-heaves without diagnostic mineral veins."
+  "You glass the high scree apron through your optics. Sharp angles reveal loose talus frost-heaves without diagnostic mineral veins.",
+  "Dry arroyo winds rustle the desert scrub. You sweep away surface sand, finding only weathered sandstone gravel.",
+  "Sun-bleached river shingle stretches across the channel bend. The gravel is cleanly sorted, but only basalt float lies exposed.",
+  "You kneel to inspect a micro-fault in the clay bench. Fine calcite crystallization lines the crack, but no artifacts are bedded here.",
+  "A coyote track crosses the dry mud flat. You sift through fine wind-blown sand around sagebrush roots without uncovering relics.",
+  "Glacial meltwater rushes cold over pale granite cobbles. You search the slackwater drift lines; only pine bark and granite grit remain."
 ];
 
 // ============================================================================
-// 3. EXPANDED GLOBAL BIDDERS & AUCTION INSTITUTIONS (22 INSTITUTIONS)
+// 3. 22 ACCREDITED INSTITUTIONAL BIDDERS WITH DIRECT DONATION URLS
 // ============================================================================
 const BIDDER_DIRECTORY = [
-  { name: "Smithsonian Institution (NMNH)", focus: ["Lithic", "Paleontological", "Historical"], budget: 35000000 },
-  { name: "Natural History Museum (London)", focus: ["Mineral", "Paleontological"], budget: 28000000 },
-  { name: "The Getty Research Institute", focus: ["Historical Archival", "Pioneer"], budget: 45000000 },
-  { name: "Field Museum of Natural History", focus: ["Paleontological", "Faunal"], budget: 30000000 },
-  { name: "Peabody Museum of Archaeology", focus: ["Lithic", "Ancestral", "Indigenous"], budget: 22000000 },
-  { name: "American Museum of Natural History", focus: ["Paleontological", "Crown Jewel"], budget: 40000000 },
-  { name: "The Hans Sloane Heritage Trust", focus: ["Crown Jewel", "Masterwork"], budget: 75000000 },
-  { name: "Muséum National d'Histoire Naturelle (Paris)", focus: ["Botanical", "Fossil"], budget: 20000000 },
-  { name: "Regional State Historical Society", focus: ["Pioneer", "Historical"], budget: 3500000 },
-  { name: "United States Geological Survey", focus: ["Mineral", "Petrological"], budget: 2500000 },
-  { name: "Royal Tyrrell Museum of Palaeontology", focus: ["Paleontological", "Fossil"], budget: 26000000 },
-  { name: "Carnegie Museum of Natural History", focus: ["Mineral", "Paleontological"], budget: 24000000 },
-  { name: "Harvard Mineralogical & Geological Museum", focus: ["Mineral", "Petrological"], budget: 32000000 },
-  { name: "Oxford University Museum of Natural History", focus: ["Fossil", "Crown Jewel"], budget: 29000000 },
-  { name: "Denver Museum of Nature & Science", focus: ["Lithic", "Mineral", "Paleontological"], budget: 18000000 },
-  { name: "California Academy of Sciences", focus: ["Botanical", "Faunal"], budget: 21000000 },
-  { name: "Senckenberg Research Institute (Frankfurt)", focus: ["Paleontological", "Fossil"], budget: 27000000 },
-  { name: "Tokyo National Museum & Science Institute", focus: ["Volcanological", "Mineral"], budget: 31000000 },
-  { name: "Australian Museum (Sydney)", focus: ["Faunal", "Paleontological"], budget: 19000000 },
-  { name: "Chicago Botanic Garden & Herbarium", focus: ["Botanical", "Herbarium"], budget: 12000000 },
-  { name: "Natural History Museum of Los Angeles (NHMLAC)", focus: ["Paleontological", "Pioneer"], budget: 23000000 },
-  { name: "Smithsonian National Museum of the American Indian", focus: ["Indigenous", "Ancestral", "Lithic"], budget: 28000000 }
+  { name: "Smithsonian Institution (NMNH)", focus: ["Lithic", "Paleontological", "Historical"], budget: 35000000, donateUrl: "https://naturalhistory.si.edu/support" },
+  { name: "Natural History Museum (London)", focus: ["Mineral", "Paleontological"], budget: 28000000, donateUrl: "https://www.nhm.ac.uk/support-us.html" },
+  { name: "The Getty Research Institute", focus: ["Historical Archival", "Pioneer"], budget: 45000000, donateUrl: "https://www.getty.edu/about/governance/support.html" },
+  { name: "Field Museum of Natural History", focus: ["Paleontological", "Faunal"], budget: 30000000, donateUrl: "https://www.fieldmuseum.org/support-us" },
+  { name: "Peabody Museum of Archaeology", focus: ["Lithic", "Ancestral", "Indigenous"], budget: 22000000, donateUrl: "https://peabody.harvard.edu/support" },
+  { name: "American Museum of Natural History", focus: ["Paleontological", "Crown Jewel"], budget: 40000000, donateUrl: "https://www.amnh.org/support" },
+  { name: "The Hans Sloane Heritage Trust", focus: ["Crown Jewel", "Masterwork"], budget: 75000000, donateUrl: "https://www.britishmuseum.org/support-us" },
+  { name: "Muséum National d'Histoire Naturelle (Paris)", focus: ["Botanical", "Fossil"], budget: 20000000, donateUrl: "https://www.mnhn.fr/en/support-museum" },
+  { name: "Regional State Historical Society", focus: ["Pioneer", "Historical"], budget: 3500000, donateUrl: "https://mhs.mt.gov/education/Donate" },
+  { name: "United States Geological Survey Coalition", focus: ["Mineral", "Petrological"], budget: 2500000, donateUrl: "https://www.americangeosciences.org/donate" },
+  { name: "Royal Tyrrell Museum of Palaeontology", focus: ["Paleontological", "Fossil"], budget: 26000000, donateUrl: "https://tyrrellmuseum.com/cooperating_society/donate" },
+  { name: "Carnegie Museum of Natural History", focus: ["Mineral", "Paleontological"], budget: 24000000, donateUrl: "https://carnegiemnh.org/support-us/" },
+  { name: "Harvard Museum of Natural History", focus: ["Mineral", "Petrological"], budget: 32000000, donateUrl: "https://hmnh.harvard.edu/support-hmnh" },
+  { name: "Oxford University Museum of Natural History", focus: ["Fossil", "Crown Jewel"], budget: 29000000, donateUrl: "https://www.oumnh.ox.ac.uk/support-us" },
+  { name: "Denver Museum of Nature & Science", focus: ["Lithic", "Mineral", "Paleontological"], budget: 18000000, donateUrl: "https://www.dmns.org/giving/" },
+  { name: "California Academy of Sciences", focus: ["Botanical", "Faunal"], budget: 21000000, donateUrl: "https://www.calacademy.org/support-us" },
+  { name: "Senckenberg Research Institute (Frankfurt)", focus: ["Paleontological", "Fossil"], budget: 27000000, donateUrl: "https://www.senckenberg.de/en/join-in/donate/" },
+  { name: "Tokyo National Museum & Science Institute", focus: ["Volcanological", "Mineral"], budget: 31000000, donateUrl: "https://www.tnm.jp/modules/rblog/index.php/1/2020/06/12/donation/?lang=en" },
+  { name: "Australian Museum (Sydney)", focus: ["Faunal", "Paleontological"], budget: 19000000, donateUrl: "https://australian.museum/get-involved/donate/" },
+  { name: "Chicago Botanic Garden & Herbarium", focus: ["Botanical", "Herbarium"], budget: 12000000, donateUrl: "https://www.chicagobotanic.org/donate" },
+  { name: "Natural History Museum of Los Angeles (NHMLAC)", focus: ["Paleontological", "Pioneer"], budget: 23000000, donateUrl: "https://nhmlac.org/join-give/donate" },
+  { name: "Smithsonian National Museum of the American Indian", focus: ["Indigenous", "Ancestral", "Lithic"], budget: 28000000, donateUrl: "https://americanindian.si.edu/support" }
 ];
 
 // ============================================================================
@@ -1366,13 +1655,13 @@ let liveAuction = {
 };
 
 function saveGame() {
-  localStorage.setItem("living_archive_save_v8", JSON.stringify(state));
+  localStorage.setItem("living_archive_save_v9", JSON.stringify(state));
   const msg = document.getElementById("save-status-msg");
   if (msg) msg.innerText = "Status: Auto-saved " + new Date().toLocaleTimeString();
 }
 
 function loadGame() {
-  const saved = localStorage.getItem("living_archive_save_v8");
+  const saved = localStorage.getItem("living_archive_save_v9");
   if (saved) {
     try { 
       state = JSON.parse(saved); 
@@ -1634,7 +1923,7 @@ function renderPackView(subTab) {
       container.appendChild(card);
     });
   } else {
-    container.innerHTML = `<h3 style="margin-bottom:8px; font-size:0.95rem;">Master Archival Records</h3>`;
+    container.innerHTML = `<h3 style="margin-bottom:8px; font-size:0.95rem;">Master Archival Records (${MASTER_SPECIMENS.length} Curated Masterworks)</h3>`;
     MASTER_SPECIMENS.forEach(spec => {
       const park = ALL_PARKS.find(p => p.id === spec.parkId);
       const isLogged = state.catalog[spec.parkId] && state.catalog[spec.parkId].includes(spec.id);
@@ -1643,7 +1932,7 @@ function renderPackView(subTab) {
       itemRow.className = "item-row";
       itemRow.innerHTML = `
         <div>
-          <strong>${spec.name}</strong> (${park.name.replace(" National Park", "")})<br>
+          <strong>${spec.name}</strong> (${park ? park.name.replace(" National Park", "") : 'Historic Wilderness'})<br>
           <span style="font-size:0.75rem; color:var(--text-muted);">${spec.cat} &bull; Tier ${spec.tier}</span>
         </div>
         <div>
@@ -1817,7 +2106,7 @@ function executeAuthentication() {
 }
 
 // ============================================================================
-// 10. REAL-TIME 15-SECOND LIVE AUCTION ENGINE (NO SELF-BIDDING, EXPANDED ROSTER)
+// 10. REAL-TIME 15-SECOND LIVE AUCTION ENGINE
 // ============================================================================
 function setupAuctionConsignSelect() {
   const sel = document.getElementById("auction-item-select");
@@ -1872,7 +2161,6 @@ function startConsignmentWithItem(item) {
   const targetCeiling = Math.round(appraised * maxMultiplier);
   const openingBid = Math.max(50, Math.round(appraised * 0.40));
 
-  // Shuffled active bidder selection: 4 to 6 for standard, 7 to 10 for clashes
   let contenders = BIDDER_DIRECTORY.slice();
   contenders.sort(() => Math.random() - 0.5);
 
@@ -1910,7 +2198,7 @@ function startConsignmentWithItem(item) {
 
   addTickerLine(`[AUCTIONEER] "Lot: <strong>${item.name}</strong>."`, "ticker-event");
   addTickerLine(`[AUCTIONEER] "Appraisal: ${formatMoney(appraised)}. Opening floor reserve: ${formatMoney(openingBid)}."`);
-  addTickerLine(`[ROOM] <em>${activeBidders.length} accredited institutions have registered paddles for this lot.</em>`);
+  addTickerLine(`[ROOM] <em>${activeBidders.length} accredited institutions registered paddles for this lot.</em>`);
 
   updateLiveAuctionUI();
   liveAuction.timerId = setInterval(auctionHeartbeat, 1250);
@@ -1940,7 +2228,6 @@ function auctionHeartbeat() {
   const item = liveAuction.item;
   const t = 15 - liveAuction.secondsLeft;
 
-  // Opening commentary
   if (t === 1) {
     const curator = liveAuction.competingInstitutions[0].name;
     if (item.grade) {
@@ -1957,7 +2244,7 @@ function auctionHeartbeat() {
     }
   }
 
-  // Surprise mid-auction challenger entrance at second 6
+  // Late entrance challenger
   if (t === 6 && Math.random() < 0.40) {
     const outsiders = BIDDER_DIRECTORY.filter(b => !liveAuction.competingInstitutions.some(cb => cb.name === b.name));
     if (outsiders.length > 0) {
@@ -1972,7 +2259,7 @@ function auctionHeartbeat() {
     if (liveAuction.currentBid < liveAuction.targetCeiling) {
       const remainingMargin = liveAuction.targetCeiling - liveAuction.currentBid;
 
-      // CRITICAL FIX: Filter out whoever currently holds the high bid!
+      // Filter out whoever currently holds the high bid!
       let eligible = liveAuction.competingInstitutions.filter(b => b.name !== liveAuction.highBidder);
       if (eligible.length === 0) eligible = liveAuction.competingInstitutions;
 
@@ -1999,7 +2286,6 @@ function auctionHeartbeat() {
     }
   }
 
-  // Closing cadence
   if (t === 12) {
     addTickerLine(`[AUCTIONEER] "At ${formatMoney(liveAuction.currentBid)} to ${liveAuction.highBidder}... Going once!"`);
   } else if (t === 13) {
@@ -2056,7 +2342,6 @@ function spurTheFloor() {
   addTickerLine(`[AUCTIONEER] <strong>"The consigner demands an aggressive jump from the room!"</strong>`, "ticker-event");
   
   if (liveAuction.currentBid < liveAuction.targetCeiling) {
-    // Select someone other than the high bidder to respond to the spur
     const eligible = liveAuction.competingInstitutions.filter(b => b.name !== liveAuction.highBidder);
     const bidder = eligible.length > 0 ? eligible[Math.floor(Math.random() * eligible.length)] : liveAuction.competingInstitutions[0];
 
@@ -2121,7 +2406,7 @@ function buyGear(id, price) {
 }
 
 // ============================================================================
-// 12. CONSERVANCY TIERS
+// 12. CONSERVANCY & DONATIONS DIRECTORY
 // ============================================================================
 const CONSERVANCY_TIERS = [
   { tier: 1, cost: 2500, title: "Trail Stabilization", perk: "Repairs footbridges and eliminates trail wear." },
@@ -2135,6 +2420,25 @@ function renderConservancyView() {
   updateStatusBar();
   const park = ALL_PARKS.find(p => p.id === state.currentParkId);
   const donated = state.conservancy[park.id] || 0;
+
+  // Render Institutional Donation Directory
+  const instList = document.getElementById("institution-donation-list");
+  if (instList) {
+    instList.innerHTML = "";
+    BIDDER_DIRECTORY.forEach(b => {
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #dcd0b6; padding:4px 0;";
+      row.innerHTML = `
+        <span style="font-size:0.75rem; color:#2b2118; font-weight:bold;">${b.name}</span>
+        <a href="${b.donateUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+          <button class="action-btn" style="width:auto; margin:0; padding:3px 8px; font-size:0.68rem; background:#dfeaf5; border-color:#2c4d6f;">
+            Support &rarr;
+          </button>
+        </a>
+      `;
+      instList.appendChild(row);
+    });
+  }
 
   const cont = document.getElementById("conservancy-tiers-display");
   cont.innerHTML = `
@@ -2236,7 +2540,7 @@ function travelToPark(parkId, fare) {
   switchView('view-combing');
 }
 
-// Start Game & Fetch Initial Live Visitor Tally
+// Boot Engine
 loadGame();
 fetchGlobalVisitCount();
 switchView('view-combing');
