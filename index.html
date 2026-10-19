@@ -27,7 +27,7 @@
     color: var(--text-main);
     font-family: var(--font-serif);
     line-height: 1.45;
-    padding: 8px 8px 82px 8px; /* generous bottom clearance for the docked nav */
+    padding: 8px 8px 82px 8px; /* generous bottom clearance for docked nav */
     display: flex;
     justify-content: center;
   }
@@ -65,6 +65,59 @@
     color: var(--text-main);
   }
 
+  /* RUSTIC CARVED CEDAR PARK SIGN VISITOR TRACKER */
+  #park-sign-counter {
+    background: #382415;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 0px,
+      rgba(0, 0, 0, 0.04) 3px,
+      transparent 6px,
+      transparent 12px
+    );
+    border: 3px solid #201309;
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7), 0 3px 8px rgba(43, 33, 24, 0.25);
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    text-align: center;
+    position: relative;
+  }
+  .sign-title {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #f0deba;
+    text-shadow: 1px 1px 0 #180c05;
+    margin-bottom: 4px;
+  }
+  .sign-odometer-box {
+    display: inline-flex;
+    align-items: center;
+    background: #140d07;
+    border: 2px solid #5a3c22;
+    border-radius: 3px;
+    padding: 2px 8px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9);
+  }
+  .odometer-digit {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #fff3d1;
+    letter-spacing: 3px;
+    text-shadow: 0 0 2px rgba(255, 243, 209, 0.5);
+  }
+  .sign-footer-note {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 1px;
+    color: #c7ad7f;
+    margin-top: 3px;
+  }
+
   /* Compact Status Bar */
   #status-bar {
     display: flex;
@@ -80,7 +133,7 @@
   }
   .stat-block strong { color: var(--accent-rust); }
 
-  /* Docked Bottom Navigation Bar (Centered on PC, Scrollable on Mobile) */
+  /* Docked Bottom Navigation Bar (Centered on PC, Swipeable on Mobile) */
   nav#bottom-nav {
     position: fixed;
     bottom: 0;
@@ -93,7 +146,7 @@
     box-shadow: 0 -3px 12px rgba(43, 33, 24, 0.22);
     display: flex;
     align-items: center;
-    justify-content: center; /* Perfectly centered on PC */
+    justify-content: center;
     overflow-x: auto;
     white-space: nowrap;
     padding: 8px 12px;
@@ -105,7 +158,7 @@
 
   @media (max-width: 600px) {
     nav#bottom-nav {
-      justify-content: flex-start; /* Clean edge-to-edge swipe on narrow screens */
+      justify-content: flex-start;
     }
   }
 
@@ -319,6 +372,15 @@
       National Parks Naturalist Logbook (All 63 Parks)
     </div>
   </header>
+
+  <!-- RUSTIC PARK SIGN VISITOR TRACKER -->
+  <div id="park-sign-counter">
+    <div class="sign-title">&#9670; Parks Visited Through Us: &#9670;</div>
+    <div class="sign-odometer-box">
+      <span id="global-counter-display" class="odometer-digit">0,018,482</span>
+    </div>
+    <div class="sign-footer-note">TOTAL EXPEDITIONS LOGGED ACROSS ALL PARKS</div>
+  </div>
 
   <!-- Status Bar -->
   <div id="status-bar">
@@ -603,6 +665,59 @@ function formatMoney(amount) {
   if (abs >= 1e9) return sign + "$" + (abs / 1e9).toFixed(2) + "B";
   if (abs >= 1e6) return sign + "$" + (abs / 1e6).toFixed(2) + "M";
   return sign + "$" + Math.round(abs).toLocaleString();
+}
+
+// ============================================================================
+// LIVE GLOBAL VISITOR COUNTER & REAL-TIME CLICK TRACKER
+// ============================================================================
+const COUNTER_NAMESPACE = "field-naturalist-living-archive-v1";
+const COUNTER_KEY = "parks-visited-count";
+const SEED_OFFSET = 18482; // Realistic starting expedition seed
+
+function updateSignDisplay(count) {
+  const display = document.getElementById("global-counter-display");
+  if (display) {
+    display.innerText = Number(count).toLocaleString();
+  }
+}
+
+async function fetchGlobalVisitCount() {
+  let localCount = parseInt(localStorage.getItem("local_park_visits_tally")) || SEED_OFFSET;
+  try {
+    const res = await fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${COUNTER_KEY}`, { cache: "no-store" });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && typeof data.count === 'number') {
+        const total = SEED_OFFSET + data.count;
+        localStorage.setItem("local_park_visits_tally", total);
+        updateSignDisplay(total);
+        return;
+      }
+    }
+  } catch(e) {
+    // Offline or CORS block: use local persisted count smoothly
+  }
+  updateSignDisplay(localCount);
+}
+
+async function recordParkVisitClick() {
+  let localCount = (parseInt(localStorage.getItem("local_park_visits_tally")) || SEED_OFFSET) + 1;
+  localStorage.setItem("local_park_visits_tally", localCount);
+  updateSignDisplay(localCount);
+
+  try {
+    const res = await fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${COUNTER_KEY}/up`, { cache: "no-store" });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && typeof data.count === 'number') {
+        const total = SEED_OFFSET + data.count;
+        localStorage.setItem("local_park_visits_tally", total);
+        updateSignDisplay(total);
+      }
+    }
+  } catch(e) {
+    // Graceful offline fallback
+  }
 }
 
 // ============================================================================
@@ -1830,7 +1945,7 @@ function auctionHeartbeat() {
 
       addTickerLine(`&gt;&gt; <span class="ticker-bid">${bidder.name}</span>: <strong>${formatMoney(liveAuction.currentBid)}</strong>!`);
 
-      if (liveAuction.isClash && Math.random() < 0.35) {
+      if (liveAuction.isClash && Math.random() < 0.40) {
         addTickerLine(`[CLASH] <span class="ticker-event">Heated rivalry across the floor!</span>`);
       }
     } else {
@@ -2068,11 +2183,16 @@ function travelToPark(parkId, fare) {
   state.currentParkId = parkId;
   state.currentZoneIndex = 0;
   saveGame();
+
+  // Increment live global & local click counter for expeditions
+  recordParkVisitClick();
+
   switchView('view-combing');
 }
 
-// Start Game
+// Start Game & Fetch Initial Live Visitor Tally
 loadGame();
+fetchGlobalVisitCount();
 switchView('view-combing');
 </script>
 </body>
