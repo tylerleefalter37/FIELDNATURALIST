@@ -280,10 +280,10 @@
 
 <div id="journal-wrapper">
   <header>
-    <div class="header-sub">United States Department of the Interior &bull; National Park Service</div>
+    <div class="header-sub">Independent Naturalist Expedition &bull; Educational Tribute</div>
     <h1>The Living Archive: Master Naturalist Logbook</h1>
     <div style="font-size:0.9rem; color:var(--text-muted); font-style:italic;">
-      Comprehensive Survey, Scientific Authentication &amp; Preservation Ledger of all 63 National Parks
+      Comprehensive Field Survey, Scientific Authentication &amp; Preservation Ledger of all 63 National Parks
     </div>
   </header>
 
@@ -536,7 +536,7 @@
 
   <!-- PANEL 9: FIELD MANUAL & HOW TO PLAY -->
   <div id="view-manual" class="view-panel">
-    <h2 style="font-size:1.3rem; margin-bottom:8px; color:var(--accent-rust);">NPS Field Naturalist Manual &amp; Survival Guide</h2>
+    <h2 style="font-size:1.3rem; margin-bottom:8px; color:var(--accent-rust);">Field Naturalist Manual &amp; Survival Guide</h2>
     <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:16px;">
       Welcome to your official service ledger. Here is everything you need to know about conducting surveys, archiving discoveries, and restoring America's national treasures.
     </p>
@@ -594,7 +594,21 @@
         <li><strong>Bush Plane Perk:</strong> Buying the <em>De Havilland Beaver Floatplane</em> from the Outfitter permanently waives all travel costs to Alaska, the Pacific, and the Northwest!</li>
       </ul>
     </div>
+
+    <!-- SECTION 6: REAL WORLD CONSERVATION & LEGAL DISCLAIMER -->
+    <div class="manual-section" style="border: 2px solid var(--accent-rust); background: #fdfaf7;">
+      <h3 style="color:var(--accent-rust);">6. Real-World Stewardship &amp; Legal Disclaimer</h3>
+      <p><strong>LEAVE NO TRACE &amp; PROTECT OUR PARKS:</strong> In the real world, the United States National Parks are strictly protected public lands. Removing any rock, mineral, plant, animal part, fossil, or historic artifact (including arrowheads and metal-detecting relics) is a serious federal crime under the <em>Antiquities Act of 1906</em> and the <em>Archaeological Resources Protection Act of 1979 (ARPA)</em>.</p>
+      <p>Always practice Leave No Trace principles: take only photographs, leave only footprints, and leave all cultural and natural artifacts exactly as you found them so park archaeologists, scientists, and future generations can learn from them.</p>
+      <p style="font-size: 0.82rem; color: var(--text-muted); border-top: 1px dashed var(--border-light); padding-top: 6px; margin-bottom: 0;">
+        <em>DISCLAIMER: Field Naturalist: The Living Archive is an independent, non-commercial educational tribute game created by an independent developer. It is not affiliated with, authorized, sponsored, or endorsed by the National Park Service, the U.S. Department of the Interior, or any federal government agency.</em>
+      </p>
+    </div>
   </div>
+
+  <footer style="margin-top: 24px; border-top: 1px solid var(--border-light); padding-top: 10px; text-align: center; font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">
+    Field Naturalist: The Living Archive &bull; An Independent Educational Fan Project &bull; Not affiliated with the NPS or Dept. of the Interior &bull; Practice Leave No Trace
+  </footer>
 </div>
 
 <script>
@@ -1446,8 +1460,8 @@ function combLandscape(actionType) {
     log.innerHTML = `
       <div class="accession-card">
         <div class="accession-header">
-          UNITED STATES NATIONAL PARK SERVICE | DIVISION OF CULTURAL &amp; NATURAL RESOURCES<br>
-          FORM 10-42 ACCESSION LOG &bull; NEW SPECIMEN RECOVERED IN-SITU
+          INDEPENDENT FIELD EXPEDITION ARCHIVE &bull; RESOURCE SURVEY RECORD<br>
+          FORM 10-42 FIELD ACCESSION LOG &bull; NEW SPECIMEN DOCUMENTED IN-SITU
         </div>
         <div class="accession-row"><strong>SPECIMEN:</strong> ${foundSpecimen.name} (${foundSpecimen.cat})</div>
         <div class="accession-row"><strong>LOCALITY:</strong> ${park.name} &mdash; ${park.zones[state.currentZoneIndex].title}</div>
