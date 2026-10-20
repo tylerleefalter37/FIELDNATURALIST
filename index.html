@@ -784,7 +784,9 @@ function getItemAppraisal(item) {
 // ============================================================================
 // LIVE GLOBAL VISITOR COUNTER & REAL-TIME CLICK TRACKER
 // ============================================================================
-const COUNTER_KEY = "field_naturalist_parks_visited_2026";
+const API_BASE = "https://abacus.jasoncameron.dev";
+const NAMESPACE = "field-naturalist-living-archive";
+const COUNTER_KEY = "expeditions";
 const SEED_OFFSET = 18482;
 
 function updateSignDisplay(count) {
@@ -793,11 +795,11 @@ function updateSignDisplay(count) {
 }
 
 async function fetchGlobalVisitCount() {
-  let localCount = parseInt(localStorage.getItem("local_park_visits_tally")) || SEED_OFFSET;
+  let localCount = parseInt(localStorage.getItem("local_park_visits_tally"), 10) || SEED_OFFSET;
   updateSignDisplay(localCount);
 
   try {
-    const res = await fetch(`https://countapi.mileshilliard.com/api/v1/get/${COUNTER_KEY}`, { cache: "no-store" });
+    const res = await fetch(`${API_BASE}/get/${NAMESPACE}/${COUNTER_KEY}`, { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
       if (data && data.value != null) {
@@ -811,12 +813,12 @@ async function fetchGlobalVisitCount() {
 }
 
 async function recordParkVisitClick() {
-  let localCount = (parseInt(localStorage.getItem("local_park_visits_tally")) || SEED_OFFSET) + 1;
+  let localCount = (parseInt(localStorage.getItem("local_park_visits_tally"), 10) || SEED_OFFSET) + 1;
   localStorage.setItem("local_park_visits_tally", localCount);
   updateSignDisplay(localCount);
 
   try {
-    const res = await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${COUNTER_KEY}`, { cache: "no-store" });
+    const res = await fetch(`${API_BASE}/hit/${NAMESPACE}/${COUNTER_KEY}`, { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
       if (data && data.value != null) {
