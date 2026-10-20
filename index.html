@@ -482,7 +482,7 @@
     <div id="discovery-log" style="margin-top:10px;"></div>
   </div>
 
-  <!-- PANEL 2: SPECIMEN BAG, CATALOG & CHECKLIST -->
+  <!-- PANEL 2: SPECIMEN BAG, STATUS FILTER, CATALOG & CHECKLIST -->
   <div id="view-inventory" class="view-panel">
     <h2 style="font-size:1.2rem; margin-bottom:8px; color:var(--accent-forest);">Field Pack, Archive &amp; Checklist</h2>
     <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
@@ -491,15 +491,29 @@
       <button class="action-btn" style="flex:1; margin:0; background:#d2e5d0; border-color:var(--border-forest); font-weight:bold;" onclick="renderPackView('checklist')">Checklist</button>
     </div>
 
-    <div id="sort-filter-bar" style="background:#ede4d1; padding:6px 10px; border:1px solid var(--border-forest); margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
-      <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; color:var(--accent-forest);">SORT BY:</label>
-      <select id="pack-sort-select" onchange="applyPackSort()" style="font-family:var(--font-serif); font-size:0.85rem; padding:4px 8px;">
-        <option value="val-desc">Appraisal (High to Low)</option>
-        <option value="val-asc">Appraisal (Low to High)</option>
-        <option value="tier-desc">Rarity Tier (Highest First)</option>
-        <option value="name">Alphabetical</option>
-        <option value="cat">Category</option>
-      </select>
+    <!-- Dual Filter & Sorting Bar -->
+    <div id="sort-filter-bar" style="background:#ede4d1; padding:8px 10px; border:1px solid var(--border-forest); margin-bottom:10px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px;">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; color:var(--accent-forest);">STATUS:</label>
+        <select id="pack-filter-select" onchange="applyPackFilterSort()" style="font-family:var(--font-serif); font-size:0.82rem; padding:4px 6px;">
+          <option value="all">All Specimens</option>
+          <option value="ready">Auction Ready (Graded &amp; Certified)</option>
+          <option value="unprocessed">Needs Both (Raw)</option>
+          <option value="needs-grade">Needs Grading</option>
+          <option value="needs-auth">Needs USGS Certification</option>
+        </select>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:6px;">
+        <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; color:var(--accent-forest);">SORT:</label>
+        <select id="pack-sort-select" onchange="applyPackFilterSort()" style="font-family:var(--font-serif); font-size:0.82rem; padding:4px 6px;">
+          <option value="val-desc">Appraisal (High to Low)</option>
+          <option value="val-asc">Appraisal (Low to High)</option>
+          <option value="tier-desc">Rarity Tier (Highest First)</option>
+          <option value="name">Alphabetical</option>
+          <option value="cat">Category</option>
+        </select>
+      </div>
     </div>
 
     <div id="pack-content-area"></div>
@@ -508,16 +522,26 @@
   <!-- PANEL 3: CURATORIAL LAB -->
   <div id="view-lab" class="view-panel">
     <h2 style="font-size:1.2rem; margin-bottom:4px; color:var(--accent-forest);">Curatorial Laboratory</h2>
-    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
+    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">
       Stereomicroscopy condition grading and USGS spectrometry certification multiply certified auction values.
     </p>
+
+    <!-- Batch Processing Buttons -->
+    <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
+      <button type="button" class="action-btn" style="flex:1; margin:0; font-size:0.78rem; font-weight:bold; background:#f7edd7; border-color:var(--accent-gold);" onclick="batchGradeAll(event)">
+        ⚡ Batch Grade All (<span id="batch-grade-count">0</span>)
+      </button>
+      <button type="button" class="action-btn" style="flex:1; margin:0; font-size:0.78rem; font-weight:bold; background:#e1ecf7; border-color:var(--accent-blue);" onclick="batchAuthenticateAll(event)">
+        ⚡ Batch Certify All (<span id="batch-auth-count">0</span>)
+      </button>
+    </div>
 
     <div style="background:#ede5d2; padding:10px; border:1px solid var(--border-forest); margin-bottom:10px;">
       <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; display:block; color:var(--accent-forest);">SELECT SPECIMEN:</label>
       <select id="lab-item-select" class="mobile-select" onchange="updateLabPreview()"></select>
     </div>
 
-    <div id="lab-active-area" style="display:none;">
+    <div id="lab-active-area" style="display:none; min-height:430px;">
       <div id="lab-specimen-card" class="accession-card"></div>
       
       <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
@@ -529,7 +553,7 @@
           <div style="font-family:var(--font-mono); font-size:0.75rem; margin-bottom:6px;">
             Fee: <strong id="lab-grade-fee">$0</strong>
           </div>
-          <button id="btn-do-grade" class="action-btn" onclick="executeGrading()">Submit for Grading</button>
+          <button type="button" id="btn-do-grade" class="action-btn" onclick="executeGrading(event)">Submit for Grading</button>
         </div>
 
         <div style="background:#fff; border:1px solid var(--accent-blue); padding:10px; border-left:4px solid var(--accent-blue);">
@@ -540,7 +564,7 @@
           <div style="font-family:var(--font-mono); font-size:0.75rem; margin-bottom:6px;">
             Fee: <strong id="lab-auth-fee">$0</strong>
           </div>
-          <button id="btn-do-auth" class="action-btn" onclick="executeAuthentication()">Perform Authentication</button>
+          <button type="button" id="btn-do-auth" class="action-btn" onclick="executeAuthentication(event)">Perform Authentication</button>
         </div>
       </div>
 
@@ -1151,7 +1175,7 @@ const ALL_PARKS = [
 ];
 
 // ============================================================================
-// 2. COMPLETE CROWN JEWELS REPOSITORY
+// 2. COMPLETE CROWN JEWELS REPOSITORY (3 PER PARK)
 // ============================================================================
 const PARK_CROWN_ARCHIVES = {
   olym: [
@@ -1357,6 +1381,42 @@ ALL_PARKS.forEach(park => {
   });
 });
 
+// ============================================================================
+// ULTRA-RARE FIELD METEORITES POOL
+// ============================================================================
+const METEORITE_POOL = [
+  {
+    name: "Regmaglypted Iron-Nickel Octahedrite",
+    cat: "Extraterrestrial Meteorite",
+    tier: 4,
+    baseVal: 185000,
+    era: "Primitive Solar System (~4.56 Ga)",
+    mat: "Kamacite & Taenite Intergrowth",
+    desc: "A dense metallic mass boasting distinctive thumbprint impressions (regmaglypts) and a blued atmospheric entry patina.",
+    fact: "Regmaglypts are sculpted by turbulent atmospheric ablation as the meteor burns through the stratosphere at 30,000+ mph."
+  },
+  {
+    name: "Gem Olivine Stony-Iron Pallasite Slice",
+    cat: "Extraterrestrial Meteorite",
+    tier: 4,
+    baseVal: 320000,
+    era: "Differentiated Protoplanet Core-Mantle",
+    mat: "Peridot-Grade Olivine in Fe-Ni Matrix",
+    desc: "A naturally weathered spall displaying gem-quality translucent amber peridot crystals suspended inside solid nickel-iron.",
+    fact: "Pallasites represent the boundary zone between the molten metallic core and silicate mantle of shattered ancient protoplanets."
+  },
+  {
+    name: "Fusion-Crusted Carbonaceous Chondrite",
+    cat: "Extraterrestrial Meteorite",
+    tier: 4,
+    baseVal: 450000,
+    era: "Pre-Solar Nebula (~4.57 Ga)",
+    mat: "Carbonaceous Chondrite Matrix with CAIs",
+    desc: "A fragile, soot-black stony meteorite containing calcium-aluminum-rich inclusions (CAIs)—the oldest solid minerals in the Solar System.",
+    fact: "Carbonaceous chondrites carry primordial amino acids and water older than the formation of the Earth itself."
+  }
+];
+
 const PROCEDURAL_TYPES = [
   { prefix: "River-Polished", name: "Banded Lake Agate", cat: "Mineral Specimen", baseVal: 450, tier: 1, fact: "Agates form when microscopic silica particles deposit in concentric rhythmic bands inside volcanic gas pockets." },
   { prefix: "Glacial Till", name: "Striated Granodiorite Cobble", cat: "Petrological Float", baseVal: 120, tier: 1, fact: "Glacial striations are parallel scratches gouged into bedrock and cobbles by hard quartz crystals dragged beneath heavy moving ice." },
@@ -1464,13 +1524,13 @@ let liveAuction = {
 };
 
 function saveGame() {
-  localStorage.setItem("living_archive_save_v11", JSON.stringify(state));
+  localStorage.setItem("living_archive_save_v12", JSON.stringify(state));
   const msg = document.getElementById("save-status-msg");
   if (msg) msg.innerText = "Status: Auto-saved " + new Date().toLocaleTimeString();
 }
 
 function loadGame() {
-  const saved = localStorage.getItem("living_archive_save_v11");
+  const saved = localStorage.getItem("living_archive_save_v12") || localStorage.getItem("living_archive_save_v11");
   if (saved) {
     try { 
       state = JSON.parse(saved); 
@@ -1589,7 +1649,7 @@ function getItemAppraisal(item) {
 }
 
 // ============================================================================
-// 7. COMBING & DISCOVERY
+// 7. COMBING & DISCOVERY ENGINE (1 IN 250 JEWELS, 1 IN 333 METEORITES, ZONE-LOCKED)
 // ============================================================================
 function renderCombingView() {
   updateStatusBar();
@@ -1602,7 +1662,7 @@ function renderCombingView() {
   park.zones.forEach((z, i) => {
     const opt = document.createElement("option");
     opt.value = i;
-    opt.innerText = z.title;
+    opt.innerText = `Zone ${i+1}:${z.title}`;
     if (i === state.currentZoneIndex) opt.selected = true;
     select.appendChild(opt);
   });
@@ -1622,24 +1682,67 @@ function combLandscape(actionType) {
   state.stats.combed++;
   const park = ALL_PARKS.find(p => p.id === state.currentParkId);
   const log = document.getElementById("discovery-log");
-  
-  let findChance = 0.40;
-  if (state.gear["gear_loupe"]) findChance += 0.15;
-  if (state.gear["gear_optics"] && actionType === 'scree') findChance += 0.25;
+  if (!state.catalog[park.id]) state.catalog[park.id] = [];
 
-  const roll = Math.random();
+  const CHANCE_CROWN_JEWEL = 1 / 250;
+  const CHANCE_METEORITE   = 1 / 333;
 
-  if (roll < findChance) {
-    state.stats.finds++;
-    if (!state.catalog[park.id]) state.catalog[park.id] = [];
-    const availableMasters = MASTER_SPECIMENS.filter(m => m.parkId === park.id && !state.catalog[park.id].includes(m.id));
+  let foundSpecimen = null;
+  let alreadyFoundZoneCjNotice = false;
 
-    let foundSpecimen = null;
+  // 1. Independent Crown Jewel Check (1 in 250, strictly zone locked)
+  if (Math.random() < CHANCE_CROWN_JEWEL) {
+    const targetCjId = `${park.id.toUpperCase()}_CJ_${state.currentZoneIndex + 1}`;
+    const isCjLogged = state.catalog[park.id].includes(targetCjId);
 
-    if (availableMasters.length > 0 && Math.random() < 0.35) {
-      foundSpecimen = JSON.parse(JSON.stringify(availableMasters[Math.floor(Math.random() * availableMasters.length)]));
-      state.catalog[park.id].push(foundSpecimen.id);
+    if (!isCjLogged) {
+      const cjMaster = MASTER_SPECIMENS.find(m => m.id === targetCjId);
+      if (cjMaster) {
+        foundSpecimen = JSON.parse(JSON.stringify(cjMaster));
+        state.catalog[park.id].push(foundSpecimen.id);
+      }
     } else {
+      alreadyFoundZoneCjNotice = true;
+      const metProto = METEORITE_POOL[Math.floor(Math.random() * METEORITE_POOL.length)];
+      foundSpecimen = {
+        id: "MET_" + Date.now(),
+        parkId: park.id,
+        name: metProto.name,
+        tier: metProto.tier,
+        baseVal: Math.round(metProto.baseVal * (0.95 + Math.random() * 0.35)),
+        cat: metProto.cat,
+        era: metProto.era,
+        mat: metProto.mat,
+        desc: `Exposed on scree in ${park.zones[state.currentZoneIndex].title}.${metProto.desc}`,
+        fact: metProto.fact
+      };
+    }
+  }
+
+  // 2. Independent Meteorite Check (1 in 333)
+  if (!foundSpecimen && Math.random() < CHANCE_METEORITE) {
+    const metProto = METEORITE_POOL[Math.floor(Math.random() * METEORITE_POOL.length)];
+    foundSpecimen = {
+      id: "MET_" + Date.now(),
+      parkId: park.id,
+      name: metProto.name,
+      tier: metProto.tier,
+      baseVal: Math.round(metProto.baseVal * (0.95 + Math.random() * 0.35)),
+      cat: metProto.cat,
+      era: metProto.era,
+      mat: metProto.mat,
+      desc: `Recovered during high-precision surveying in ${park.zones[state.currentZoneIndex].title}.${metProto.desc}`,
+      fact: metProto.fact
+    };
+  }
+
+  // 3. Regular Procedural Float Discovery Check
+  if (!foundSpecimen) {
+    let standardFindChance = 0.40;
+    if (state.gear["gear_loupe"]) standardFindChance += 0.10;
+    if (state.gear["gear_optics"] && actionType === 'scree') standardFindChance += 0.15;
+
+    if (Math.random() < standardFindChance) {
       const baseProto = PROCEDURAL_TYPES[Math.floor(Math.random() * PROCEDURAL_TYPES.length)];
       foundSpecimen = {
         id: "PROC_" + Date.now(),
@@ -1654,7 +1757,10 @@ function combLandscape(actionType) {
         fact: baseProto.fact
       };
     }
+  }
 
+  if (foundSpecimen) {
+    state.stats.finds++;
     foundSpecimen.grade = null;
     foundSpecimen.gradeMultiplier = 1.0;
     foundSpecimen.authenticated = false;
@@ -1665,15 +1771,20 @@ function combLandscape(actionType) {
 
     const curVal = getItemAppraisal(foundSpecimen);
     const isMeteor = foundSpecimen.cat.includes("Meteorite");
+    const isCJ = foundSpecimen.tier === 5;
 
     log.innerHTML = `
-      <div class="accession-card">
-        <div class="accession-header" style="display:flex; justify-content:space-between; flex-wrap:wrap;">
-          <span>FIELD ACCESSION LOG • NEW SPECIMEN IN-SITU</span>
-          ${isMeteor ? '<span class="stamp stamp-meteor">METEORITE CLASS</span>' : ''}
+      <div class="accession-card" style="${isCJ ? 'border: 2px solid var(--accent-gold); border-left: 6px solid var(--accent-gold); background: #fffcf5;' : ''}">
+        <div class="accession-header" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px;">
+          <span>${isCJ ? '★ MASTERWORK DISCOVERY: CROWN JEWEL ★' : 'FIELD ACCESSION LOG • NEW SPECIMEN'}</span>
+          <div>
+            ${isCJ ? '<span class="stamp stamp-gold">PARK CROWN JEWEL</span> ' : ''}
+            ${isMeteor ? '<span class="stamp stamp-meteor">METEORITE</span>' : ''}
+          </div>
         </div>
+        ${alreadyFoundZoneCjNotice ? '<div style="font-size:0.75rem; color:var(--accent-rust); margin-bottom:4px; font-weight:bold;">[ZONE ARCHIVE NOTE: Zone ' + (state.currentZoneIndex + 1) + ' Crown Jewel already secured! In its place, an exotic meteorite was discovered.]</div>' : ''}
         <div class="accession-row"><strong>SPECIMEN:</strong> ${foundSpecimen.name} (${foundSpecimen.cat})</div>
-        <div class="accession-row"><strong>LOCALITY:</strong> ${park.name} •${park.zones[state.currentZoneIndex].title}</div>
+        <div class="accession-row"><strong>LOCALITY:</strong> ${park.name} • Zone ${state.currentZoneIndex + 1}:${park.zones[state.currentZoneIndex].title}</div>
         <div class="accession-row"><strong>STRATIGRAPHY:</strong> ${foundSpecimen.era}</div>
         <div class="accession-row"><strong>EST. VALUE:</strong> ${formatMoney(curVal)} (Tier${foundSpecimen.tier})</div>
         <div class="accession-desc">${foundSpecimen.desc}</div>
@@ -1694,7 +1805,7 @@ function combLandscape(actionType) {
 }
 
 // ============================================================================
-// 8. SPECIMEN BAG, SORTING, CATALOG & MASTER CHECKLIST
+// 8. SPECIMEN BAG, STATUS FILTERING, SORTING & MASTER CHECKLIST
 // ============================================================================
 function sortItemsArray(arr, criteria) {
   return arr.sort((a, b) => {
@@ -1709,7 +1820,7 @@ function sortItemsArray(arr, criteria) {
   });
 }
 
-function applyPackSort() {
+function applyPackFilterSort() {
   renderPackView(currentPackSubTab);
 }
 
@@ -1723,6 +1834,7 @@ function renderPackView(subTab) {
 
   const container = document.getElementById("pack-content-area");
   const sortBar = document.getElementById("sort-filter-bar");
+  const filterCriteria = document.getElementById("pack-filter-select") ? document.getElementById("pack-filter-select").value : 'all';
   const sortCriteria = document.getElementById("pack-sort-select") ? document.getElementById("pack-sort-select").value : 'val-desc';
 
   container.innerHTML = "";
@@ -1734,22 +1846,50 @@ function renderPackView(subTab) {
       return;
     }
 
-    const sortedBag = sortItemsArray(state.bag.slice(), sortCriteria);
+    // Filter Bag By Status
+    let filteredBag = state.bag.slice();
+    if (filterCriteria === 'ready') {
+      filteredBag = filteredBag.filter(it => it.grade && it.authenticated);
+    } else if (filterCriteria === 'unprocessed') {
+      filteredBag = filteredBag.filter(it => !it.grade && !it.authenticated);
+    } else if (filterCriteria === 'needs-grade') {
+      filteredBag = filteredBag.filter(it => !it.grade);
+    } else if (filterCriteria === 'needs-auth') {
+      filteredBag = filteredBag.filter(it => !it.authenticated);
+    }
+
+    if (filteredBag.length === 0) {
+      container.innerHTML = `
+        <div style="background:#fff; border:1px dashed var(--border-forest); padding:16px; text-align:center; font-style:italic; font-size:0.85rem; margin-top:6px;">
+          No specimens in your pack match the "<strong>${document.getElementById("pack-filter-select").selectedOptions[0].text}</strong>" status filter.
+        </div>
+      `;
+      return;
+    }
+
+    const sortedBag = sortItemsArray(filteredBag, sortCriteria);
 
     sortedBag.forEach((item, index) => {
       const curVal = getItemAppraisal(item);
       const originalBagIndex = state.bag.indexOf(item);
       const isMeteor = item.cat.includes("Meteorite");
+      const isCJ = item.tier === 5;
       
       const card = document.createElement("div");
       card.className = "accession-card";
+      if (isCJ) {
+        card.style.border = "1.5px solid var(--accent-gold)";
+        card.style.borderLeft = "5px solid var(--accent-gold)";
+      }
+
       card.innerHTML = `
         <div class="accession-header" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px;">
           <span>LOT #${index + 1} • TIER ${item.tier}</span>
           <div>
+            ${isCJ ? '<span class="stamp stamp-gold" style="margin-right:2px;">CROWN JEWEL</span>' : ''}
             ${isMeteor ? '<span class="stamp stamp-meteor" style="margin-right:2px;">METEORITE</span>' : ''}
-            ${item.grade ? `<span class="stamp stamp-gold" style="margin-right:2px;">GRADE: ${item.grade} (${item.gradeMultiplier}x)</span>` : '<span style="font-size:0.65rem; color:#777;">[UNGRADED]</span>'}
-            ${item.authenticated ? `<span class="stamp stamp-blue">CERTIFIED (+40%)</span>` : ''}
+            ${item.grade ? `<span class="stamp stamp-gold" style="margin-right:2px;">GRADE: ${item.grade} (${item.gradeMultiplier}x)</span>` : '<span style="font-size:0.65rem; color:#777; margin-right:2px;">[UNGRADED]</span>'}
+            ${item.authenticated ? `<span class="stamp stamp-blue">CERTIFIED (+40%)</span>` : '<span style="font-size:0.65rem; color:#777;">[UNCERTIFIED]</span>'}
           </div>
         </div>
         <div class="accession-row"><strong>${item.name}</strong> —${item.cat}</div>
@@ -1826,7 +1966,7 @@ function renderPackView(subTab) {
         </div>
       </div>
 
-      <h4 style="font-size:0.95rem; color:var(--accent-forest); margin:10px 0 6px 0;">All 63 Parks Crown Jewels Checklist (3 Per Park)</h4>
+      <h4 style="font-size:0.95rem; color:var(--accent-forest); margin:10px 0 6px 0;">All 63 Parks Crown Jewels Checklist (3 Per Park • 1 Per Survey Zone)</h4>
     `;
 
     ALL_PARKS.forEach(park => {
@@ -1841,7 +1981,7 @@ function renderPackView(subTab) {
         </div>
       `;
 
-      parkCJs.forEach(cj => {
+      parkCJs.forEach((cj, i) => {
         const isLogged = state.catalog[cj.parkId] && state.catalog[cj.parkId].includes(cj.id);
         const row = document.createElement("div");
         row.className = "item-row";
@@ -1852,15 +1992,15 @@ function renderPackView(subTab) {
 
         row.innerHTML = `
           <div>
-            <strong>${isLogged ? cj.name : '??? [Undiscovered Relic]'}</strong><br>
+            <strong>${isLogged ? cj.name : '??? [Zone ' + (i+1) + ' Undiscovered Relic]'}</strong><br>
             <span style="font-size:0.72rem; color:var(--text-muted);">
-              ${cj.cat} •${formatMoney(Math.round(cj.baseVal * 1.5))}
+              Zone ${i+1}: ${park.zones[i].title} •${formatMoney(Math.round(cj.baseVal * 1.5))}
             </span>
           </div>
           <div>
             ${isLogged 
               ? '<span class="stamp" style="border-color:var(--accent-forest); color:var(--accent-forest);">RECOVERED</span>' 
-              : '<span style="font-size:0.72rem; color:var(--accent-rust); font-style:italic;">Comb backcountry!</span>'
+              : '<span style="font-size:0.72rem; color:var(--accent-rust); font-style:italic;">Survey Zone ' + (i+1) + '!</span>'
             }
           </div>
         `;
@@ -1886,11 +2026,44 @@ function directItemToAuction(bagIndex) {
 }
 
 // ============================================================================
-// 9. CURATORIAL LAB: GRADING & AUTHENTICATION
+// 9. CURATORIAL LAB: GRADING, AUTHENTICATION & BATCH PROCESSING
 // ============================================================================
-function renderLabView() {
+function findLowestTierUnprocessedIndex() {
+  let bestIdx = -1;
+  let lowestTier = Infinity;
+  let lowestVal = Infinity;
+
+  state.bag.forEach((it, i) => {
+    const isUnprocessed = !it.grade || !it.authenticated;
+    if (isUnprocessed) {
+      if (it.tier < lowestTier) {
+        lowestTier = it.tier;
+        lowestVal = it.baseVal;
+        bestIdx = i;
+      } else if (it.tier === lowestTier && it.baseVal < lowestVal) {
+        lowestVal = it.baseVal;
+        bestIdx = i;
+      }
+    }
+  });
+
+  return bestIdx;
+}
+
+function renderLabView(targetIndex) {
   updateStatusBar();
+  const prevScrollY = window.scrollY || document.documentElement.scrollTop;
+
   const sel = document.getElementById("lab-item-select");
+  if (!sel) return;
+
+  const unhandledGrades = state.bag.filter(it => !it.grade).length;
+  const unhandledAuths = state.bag.filter(it => !it.authenticated).length;
+  const gradeCountBadge = document.getElementById("batch-grade-count");
+  const authCountBadge = document.getElementById("batch-auth-count");
+  if (gradeCountBadge) gradeCountBadge.innerText = unhandledGrades;
+  if (authCountBadge) authCountBadge.innerText = unhandledAuths;
+
   sel.innerHTML = "";
 
   if (state.bag.length === 0) {
@@ -1901,18 +2074,30 @@ function renderLabView() {
     return;
   }
 
+  let activeIdx = 0;
+  if (targetIndex !== undefined && targetIndex >= 0 && targetIndex < state.bag.length) {
+    activeIdx = targetIndex;
+  } else {
+    const currentVal = parseInt(sel.value);
+    activeIdx = (!isNaN(currentVal) && currentVal < state.bag.length) ? currentVal : 0;
+  }
+
   state.bag.forEach((it, i) => {
     const opt = document.createElement("option");
     opt.value = i;
     const curVal = getItemAppraisal(it);
     const gradeTag = it.grade ? `[${it.grade}]` : `[Ungraded]`;
-    const certTag = it.authenticated ? `[USGS Certified]` : ``;
-    opt.innerText = `${it.name} (${formatMoney(curVal)}) ${gradeTag}${certTag}`.trim();
+    const certTag = it.authenticated ? `[USGS Certified]` : `[Uncertified]`;
+    opt.innerText = `${it.name} (T${it.tier} • ${formatMoney(curVal)}) ${gradeTag}${certTag}`.trim();
+    if (i === activeIdx) opt.selected = true;
     sel.appendChild(opt);
   });
 
+  sel.value = activeIdx;
   document.getElementById("lab-active-area").style.display = "block";
   updateLabPreview();
+
+  window.scrollTo(0, prevScrollY);
 }
 
 function updateLabPreview() {
@@ -1930,18 +2115,20 @@ function updateLabPreview() {
   document.getElementById("lab-auth-fee").innerText = formatMoney(authFee);
 
   const isMeteor = item.cat.includes("Meteorite");
+  const isCJ = item.tier === 5;
 
   const card = document.getElementById("lab-specimen-card");
   card.innerHTML = `
     <div class="accession-header" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px;">
       <span>DOSSIER: ${item.name}</span>
       <div>
-        ${isMeteor ? '<span class="stamp stamp-meteor">METEORITE</span>' : ''}
+        ${isCJ ? '<span class="stamp stamp-gold">CROWN JEWEL</span> ' : ''}
+        ${isMeteor ? '<span class="stamp stamp-meteor">METEORITE</span> ' : ''}
         ${item.grade ? `<span class="stamp stamp-gold">${item.grade} (${item.gradeMultiplier}x)</span>` : '<span style="color:#777; font-size:0.7rem;">[UNGRADED]</span>'}
         ${item.authenticated ? `<span class="stamp stamp-blue">CERTIFIED (+40%)</span>` : '<span style="color:#777; font-size:0.7rem;">[UNCERTIFIED]</span>'}
       </div>
     </div>
-    <div class="accession-row"><strong>CATEGORY:</strong> ${item.cat} • <strong>ERA:</strong>${item.era}</div>
+    <div class="accession-row"><strong>CATEGORY:</strong> ${item.cat} • <strong>TIER:</strong> ${item.tier} • <strong>ERA:</strong>${item.era}</div>
     <div class="accession-row"><strong>CERTIFIED APPRAISAL:</strong> ${formatMoney(curVal)}</div>
     <div class="accession-desc">${item.desc}</div>
     <div class="accession-fact"><strong>FIELD FACT:</strong> ${item.fact || 'Catalog record verified.'}</div>
@@ -1965,11 +2152,10 @@ function updateLabPreview() {
     btnAuth.disabled = false;
     btnAuth.innerText = `Perform Authentication (${formatMoney(authFee)})`;
   }
-
-  document.getElementById("lab-result-log").innerHTML = "";
 }
 
-function executeGrading() {
+function executeGrading(e) {
+  if (e) e.preventDefault();
   const sel = document.getElementById("lab-item-select");
   const idx = parseInt(sel.value);
   const item = state.bag[idx];
@@ -1997,20 +2183,35 @@ function executeGrading() {
   item.gradeMultiplier = mult;
 
   saveGame();
-  updateStatusBar();
-  renderLabView();
 
-  const newAppraisal = getItemAppraisal(item);
-  document.getElementById("lab-result-log").innerHTML = `
+  let nextIdx = idx;
+  let autoAdvanced = false;
+  if (item.authenticated) {
+    const candidateIdx = findLowestTierUnprocessedIndex();
+    if (candidateIdx !== -1 && candidateIdx !== idx) {
+      nextIdx = candidateIdx;
+      autoAdvanced = true;
+    }
+  }
+
+  renderLabView(nextIdx);
+
+  const logBox = document.getElementById("lab-result-log");
+  const advancedText = autoAdvanced 
+    ? `<div style="margin-top:4px; color:var(--accent-forest); font-weight:bold;">→ Fully certified! Advanced to lowest-tier unprocessed item: ${state.bag[nextIdx].name} (Tier${state.bag[nextIdx].tier})</div>` 
+    : '';
+
+  logBox.innerHTML = `
     <div style="background:#fffcf2; border:1px solid var(--accent-gold); padding:8px; font-family:var(--font-mono); font-size:0.78rem;">
       <strong style="color:var(--accent-gold);">[ CERTIFICATE ISSUED ]</strong><br>
       GRADE: <strong>${gradeName}</strong> • MULTIPLIER: <strong>${mult}x</strong><br>
-      NEW APPRAISAL: <strong>${formatMoney(newAppraisal)}</strong>
+      SPECIMEN VALUE: <strong>${formatMoney(getItemAppraisal(item))}</strong>${advancedText}
     </div>
   `;
 }
 
-function executeAuthentication() {
+function executeAuthentication(e) {
+  if (e) e.preventDefault();
   const sel = document.getElementById("lab-item-select");
   const idx = parseInt(sel.value);
   const item = state.bag[idx];
@@ -2027,15 +2228,119 @@ function executeAuthentication() {
   item.authenticated = true;
 
   saveGame();
-  updateStatusBar();
-  renderLabView();
 
-  const newAppraisal = getItemAppraisal(item);
-  document.getElementById("lab-result-log").innerHTML = `
+  let nextIdx = idx;
+  let autoAdvanced = false;
+  if (item.grade) {
+    const candidateIdx = findLowestTierUnprocessedIndex();
+    if (candidateIdx !== -1 && candidateIdx !== idx) {
+      nextIdx = candidateIdx;
+      autoAdvanced = true;
+    }
+  }
+
+  renderLabView(nextIdx);
+
+  const logBox = document.getElementById("lab-result-log");
+  const advancedText = autoAdvanced 
+    ? `<div style="margin-top:4px; color:var(--accent-forest); font-weight:bold;">→ Fully certified! Advanced to lowest-tier unprocessed item: ${state.bag[nextIdx].name} (Tier${state.bag[nextIdx].tier})</div>` 
+    : '';
+
+  logBox.innerHTML = `
     <div style="background:#f2f7fc; border:1px solid var(--accent-blue); padding:8px; font-family:var(--font-mono); font-size:0.78rem;">
       <strong style="color:var(--accent-blue);">[ USGS AUTHENTICATED ]</strong><br>
-      STATUS: <strong>CERTIFIED GENUINE</strong> • BOOST: <strong>+40% Value</strong><br>
-      NEW APPRAISAL: <strong>${formatMoney(newAppraisal)}</strong> (Doubles Bid War Odds)
+      STATUS: <strong>CERTIFIED GENUINE</strong> • BOOST: <strong>+40% Value</strong>
+      ${advancedText}
+    </div>
+  `;
+}
+
+function batchGradeAll(e) {
+  if (e) e.preventDefault();
+  const ungraded = state.bag.filter(it => !it.grade);
+  if (ungraded.length === 0) {
+    alert("All specimens in your pack are already graded!");
+    return;
+  }
+
+  let totalCost = 0;
+  ungraded.forEach(it => {
+    totalCost += Math.max(25, Math.round(it.baseVal * 0.05));
+  });
+
+  if (state.funds < totalCost) {
+    alert(`Insufficient funds for batch grading! Total cost is ${formatMoney(totalCost)}, but you only have${formatMoney(state.funds)}.`);
+    return;
+  }
+
+  if (!confirm(`Submit all ${ungraded.length} ungraded specimens for stereomicroscopy?\nTotal Fee:${formatMoney(totalCost)}`)) {
+    return;
+  }
+
+  state.funds -= totalCost;
+  ungraded.forEach(item => {
+    state.stats.graded++;
+    const roll = Math.random();
+    let gradeName = "Fine";
+    let mult = 1.25;
+
+    if (roll < 0.20) { gradeName = "Good-VG"; mult = 1.10; }
+    else if (roll < 0.55) { gradeName = "Very Fine-35"; mult = 1.45; }
+    else if (roll < 0.85) { gradeName = "Mint State-65"; mult = 1.85; }
+    else { gradeName = "Pristine Gem-70"; mult = 2.50; }
+
+    item.grade = gradeName;
+    item.gradeMultiplier = mult;
+  });
+
+  saveGame();
+  const nextTarget = findLowestTierUnprocessedIndex();
+  renderLabView(nextTarget !== -1 ? nextTarget : 0);
+
+  document.getElementById("lab-result-log").innerHTML = `
+    <div style="background:#fffcf2; border:1px solid var(--accent-gold); padding:8px; font-family:var(--font-mono); font-size:0.78rem;">
+      <strong style="color:var(--accent-gold);">[ BATCH GRADING COMPLETE ]</strong><br>
+      Graded <strong>${ungraded.length} specimens</strong> for <strong>-${formatMoney(totalCost)}</strong>.
+    </div>
+  `;
+}
+
+function batchAuthenticateAll(e) {
+  if (e) e.preventDefault();
+  const uncertified = state.bag.filter(it => !it.authenticated);
+  if (uncertified.length === 0) {
+    alert("All specimens in your pack are already USGS certified!");
+    return;
+  }
+
+  let totalCost = 0;
+  uncertified.forEach(it => {
+    totalCost += Math.max(50, Math.round(it.baseVal * 0.08));
+  });
+
+  if (state.funds < totalCost) {
+    alert(`Insufficient funds for batch certification! Total cost is ${formatMoney(totalCost)}, but you only have${formatMoney(state.funds)}.`);
+    return;
+  }
+
+  if (!confirm(`Submit all ${uncertified.length} uncertified specimens for USGS spectrometry?\nTotal Fee:${formatMoney(totalCost)}`)) {
+    return;
+  }
+
+  state.funds -= totalCost;
+  uncertified.forEach(item => {
+    state.stats.authenticated++;
+    item.authenticated = true;
+  });
+
+  saveGame();
+  const nextTarget = findLowestTierUnprocessedIndex();
+  renderLabView(nextTarget !== -1 ? nextTarget : 0);
+
+  document.getElementById("lab-result-log").innerHTML = `
+    <div style="background:#f2f7fc; border:1px solid var(--accent-blue); padding:8px; font-family:var(--font-mono); font-size:0.78rem;">
+      <strong style="color:var(--accent-blue);">[ BATCH CERTIFICATION COMPLETE ]</strong><br>
+      Certified <strong>${uncertified.length} specimens</strong> with USGS spectrometry for <strong>-${formatMoney(totalCost)}</strong>.
     </div>
   `;
 }
