@@ -10,11 +10,14 @@
     --card-bg: #fcf9f2;
     --border-color: #5c4e3e;
     --border-light: #c2b59b;
+    --border-forest: #22512a;
     --text-main: #2b2118;
     --text-muted: #6e6252;
     --accent-rust: #8b3a22;
     --accent-gold: #9c6c18;
-    --accent-green: #3b5336;
+    --accent-green: #2d5a37;
+    --accent-forest: #1b3d20;
+    --accent-emerald: #1c6b30;
     --accent-blue: #2c4d6f;
     --font-serif: "Georgia", "Baskerville", "Palatino Linotype", serif;
     --font-mono: "Courier New", "Consolas", monospace;
@@ -27,58 +30,58 @@
     color: var(--text-main);
     font-family: var(--font-serif);
     line-height: 1.45;
-    padding: 8px 8px 82px 8px;
+    padding: 8px 8px 105px 8px;
     display: flex;
     justify-content: center;
   }
 
   #journal-wrapper {
     width: 100%;
-    max-width: 760px;
+    max-width: 800px;
     background: var(--card-bg);
-    border: 2px solid var(--border-color);
-    box-shadow: 0 4px 16px rgba(43, 33, 24, 0.12);
-    padding: 14px 16px;
+    border: 2px solid var(--border-forest);
+    box-shadow: 0 4px 18px rgba(34, 81, 42, 0.15);
+    padding: 14px 18px;
     position: relative;
   }
 
   header {
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 2px solid var(--border-forest);
     padding-bottom: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     text-align: center;
   }
 
   .header-sub {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 1px;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--accent-rust);
+    color: var(--accent-forest);
+    font-weight: bold;
   }
 
   h1 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: normal;
     letter-spacing: 0.5px;
-    margin: 2px 0;
+    margin: 3px 0;
     color: var(--text-main);
   }
 
-  /* RUSTIC PARK SIGN VISITOR TRACKER */
   #park-sign-counter {
-    background: #382415;
+    background: #342113;
     background-image: repeating-linear-gradient(
       90deg,
       rgba(255, 255, 255, 0.02) 0px,
-      rgba(0, 0, 0, 0.04) 3px,
+      rgba(0, 0, 0, 0.05) 3px,
       transparent 6px,
       transparent 12px
     );
-    border: 3px solid #201309;
+    border: 3px solid #1c1008;
     border-radius: 4px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7), 0 3px 8px rgba(43, 33, 24, 0.25);
-    padding: 8px 12px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.75), 0 3px 10px rgba(43, 33, 24, 0.25);
+    padding: 10px 12px;
     margin-bottom: 12px;
     text-align: center;
     position: relative;
@@ -87,11 +90,11 @@
     transition: transform 0.08s ease;
   }
   #park-sign-counter:active {
-    transform: scale(0.99);
+    transform: scale(0.985);
   }
   .sign-title {
     font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-size: 0.78rem;
     font-weight: bold;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -105,41 +108,40 @@
     background: #140d07;
     border: 2px solid #5a3c22;
     border-radius: 3px;
-    padding: 2px 8px;
+    padding: 3px 12px;
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9);
   }
   .odometer-digit {
     font-family: var(--font-mono);
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: #fff3d1;
     letter-spacing: 3px;
-    text-shadow: 0 0 2px rgba(255, 243, 209, 0.5);
+    text-shadow: 0 0 3px rgba(255, 243, 209, 0.6);
   }
   .sign-footer-note {
     font-family: var(--font-mono);
-    font-size: 0.62rem;
+    font-size: 0.65rem;
     letter-spacing: 1px;
     color: #c7ad7f;
-    margin-top: 3px;
+    margin-top: 4px;
   }
 
-  /* Compact Status Bar */
   #status-bar {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 4px 10px;
-    background: #ede4d1;
-    border: 1px solid var(--border-light);
-    padding: 6px 10px;
+    background: #e9e0ce;
+    border: 1px solid var(--border-forest);
+    border-left: 5px solid var(--accent-forest);
+    padding: 7px 12px;
     font-family: var(--font-mono);
-    font-size: 0.74rem;
-    margin-bottom: 12px;
+    font-size: 0.76rem;
+    margin-bottom: 14px;
   }
-  .stat-block strong { color: var(--accent-rust); }
+  .stat-block strong { color: var(--accent-forest); }
 
-  /* Docked Bottom Navigation Bar */
   nav#bottom-nav {
     position: fixed;
     bottom: 0;
@@ -147,22 +149,22 @@
     right: 0;
     width: 100%;
     z-index: 999;
-    background: #ede4d1;
-    border-top: 2px solid var(--border-color);
-    box-shadow: 0 -3px 12px rgba(43, 33, 24, 0.22);
+    background: #e3d7c3;
+    border-top: 3px solid var(--border-forest);
+    box-shadow: 0 -3px 14px rgba(27, 61, 32, 0.28);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow-x: auto;
     white-space: nowrap;
-    padding: 8px 12px;
+    padding: 10px 8px;
     gap: 6px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
   nav#bottom-nav::-webkit-scrollbar { display: none; }
 
-  @media (max-width: 600px) {
+  @media (max-width: 720px) {
     nav#bottom-nav {
       justify-content: flex-start;
     }
@@ -171,34 +173,39 @@
   .nav-btn {
     flex: 0 0 auto;
     background: #ded2b9;
-    border: 1px solid var(--border-color);
+    border: 1.5px solid var(--border-color);
     color: var(--text-main);
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    min-height: 52px;
+    padding: 12px 14px;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.15s ease;
   }
-  .nav-btn:hover { background: #cfc1a2; }
+  .nav-btn:hover { background: #d0c2a5; }
   .nav-btn.active {
-    background: var(--border-color);
+    background: var(--accent-forest);
     color: #fff;
+    border-color: #0f2413;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
   }
 
-  /* View Panels */
   .view-panel { display: none; }
   .view-panel.active-panel { display: block; }
 
-  /* Action Buttons & Inputs */
   button.action-btn {
     width: 100%;
     background: #ded2b9;
     border: 1px solid var(--border-color);
     color: var(--text-main);
     font-family: var(--font-serif);
-    font-size: 0.9rem;
-    padding: 9px 12px;
+    font-size: 0.92rem;
+    padding: 10px 12px;
     cursor: pointer;
     margin: 4px 0;
     border-radius: 2px;
@@ -222,50 +229,89 @@
     border-radius: 2px;
   }
 
-  /* Accession Cards */
   .accession-card {
-    border: 1px solid var(--border-color);
+    border: 1.5px solid var(--border-forest);
     background: #fff;
-    padding: 12px;
+    padding: 12px 14px;
     margin: 10px 0;
     font-family: var(--font-mono);
     font-size: 0.78rem;
     position: relative;
+    border-left: 4px solid var(--accent-forest);
   }
   .accession-header {
-    border-bottom: 1px dashed var(--border-color);
+    border-bottom: 1px dashed var(--border-light);
     padding-bottom: 4px;
     margin-bottom: 8px;
     font-weight: bold;
-    color: var(--accent-rust);
+    color: var(--accent-forest);
   }
   .accession-row { margin-bottom: 4px; }
   .accession-desc {
     font-family: var(--font-serif);
     font-size: 0.88rem;
-    line-height: 1.4;
+    line-height: 1.45;
     margin-top: 8px;
     padding-top: 6px;
     border-top: 1px solid #e0d5be;
     color: #1a140e;
   }
+  .accession-fact {
+    background: #f3f8f2;
+    border-left: 3px solid var(--accent-forest);
+    padding: 6px 9px;
+    margin-top: 8px;
+    font-family: var(--font-serif);
+    font-size: 0.82rem;
+    font-style: italic;
+    color: #234827;
+  }
 
-  /* Auction Display */
+  .atlas-district-banner {
+    background: var(--accent-forest);
+    color: #f4eee1;
+    padding: 8px 12px;
+    margin: 14px 0 8px 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-left: 6px solid var(--accent-gold);
+  }
+  .atlas-park-card {
+    border: 1.5px solid var(--border-forest);
+    background: #fbf9f4;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  @media (min-width: 520px) {
+    .atlas-park-card {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .atlas-park-card button.action-btn { width: auto; margin: 0; }
+  }
+
   .auction-box {
-    border: 1px solid var(--accent-rust);
+    border: 1.5px solid var(--accent-forest);
     background: #faf4e8;
     padding: 12px;
     margin-top: 10px;
   }
   .ticker-box {
-    background: #1e1914;
+    background: #181c15;
     color: #e8dcc4;
     font-family: var(--font-mono);
     font-size: 0.78rem;
     padding: 10px;
     height: 190px;
     overflow-y: auto;
-    border: 1px solid #3d3228;
+    border: 1px solid #2d4529;
     margin: 8px 0;
     line-height: 1.4;
   }
@@ -307,11 +353,10 @@
     .item-row button.action-btn { width: auto; margin: 0; }
   }
 
-  /* Seals & Stamps */
   .stamp {
     display: inline-block;
-    border: 1.5px solid var(--accent-green);
-    color: var(--accent-green);
+    border: 1.5px solid var(--accent-forest);
+    color: var(--accent-forest);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     font-weight: bold;
@@ -320,30 +365,31 @@
   }
   .stamp-gold { border-color: var(--accent-gold); color: var(--accent-gold); }
   .stamp-blue { border-color: var(--accent-blue); color: var(--accent-blue); }
+  .stamp-meteor { border-color: #7b3294; color: #7b3294; }
 
-  /* Letter Box */
   .family-letter-box {
-    background: #fffbf3;
-    border: 1.5px solid var(--accent-gold);
+    background: #fffcf5;
+    border: 1.5px solid var(--accent-forest);
+    border-left: 5px solid var(--accent-gold);
     padding: 14px;
     margin: 12px 0;
   }
   .family-letter-box h3 {
     font-family: var(--font-serif);
-    color: var(--accent-rust);
-    font-size: 1.1rem;
+    color: var(--accent-forest);
+    font-size: 1.15rem;
     margin-bottom: 6px;
   }
 
-  /* Manual Guide */
   .manual-section {
     background: #fff;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-forest);
+    border-left: 4px solid var(--accent-forest);
     padding: 12px;
     margin-bottom: 10px;
   }
   .manual-section h3 {
-    color: var(--accent-rust);
+    color: var(--accent-forest);
     font-size: 1rem;
     margin-bottom: 6px;
     border-bottom: 1px dashed var(--border-light);
@@ -363,8 +409,23 @@
     font-size: 0.75rem;
     padding: 6px;
     background: #fdfbf7;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-forest);
     margin: 6px 0;
+  }
+
+  .progress-bar-bg {
+    background: #ded2b9;
+    border: 1px solid var(--border-forest);
+    height: 14px;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 6px 0 10px 0;
+  }
+  .progress-bar-fill {
+    background: var(--accent-forest);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
   }
 </style>
 </head>
@@ -372,23 +433,21 @@
 
 <div id="journal-wrapper">
   <header>
-    <div class="header-sub">Independent Field Expedition &bull; Educational Tribute</div>
+    <div class="header-sub">Independent Field Expedition • Educational Tribute</div>
     <h1>The Living Archive</h1>
-    <div style="font-size:0.78rem; color:var(--text-muted); font-style:italic;">
-      National Parks Naturalist Logbook (All 63 Parks)
+    <div style="font-size:0.8rem; color:var(--text-muted); font-style:italic;">
+      Comprehensive Field Naturalist Logbook (All 63 US National Parks)
     </div>
   </header>
 
-  <!-- RUSTIC PARK SIGN VISITOR TRACKER -->
-  <div id="park-sign-counter" onclick="recordParkVisitClick()" title="Tap sign or charter travel to record a park expedition!">
-    <div class="sign-title">&#9670; Parks Visited Through Us: &#9670;</div>
+  <div id="park-sign-counter" onclick="recordParkVisitClick()" title="Tap to record an expedition!">
+    <div class="sign-title">◆ Parks Visited Through Us: ◆</div>
     <div class="sign-odometer-box">
       <span id="global-counter-display" class="odometer-digit">18,482</span>
     </div>
-    <div class="sign-footer-note">TOTAL EXPEDITIONS LOGGED &bull; TAP SIGN TO LOG VISIT</div>
+    <div class="sign-footer-note">TOTAL EXPEDITIONS LOGGED • TAP SIGN TO LOG VISIT</div>
   </div>
 
-  <!-- Status Bar -->
   <div id="status-bar">
     <div class="stat-block">PARK: <strong id="bar-park">...</strong></div>
     <div class="stat-block">FUNDS: <strong id="bar-funds">$0</strong></div>
@@ -399,49 +458,62 @@
   <!-- PANEL 1: FIELD COMBING -->
   <div id="view-combing" class="view-panel active-panel">
     <div style="margin-bottom:8px;">
-      <h2 id="comb-park-title" style="font-size:1.15rem; color:var(--accent-rust);">National Park Survey</h2>
-      <div id="comb-park-meta" style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted);"></div>
+      <h2 id="comb-park-title" style="font-size:1.2rem; color:var(--accent-forest);">National Park Survey</h2>
+      <div id="comb-park-meta" style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);"></div>
     </div>
 
-    <div style="background:#ede5d2; border:1px solid var(--border-light); padding:8px 10px; margin-bottom:10px;">
-      <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; display:block;">SURVEY ZONE:</label>
+    <div style="background:#ede5d2; border:1px solid var(--border-forest); padding:8px 10px; margin-bottom:10px;">
+      <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; display:block; color:var(--accent-forest);">ACTIVE SURVEY ZONE:</label>
       <select id="zone-selector" class="mobile-select" onchange="changeZone()"></select>
     </div>
 
-    <div id="zone-description" style="font-style:italic; font-size:0.86rem; line-height:1.45; margin-bottom:12px; background:#fff; border-left:3px solid var(--border-color); padding:8px 10px;">
+    <div id="zone-description" style="font-style:italic; font-size:0.86rem; line-height:1.45; margin-bottom:12px; background:#fff; border-left:4px solid var(--accent-forest); padding:8px 10px;">
       Select a zone to begin your field survey.
     </div>
 
     <div style="margin-bottom:12px;">
-      <strong style="font-family:var(--font-mono); font-size:0.75rem; display:block; margin-bottom:4px;">COMBING ACTIONS:</strong>
-      <button class="action-btn" onclick="combLandscape('surface')">&#9656; Scan Surface Float</button>
-      <button class="action-btn" onclick="combLandscape('erosion')">&#9656; Inspect Cutbank Erosion</button>
-      <button class="action-btn" onclick="combLandscape('sift')">&#9656; Sift Gravel Traps</button>
-      <button class="action-btn" onclick="combLandscape('scree')">&#9656; Glass Talus &amp; High Ridges</button>
+      <strong style="font-family:var(--font-mono); font-size:0.75rem; display:block; margin-bottom:4px; color:var(--accent-forest);">FIELD COMBING ACTIONS:</strong>
+      <button class="action-btn" onclick="combLandscape('surface')">▸ Scan Surface Float &amp; Detritus</button>
+      <button class="action-btn" onclick="combLandscape('erosion')">▸ Inspect Cutbank Erosion</button>
+      <button class="action-btn" onclick="combLandscape('sift')">▸ Sift Heavy Gravel Traps</button>
+      <button class="action-btn" onclick="combLandscape('scree')">▸ Glass Talus &amp; High Ridges</button>
     </div>
 
     <div id="discovery-log" style="margin-top:10px;"></div>
   </div>
 
-  <!-- PANEL 2: SPECIMEN BAG & CATALOG -->
+  <!-- PANEL 2: SPECIMEN BAG, CATALOG & CHECKLIST -->
   <div id="view-inventory" class="view-panel">
-    <h2 style="font-size:1.15rem; margin-bottom:8px;">Field Pack &amp; Master Catalog</h2>
-    <div style="display:flex; gap:6px; margin-bottom:10px;">
-      <button class="action-btn" style="margin:0;" onclick="renderPackView('bag')">Pack (<span id="pack-bag-count">0</span>)</button>
-      <button class="action-btn" style="margin:0;" onclick="renderPackView('archive')">Ledger (<span id="pack-archive-count">0</span>)</button>
+    <h2 style="font-size:1.2rem; margin-bottom:8px; color:var(--accent-forest);">Field Pack, Archive &amp; Checklist</h2>
+    <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
+      <button class="action-btn" style="flex:1; margin:0;" onclick="renderPackView('bag')">Pack (<span id="pack-bag-count">0</span>)</button>
+      <button class="action-btn" style="flex:1; margin:0;" onclick="renderPackView('archive')">Ledger (<span id="pack-archive-count">0</span>)</button>
+      <button class="action-btn" style="flex:1; margin:0; background:#d2e5d0; border-color:var(--border-forest); font-weight:bold;" onclick="renderPackView('checklist')">Checklist</button>
     </div>
+
+    <div id="sort-filter-bar" style="background:#ede4d1; padding:6px 10px; border:1px solid var(--border-forest); margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+      <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; color:var(--accent-forest);">SORT BY:</label>
+      <select id="pack-sort-select" onchange="applyPackSort()" style="font-family:var(--font-serif); font-size:0.85rem; padding:4px 8px;">
+        <option value="val-desc">Appraisal (High to Low)</option>
+        <option value="val-asc">Appraisal (Low to High)</option>
+        <option value="tier-desc">Rarity Tier (Highest First)</option>
+        <option value="name">Alphabetical</option>
+        <option value="cat">Category</option>
+      </select>
+    </div>
+
     <div id="pack-content-area"></div>
   </div>
 
   <!-- PANEL 3: CURATORIAL LAB -->
   <div id="view-lab" class="view-panel">
-    <h2 style="font-size:1.15rem; margin-bottom:4px;">Curatorial Laboratory</h2>
+    <h2 style="font-size:1.2rem; margin-bottom:4px; color:var(--accent-forest);">Curatorial Laboratory</h2>
     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
-      Grading and scientific authentication multiply certified auction appraisals.
+      Stereomicroscopy condition grading and USGS spectrometry certification multiply certified auction values.
     </p>
 
-    <div style="background:#ede5d2; padding:10px; border:1px solid var(--border-light); margin-bottom:10px;">
-      <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; display:block;">SELECT SPECIMEN:</label>
+    <div style="background:#ede5d2; padding:10px; border:1px solid var(--border-forest); margin-bottom:10px;">
+      <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; display:block; color:var(--accent-forest);">SELECT SPECIMEN:</label>
       <select id="lab-item-select" class="mobile-select" onchange="updateLabPreview()"></select>
     </div>
 
@@ -449,10 +521,10 @@
       <div id="lab-specimen-card" class="accession-card"></div>
       
       <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
-        <div style="background:#fff; border:1px solid var(--accent-gold); padding:10px;">
+        <div style="background:#fff; border:1px solid var(--accent-gold); padding:10px; border-left:4px solid var(--accent-gold);">
           <h3 style="font-size:0.95rem; color:var(--accent-gold); margin-bottom:4px;">Condition Grading</h3>
           <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:6px;">
-            Stereomicroscopic evaluation of wear and patina (up to 2.50x multiplier).
+            Stereomicroscopic evaluation of surface wear and patina (up to 2.50x value multiplier).
           </p>
           <div style="font-family:var(--font-mono); font-size:0.75rem; margin-bottom:6px;">
             Fee: <strong id="lab-grade-fee">$0</strong>
@@ -460,10 +532,10 @@
           <button id="btn-do-grade" class="action-btn" onclick="executeGrading()">Submit for Grading</button>
         </div>
 
-        <div style="background:#fff; border:1px solid var(--accent-blue); padding:10px;">
+        <div style="background:#fff; border:1px solid var(--accent-blue); padding:10px; border-left:4px solid var(--accent-blue);">
           <h3 style="font-size:0.95rem; color:var(--accent-blue); margin-bottom:4px;">USGS Authentication</h3>
           <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:6px;">
-            XRF Spectrometry &amp; radiocarbon dating (+40% value, doubles bid clash odds).
+            XRF Spectrometry &amp; radiocarbon dating (+40% value, doubles bid clash probability).
           </p>
           <div style="font-family:var(--font-mono); font-size:0.75rem; margin-bottom:6px;">
             Fee: <strong id="lab-auth-fee">$0</strong>
@@ -478,35 +550,35 @@
 
   <!-- PANEL 4: AUCTION FLOOR -->
   <div id="view-auction" class="view-panel">
-    <h2 style="font-size:1.15rem; margin-bottom:4px;">Archival Auction Floor</h2>
+    <h2 style="font-size:1.2rem; margin-bottom:4px; color:var(--accent-forest);">Archival Auction Floor</h2>
     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
-      Live 15-second bidding session between global museums and trusts.
+      Live 15-second bidding session between global museums, universities, and trusts.
     </p>
 
-    <div id="auction-select-area" style="background:#ede4d1; padding:10px; border:1px solid var(--border-light); margin-bottom:10px;">
-      <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; display:block;">SELECT LOT:</label>
+    <div id="auction-select-area" style="background:#ede4d1; padding:10px; border:1px solid var(--border-forest); margin-bottom:10px;">
+      <label style="font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; display:block; color:var(--accent-forest);">SELECT LOT TO CONSIGN:</label>
       <select id="auction-item-select" class="mobile-select"></select>
-      <button class="action-btn" onclick="startAuctionConsignment()" style="margin-top:8px; font-weight:bold;">Send to Floor</button>
+      <button class="action-btn" onclick="startAuctionConsignment()" style="margin-top:8px; font-weight:bold; background:#cbe0cb; border-color:var(--border-forest);">Send Lot to Floor</button>
     </div>
 
     <div id="auction-active-area" style="display:none;" class="auction-box">
       <div id="clash-banner" class="bidding-clash-banner" style="display:none;">
-        &#9888; BIDDING CLASH IN PROGRESS &#9888;
+        ⚠ CURATORIAL CLASH: INSTITUTIONAL DUEL IN PROGRESS ⚠
       </div>
       <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
-        <h3 id="auction-lot-title" style="color:var(--accent-rust); font-size:0.95rem;">Lot #001</h3>
-        <div id="auction-timer-display" style="font-family:var(--font-mono); font-size:0.82rem; font-weight:bold; color:var(--accent-rust);">
+        <h3 id="auction-lot-title" style="color:var(--accent-forest); font-size:1rem;">Lot #001</h3>
+        <div id="auction-timer-display" style="font-family:var(--font-mono); font-size:0.85rem; font-weight:bold; color:var(--accent-rust);">
           CLOCK: 15s
         </div>
       </div>
-      <div id="auction-lot-meta" style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:6px;"></div>
+      <div id="auction-lot-meta" style="font-family:var(--font-mono); font-size:0.74rem; color:var(--text-muted); margin-bottom:6px;"></div>
       
       <div id="auction-ticker" class="ticker-box"></div>
 
       <div style="margin-top:8px;">
-        <div style="font-family:var(--font-mono); font-size:0.92rem; margin-bottom:6px;">
+        <div style="font-family:var(--font-mono); font-size:0.95rem; margin-bottom:6px;">
           HIGH BID: <strong id="auction-high-bid" style="color:var(--accent-gold);">$0</strong>
-          <span id="auction-high-bidder" style="font-size:0.72rem; color:var(--text-muted); display:block;"></span>
+          <span id="auction-high-bidder" style="font-size:0.74rem; color:var(--text-muted); display:block;"></span>
         </div>
         <div id="auction-controls">
           <button id="btn-hammer-early" class="action-btn" onclick="hammerDownEarly()" style="background:#dfb39d; font-weight:bold;">[ Hammer Down Early ]</button>
@@ -518,111 +590,107 @@
 
   <!-- PANEL 5: OUTFITTER -->
   <div id="view-outfitter" class="view-panel">
-    <h2 style="font-size:1.15rem; margin-bottom:4px;">Backcountry Outfitter</h2>
+    <h2 style="font-size:1.2rem; margin-bottom:4px; color:var(--accent-forest);">Backcountry Outfitter</h2>
     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
-      Field optics, tools, and long-range transport rigs.
+      Precision field optics, geochemical tools, and chartered transport rigs.
     </p>
     <div id="outfitter-list"></div>
   </div>
 
   <!-- PANEL 6: CONSERVANCY & SUPPORT -->
   <div id="view-conservancy" class="view-panel">
-    <h2 style="font-size:1.15rem; margin-bottom:4px;">Preservation, Real Stewardship &amp; Support</h2>
+    <h2 style="font-size:1.2rem; margin-bottom:4px; color:var(--accent-forest);">Preservation, Real Stewardship &amp; Support</h2>
 
-    <!-- 1. CREATOR FAMILY FUND -->
     <div class="family-letter-box">
-      <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--accent-gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:3px;">
-        &bull; A Note from the Trail &bull;
+      <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--accent-forest); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; font-weight:bold;">
+        • A Note from the Trail •
       </div>
       <h3>From One Naturalist to Another</h3>
-      <p style="font-size:0.85rem; line-height:1.45; margin-bottom:8px;">
+      <p style="font-size:0.88rem; line-height:1.45; margin-bottom:8px;">
         Hey there! I created this game as a labor of love for history, geology, and our majestic National Parks. I'm a stay-at-home dad dedicated to teaching my two wonderful kids about the wonders of the natural world. My dream is to pack up my family—my incredible wife and our two little adventurers—and visit all 63 US National Parks together in person. 
       </p>
-      <p style="font-size:0.85rem; line-height:1.45; margin-bottom:10px;">
+      <p style="font-size:0.88rem; line-height:1.45; margin-bottom:10px;">
         Our top dream destination is <strong>Zion National Park</strong>. Any support toward our family's park expedition fund means the world to us!
       </p>
       <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tylerleefalter37%40gmail.com&currency_code=USD&item_name=National+Parks+Family+Journey+Fund" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
         <button class="action-btn" style="background:var(--accent-gold); color:#fff; font-weight:bold; border:none;">
-          &hearts; Support Family Park Journey (PayPal)
+          ♥ Support Family Park Journey (PayPal)
         </button>
       </a>
-      <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); margin-top:4px; text-align:center;">
+      <div style="font-family:var(--font-mono); font-size:0.74rem; color:var(--text-muted); margin-top:4px; text-align:center;">
         PayPal: tylerleefalter37@gmail.com
       </div>
     </div>
 
-    <!-- 2. NATIONAL PARK FOUNDATION -->
-    <div style="background:#f1f6ed; border:1px solid var(--accent-green); padding:12px; margin-bottom:14px;">
-      <h3 style="font-size:0.95rem; color:var(--accent-green); margin-bottom:4px;">Support Real Public Lands</h3>
+    <div style="background:#f1f6ed; border:1px solid var(--accent-forest); border-left:5px solid var(--accent-forest); padding:12px; margin-bottom:14px;">
+      <h3 style="font-size:0.95rem; color:var(--accent-forest); margin-bottom:4px;">Support Real Public Lands</h3>
       <p style="font-size:0.82rem; line-height:1.4; margin-bottom:8px;">
         Help fund trail repairs, ranger educational programs, and wildlife protection across 85 million acres of protected national parkland.
       </p>
       <a href="https://give.nationalparks.org" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
-        <button class="action-btn" style="background:var(--accent-green); color:#fff; font-weight:bold; border:none;">
-          &bull; Donate to National Park Foundation (give.nationalparks.org) &bull;
+        <button class="action-btn" style="background:var(--accent-forest); color:#fff; font-weight:bold; border:none;">
+          • Donate to National Park Foundation (give.nationalparks.org) •
         </button>
       </a>
     </div>
 
-    <!-- 3. BIDDER INSTITUTIONS DIRECT DONATION DIRECTORY -->
-    <div style="background:#fff; border:1px solid var(--accent-blue); padding:12px; margin-bottom:14px;">
-      <h3 style="font-size:0.95rem; color:var(--accent-blue); margin-bottom:4px;">Support Scientific &amp; Cultural Institutions</h3>
+    <div style="background:#fff; border:1px solid var(--border-forest); padding:12px; margin-bottom:14px;">
+      <h3 style="font-size:0.95rem; color:var(--accent-forest); margin-bottom:4px;">Support Scientific &amp; Cultural Institutions</h3>
       <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
-        The museums, universities, and research trusts featured in our auction room conduct critical real-world paleontology, archaeology, and mineral conservation:
+        The museums, universities, and research trusts featured on our bidding floor conduct critical real-world paleontology, archaeology, and mineral conservation:
       </p>
       <div id="institution-donation-list" style="display:grid; grid-template-columns:1fr; gap:6px; max-height:220px; overflow-y:auto; padding-right:4px;"></div>
     </div>
 
-    <!-- 4. IN-GAME CONSERVANCY TIERS -->
-    <h3 style="font-size:1rem; margin:12px 0 6px 0; color:var(--accent-rust);">In-Game Park Endowments</h3>
+    <h3 style="font-size:1.05rem; margin:12px 0 6px 0; color:var(--accent-forest);">In-Game Park Endowments</h3>
     <div id="conservancy-tiers-display"></div>
   </div>
 
   <!-- PANEL 7: NATIONAL ATLAS -->
   <div id="view-atlas" class="view-panel">
-    <h2 style="font-size:1.15rem; margin-bottom:4px;">National Atlas (All 63 Parks)</h2>
+    <h2 style="font-size:1.2rem; margin-bottom:4px; color:var(--accent-forest);">National Atlas (All 63 Parks)</h2>
     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
-      Home district travel is free; distant regions incur transit fares.
+      Home district travel is free; distant regions incur chartered transit fares.
     </p>
     <div id="atlas-content"></div>
   </div>
 
   <!-- PANEL 8: SAVE & FIELD DATA -->
   <div id="view-save" class="view-panel">
-    <h2 style="font-size:1.15rem; margin-bottom:4px; color:var(--accent-rust);">Save &amp; Field Data</h2>
+    <h2 style="font-size:1.2rem; margin-bottom:4px; color:var(--accent-forest);">Save &amp; Field Data</h2>
     <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
       Automatic local saving is active. Use the tools below to back up or transfer your career.
     </p>
 
-    <div style="background:#ede4d1; border:1px solid var(--border-light); padding:10px; margin-bottom:10px;">
-      <div id="save-status-msg" style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); margin-bottom:8px;">
+    <div style="background:#ede4d1; border:1px solid var(--border-forest); padding:10px; margin-bottom:10px;">
+      <div id="save-status-msg" style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-forest); margin-bottom:8px; font-weight:bold;">
         Status: Auto-save active.
       </div>
-      <button class="action-btn" onclick="manualSaveClick()">&#128190; Save Game Now</button>
-      <button class="action-btn" onclick="manualReloadClick()">&#128260; Reload from Browser Save</button>
+      <button class="action-btn" onclick="manualSaveClick()">💾 Save Game Now</button>
+      <button class="action-btn" onclick="manualReloadClick()">🔄 Reload from Browser Save</button>
     </div>
 
-    <div style="background:#fff; border:1px solid var(--border-color); padding:10px; margin-bottom:10px;">
-      <h3 style="font-size:0.95rem; color:var(--accent-gold); margin-bottom:4px;">Export Backup</h3>
+    <div style="background:#fff; border:1px solid var(--border-forest); padding:10px; margin-bottom:10px;">
+      <h3 style="font-size:0.95rem; color:var(--accent-forest); margin-bottom:4px;">Export Backup</h3>
       <button class="action-btn" onclick="generateExportString()">Generate Export Code</button>
       <button class="action-btn" onclick="downloadBackupFile()">Download .json File</button>
       <textarea id="export-text-area" class="data-box" readonly placeholder="Export string will display here..."></textarea>
     </div>
 
-    <div style="background:#fff; border:1px solid var(--accent-blue); padding:10px; margin-bottom:10px;">
-      <h3 style="font-size:0.95rem; color:var(--accent-blue); margin-bottom:4px;">Import Backup</h3>
+    <div style="background:#fff; border:1px solid var(--border-forest); padding:10px; margin-bottom:10px;">
+      <h3 style="font-size:0.95rem; color:var(--accent-forest); margin-bottom:4px;">Import Backup</h3>
       <textarea id="import-text-area" class="data-box" placeholder="Paste your save JSON code here..."></textarea>
-      <button class="action-btn" style="background:#cfe0f1;" onclick="importSaveString()">Restore Ledger</button>
+      <button class="action-btn" style="background:#cfe0f1; border-color:#2c4d6f;" onclick="importSaveString()">Restore Ledger</button>
     </div>
 
     <div style="background:#faece8; border:1px solid var(--accent-rust); padding:10px;">
-      <button class="action-btn" style="background:#e4a99b; font-weight:bold;" onclick="hardResetGame()">&#9888; Wipe All Progress &amp; Reset</button>
+      <button class="action-btn" style="background:#e4a99b; font-weight:bold;" onclick="hardResetGame()">⚠ Wipe All Progress &amp; Reset</button>
     </div>
   </div>
 
   <!-- PANEL 9: FIELD MANUAL -->
   <div id="view-manual" class="view-panel">
-    <h2 style="font-size:1.15rem; margin-bottom:6px; color:var(--accent-rust);">Naturalist Field Manual</h2>
+    <h2 style="font-size:1.2rem; margin-bottom:6px; color:var(--accent-forest);">Naturalist Field Manual</h2>
 
     <div class="manual-section">
       <h3>1. Combing the Land</h3>
@@ -636,7 +704,7 @@
 
     <div class="manual-section">
       <h3>3. 15-Second Auctions</h3>
-      <p>In <strong>[ Auction ]</strong>, global institutions bid autonomously without bidding against themselves. If a <em>Curatorial Clash</em> occurs, bids spike dramatically. Use <strong>[ Hammer Down Early ]</strong> or <strong>[ Spur the Floor ]</strong> to steer the rostrum.</p>
+      <p>In <strong>[ Auction ]</strong>, global institutions bid autonomously without self-bidding. If a <em>Curatorial Clash</em> occurs, bids spike dramatically. Use <strong>[ Hammer Down Early ]</strong> or <strong>[ Spur the Floor ]</strong> to steer the rostrum.</p>
     </div>
 
     <div class="manual-section">
@@ -644,22 +712,21 @@
       <p>Use earnings to fund 5 tiers of park conservancy projects in <strong>[ Endow ]</strong>. Hop between all 63 parks in <strong>[ Atlas ]</strong>—buying the bush plane makes Far North flights permanently free.</p>
     </div>
 
-    <div class="manual-section" style="border: 1px solid var(--accent-rust); background: #fdfaf7;">
-      <h3 style="color:var(--accent-rust);">5. Leave No Trace &amp; Institutional Disclaimer</h3>
+    <div class="manual-section" style="border: 1px solid var(--accent-forest); background: #fdfaf7;">
+      <h3 style="color:var(--accent-forest);">5. Leave No Trace &amp; Institutional Disclaimer</h3>
       <p><strong>LEAVE NO TRACE:</strong> In real National Parks, removing any rock, fossil, mineral, plant, animal trace, or historical artifact is strictly illegal under the <em>Antiquities Act of 1906</em> and <em>ARPA 1979</em>. Always take only pictures, leave only footprints, and leave historical discoveries in place for archaeologists.</p>
       <p style="font-size: 0.74rem; color: var(--text-muted); border-top: 1px dashed var(--border-light); padding-top: 6px; margin-bottom: 0;">
-        <em>LEGAL DISCLAIMER: Field Naturalist: The Living Archive is an independent, non-commercial educational tribute game developed independently. It is NOT affiliated with, authorized, sponsored, or endorsed by the National Park Service, the U.S. Department of the Interior, or any referenced museum, university, trust, or scientific institution (including the Smithsonian Institution, the Natural History Museum London, AMNH, the Field Museum, the Peabody Museum, Harvard University, or Oxford University). All trademarks, registered names, and institutional titles belong to their respective entities and are used solely for educational and storytelling context.</em>
+        <em>LEGAL DISCLAIMER: Field Naturalist: The Living Archive is an independent, non-commercial educational tribute game developed independently. It is NOT affiliated with, authorized, sponsored, or endorsed by the National Park Service, the U.S. Department of the Interior, or any referenced museum, university, trust, or scientific institution. All trademarks belong to their respective entities.</em>
       </p>
     </div>
   </div>
 
-  <footer style="margin-top: 16px; border-top: 1px solid var(--border-light); padding-top: 8px; text-align: center; font-size: 0.68rem; color: var(--text-muted); font-family: var(--font-mono); line-height: 1.4;">
-    Field Naturalist: The Living Archive &bull; Independent Educational Tribute<br>
-    Not affiliated with the NPS, Dept. of the Interior, or referenced museums &bull; Practice Leave No Trace
+  <footer style="margin-top: 16px; border-top: 1px solid var(--border-forest); padding-top: 8px; text-align: center; font-size: 0.68rem; color: var(--text-muted); font-family: var(--font-mono); line-height: 1.4;">
+    Field Naturalist: The Living Archive • Independent Educational Tribute<br>
+    Not affiliated with the NPS, Dept. of the Interior, or referenced museums • Practice Leave No Trace
   </footer>
 </div>
 
-<!-- DOCKED BOTTOM NAVIGATION -->
 <nav id="bottom-nav">
   <button class="nav-btn active" onclick="switchView('view-combing')">Comb</button>
   <button class="nav-btn" onclick="switchView('view-inventory')">Pack</button>
@@ -669,7 +736,7 @@
   <button class="nav-btn" onclick="switchView('view-conservancy')">Endow</button>
   <button class="nav-btn" onclick="switchView('view-atlas')">Atlas</button>
   <button class="nav-btn" onclick="switchView('view-save')">Save</button>
-  <button class="nav-btn" onclick="switchView('view-manual')" style="font-weight:bold; color:var(--accent-rust);">Guide</button>
+  <button class="nav-btn" onclick="switchView('view-manual')" style="font-weight:bold; color:var(--accent-forest);">Guide</button>
 </nav>
 
 <script>
@@ -1084,490 +1151,231 @@ const ALL_PARKS = [
 ];
 
 // ============================================================================
-// 2. DOUBLED MASTER SPECIMENS & CROWN JEWELS (TIER 1 - 5)
+// 2. COMPLETE CROWN JEWELS REPOSITORY
 // ============================================================================
-const MASTER_SPECIMENS = [
-  // TIER V CROWN JEWELS (10 Items: $1.2M - $8.5M+ Baseline)
-  {
-    id: "KOVA_TUSK",
-    parkId: "kova",
-    name: "The Cerulean Vivianite Mammoth Tusk",
-    tier: 5,
-    baseVal: 3400000,
-    cat: "Paleontological Holotype",
-    era: "Late Pleistocene (~24,000 BP)",
-    mat: "Ivory replaced with vivianite crystal (Fe3(PO4)2·8H2O)",
-    desc: "An 11.5-foot, fully intact mammoth tusk weathered out from permafrost. Iron-phosphate saturation has crystallized the outer ivory sheath into brilliant, iridescent cobalt-blue vivianite. Pristine museum holotype."
-  },
-  {
-    id: "YELL_CLOVIS",
-    parkId: "yell",
-    name: "The Obsidian Cliff Clovis Cache",
-    tier: 5,
-    baseVal: 4800000,
-    cat: "Lithic Cultural Relic",
-    era: "Paleoindian (~13,000 BP)",
-    mat: "Translucent jet-black volcanic glass",
-    desc: "A cache of nine pristine fluted Clovis points bedded in hydrothermal gravels. Preserved with trace birch-tar hafting residue. A cornerstone of North American human archaeology."
-  },
-  {
-    id: "DRTO_ASTROLABE",
-    parkId: "drto",
-    name: "1622 Royal Spanish Fleet Astrolabe",
-    tier: 5,
-    baseVal: 2900000,
-    cat: "Historical Maritime Relic",
-    era: "Spanish Colonial (1622 CE)",
-    mat: "Cast sea-patinated maritime brass",
-    desc: "Recovered from calcified reef rubble. Inscribed with the royal seal of Philip IV, this mariner's astrolabe belonged to the navigation officer of the lost galleon Nuestra Señora de Atocha. Unbroken alidade sighting arm."
-  },
-  {
-    id: "BADL_DINICTIS",
-    parkId: "badl",
-    name: "Articulated Dinictis Saber-Cat Skull",
-    tier: 5,
-    baseVal: 3600000,
-    cat: "Paleontological Masterwork",
-    era: "Oligocene (~30 Million Years)",
-    mat: "Chalcedony-infilled fossil bone",
-    desc: "A museum-grade articulated skull of the false saber-toothed cat Dinictis squalidens. Both four-inch serrated sabers remain anchored in their sockets without crushing or distortion."
-  },
-  {
-    id: "YOSE_WATKINS",
-    parkId: "yose",
-    name: "Carleton Watkins' 1861 Mammoth-Plate Trunk",
-    tier: 5,
-    baseVal: 2200000,
-    cat: "Historical Archival Treasure",
-    era: "Pioneer Photography (1861 CE)",
-    mat: "Wet-plate collodion on glass / zinc-lined cedar",
-    desc: "A sealed cedar field case containing six uncracked 18x22-inch mammoth-plate collodion negatives documenting Yosemite Valley before European settlement. Intact archival silver image layers."
-  },
-  {
-    id: "ZION_FRESCO",
-    parkId: "zion",
-    name: "Fremont Ochre Shield Pictograph Slab",
-    tier: 5,
-    baseVal: 3100000,
-    cat: "Indigenous Rock Art Relic",
-    era: "Fremont Culture (~1050 CE)",
-    mat: "Navajo Sandstone with hematite & charcoal pigment",
-    desc: "A clean spall slab sheared from a protected alcove overhang. Depicts a ceremonial circular warrior shield with radiating star motifs in brilliant natural cinnabar and iron ochre."
-  },
-  {
-    id: "GRCA_SLOTH",
-    parkId: "grca",
-    name: "Rampart Cave Shasta Ground Sloth Skull",
-    tier: 5,
-    baseVal: 4200000,
-    cat: "Paleontological Holotype",
-    era: "Late Pleistocene (~11,000 BP)",
-    mat: "Desiccated keratin, bone & tendon",
-    desc: "A completely desiccated cranium and claw core of Nothrotheriops shastensis preserved by dry desert cave air. Intact golden keratin claw sheath still attached."
-  },
-  {
-    id: "PEFO_AETOSAUR",
-    parkId: "pefo",
-    name: "Desmatosuchus Articulated Dorsal Carapace",
-    tier: 5,
-    baseVal: 2700000,
-    cat: "Paleontological Masterwork",
-    era: "Late Triassic (~220 Million Years)",
-    mat: "Silicified dermal scutes in Chinle shale",
-    desc: "A three-foot articulated section of dermal armor plates from the herbivorous archosaur Desmatosuchus, featuring intact curved shoulder spikes preserved in purple jasper matrix."
-  },
-  {
-    id: "GLAC_BIGHORN",
-    parkId: "glac",
-    name: "Ice-Preserved Pleistocene Bighorn Cranium",
-    tier: 5,
-    baseVal: 1900000,
-    cat: "Paleontological Specimen",
-    era: "Late Pleistocene (~14,500 BP)",
-    mat: "Subfossil bone & mineralized horn sheath",
-    desc: "Melted out from a high permanent firn ice field near Logan Pass. A massive ram skull boasting complete 42-inch curled horn sheaths with zero predatory gnawing."
-  },
-  {
-    id: "HALE_METEORITE",
-    parkId: "hale",
-    name: "The Haleakalā Pallasite Iron-Nickel Mass",
-    tier: 5,
-    baseVal: 3800000,
-    cat: "Extraterrestrial Meteorite",
-    era: "Solar System Formation (~4.5 Billion Years)",
-    mat: "Kamacite, taenite & translucent peridot olivine",
-    desc: "A 36-pound orienting pallasite meteorite found nestled in high cinder scree. Cut face reveals gem-quality translucent emerald-green olivine crystals suspended in etched Widmanstätten nickel iron."
-  },
+const PARK_CROWN_ARCHIVES = {
+  olym: [
+    { title: "Tsunamic Whalebone Club of Ozette", cat: "Indigenous Maritime Antiquity", era: "Pre-Contact (~1550 CE)", mat: "Mineralized Humpback Whale Mandible", desc: "Unearthed from anaerobic mudslide clays. A ceremonial chief's war club carved in the likeness of an open-jawed lightning serpent with abalone inlays.", fact: "The 1700 Cascadia earthquake triggered localized tsunamis and clay flows that sealed indigenous Makah plank houses at Ozette, creating the 'Pompeii of America'." },
+    { title: "Olympic Pillow Basalt Hydrothermal Emerald", cat: "Mineralogical Wonder", era: "Eocene Volcanism (~45 Million Years)", mat: "Deep-green Beryl crystal in basalt matrix", desc: "Found nestled inside a submarine pillow basalt vesicle. A glowing 12-facet hexagonal emerald crystal formed by extreme sea-floor hydrothermal vent pressure.", fact: "Pillow basalts in the Olympic mountains formed thousands of feet beneath the Pacific Ocean before tectonic subduction scraped them off and thrust them into alpine ridges." },
+    { title: "Subalpine Elk Petrification Antler Crown", cat: "Paleontological Holotype", era: "Late Pleistocene (~14,000 BP)", mat: "Silicified Roosevelt Elk Antler", desc: "Melted from a perennial cirque firn field near Mount Olympus. A massive six-point antler beam completely replaced with blue-gray chalcedony and opal.", fact: "Roosevelt elk are the largest surviving subspecies of elk in North America, named in honor of President Theodore Roosevelt who created Mount Olympus National Monument in 1909." }
+  ],
+  mora: [
+    { title: "Osceola Lahar Carbonized Giant Cedar Trunk", cat: "Volcanic Paleobotany", era: "Holocene Eruptive (~5,600 BP)", mat: "Vitrified Carbonized Thuja plicata", desc: "Exposed by Nisqually glacial outwash. An eight-foot fossilized stump charred instantly when a massive volcanic mudflow buried the ancestral Puget lowlands.", fact: "The Osceola Lahar was a catastrophic volcanic mudslide that moved at 50 mph, depositing over 500 square kilometers of mud and debris up to 100 feet deep." },
+    { title: "Mount Rainier Fumarole Acicular Sulfur Scepter", cat: "Volcanological Crystal", era: "Active Geothermal Sublimation", mat: "Native Orthorhombic Sulfur", desc: "A delicate, radiant canary-yellow needle cluster measuring 10 inches across, recovered from sub-ice steam caves within the summit caldera.", fact: "Rainier's summit crater ice caves form a vast subterranean network carved by escaping volcanic gases beneath the highest ice cap in the contiguous United States." },
+    { title: "Fay Fuller's 1890 High-Altimeter Barometer", cat: "Historic Mountaineering Relic", era: "Pioneer Alpinism (1890 CE)", mat: "Lacquered Brass, Silvered Dial & Mercury", desc: "Carried by Fay Fuller, the first woman to summit Mount Rainier. Retains its original leather suspension harness and engraved calibration stamp.", fact: "Fay Fuller reached the 14,411-foot summit on August 10, 1890, wearing heavy wool skirts and boots studded with hand-driven caulks." }
+  ],
+  noca: [
+    { title: "Skagit Gneiss Imperial Nephrite Jade Boulder", cat: "Mineralogical Masterpiece", era: "Metamorphic Subduction", mat: "Tremolite-Actinolite Nephrite Jade", desc: "A 65-pound glacial river boulder displaying an oily, translucent apple-green rind and silky splintery fracture, polished by torrential mountain currents.", fact: "Washington's North Cascades contain significant alpine jade deposits formed where ancient oceanic serpentine sheets collided with North American continental crust." },
+    { title: "Boston Basin Silver-Galena Prospector Ingot", cat: "Historical Mining Antiquity", era: "Cascades Gold Rush (1892 CE)", mat: "Argentiferous Lead-Silver Alloy", desc: "Stamped 'SOLDIER BOY MINE - 92% AG'. Discovered intact inside a collapsed dry-stone cabin cellar below sheer glacial headwalls.", fact: "Prospectors in the 1890s hauled heavy mining gear over 6,000-foot passes into North Cascades glacial basins, only to be turned back by brutal winter avalanches." },
+    { title: "Cascade Pass Archaic Micro-Blade Cache", cat: "Paleoindian Lithic Relic", era: "Early Holocene (~8,500 BP)", mat: "Hozameen Chert & Smoky Obsidian", desc: "A cache of sixteen razor-sharp obsidian micro-blades wrapped in decayed leather, cached near high alpine trails used by indigenous traders for millennia.", fact: "Archaeological excavations at Cascade Pass prove that indigenous hunting parties crossed the rugged Cascade Range routinely for over 9,000 years." }
+  ],
+  crla: [
+    { title: "Mount Mazama Welded Obsidian Dagger", cat: "Volcanological Lithic", era: "Mazama Cataclysm (~7,700 BP)", mat: "Pumice-Welded Rhyodacite Obsidian", desc: "Discovered bedded in ash. A 14-inch flaked blade crafted from the initial glassy surge of Mount Mazama's caldera-forming collapse.", fact: "The eruption of Mount Mazama was 42 times larger than Mount St. Helens in 1980, blanketing eight present-day states and Canadian provinces in ash." },
+    { title: "The Sun Notch Eucrite Achondrite Meteorite", cat: "Extraterrestrial Meteorite", era: "Asteroid 4 Vesta Ejection", mat: "Anorthite & Pigeonite Basaltic Crust", desc: "A dense stony meteorite featuring a glossy, flow-lined black fusion crust, found embedded in pale Mazama pumice beds along the caldera rim.", fact: "Eucrite meteorites are basaltic lavas from the crust of Asteroid 4 Vesta, blasted into space by giant impacts billions of years ago." },
+    { title: "Old Man of the Lake Subfossil Hemlock Disc", cat: "Dendrochronological Wonder", era: "Subfossil Conifer (~450 BP)", mat: "Water-hardened Mountain Hemlock", desc: "A core sample slab from a fallen subalpine hemlock seasoned for centuries in Crater Lake's near-freezing, ultra-pure mineral waters.", fact: "The 'Old Man of the Lake' is a full-sized 30-foot hemlock tree trunk that has bobbed vertically in Crater Lake since at least 1896, propelled by lake currents." }
+  ],
+  redw: [
+    { title: "Yurok Elk-Antler Ceremonial Spoon Cache", cat: "Indigenous Cultural Relic", era: "Pre-Contact (~1400 CE)", mat: "Carved Cervus canadensis Antler", desc: "Preserved in damp fern duff. Three intricately carved spoons featuring geometric openwork zigzags and eagle claw handles, used in ceremonial acorn feasts.", fact: "Yurok carvers utilized beaver teeth and obsidian flakes to sculpt dense elk antlers into delicate, heirloom spoons handed down through family lineages." },
+    { title: "Prairie Creek Gold-Bearing Conglomerate Block", cat: "Auriferous Mineral Specimen", era: "Pleistocene Marine Terraces", mat: "Placer Gold Flakes in Quartzite Matrix", desc: "A ten-pound polished sea-terrace conglomerate chunk sparkling with wire-like seams of native placer gold and heavy black magnetite sand.", fact: "Gold Bluffs Beach was the site of an 1850s gold rush where prospectors attempted to wash gold dust directly from sea sands and wave-cut redwood cliffs." },
+    { title: "Pleistocene Teratorn Giant Predatory Talon", cat: "Paleontological Holotype", era: "Late Pleistocene (~25,000 BP)", mat: "Mineralized Bone Core with Keratin Sheath", desc: "An eight-inch curved raptor ungual from Teratornis merriami, an extinct ice-age bird of prey with an eleven-foot wingspan that roosted in ancient redwoods.", fact: "Teratorns were enormous predatory birds that walked efficiently on the ground to swallow small mammals, rabbits, and reptiles whole." }
+  ],
+  lavo: [
+    { title: "1915 Great Eruption Breadcrust Volcanic Bomb", cat: "Volcanological Holotype", era: "Modern Eruptive (1915 CE)", mat: "Vesicular Dacite with Chilled Glass Rind", desc: "A 30-pound aerodynamic bomb with a fractured, cracked breadcrust surface formed when gas expansion cracked the cooling exterior during flight.", fact: "Lassen Peak's May 22, 1915 eruption was the last volcanic eruption in the contiguous United States until Mount St. Helens erupted in 1980." },
+    { title: "Bumpass Hell Octahedral Pyrite Geode", cat: "Hydrothermal Mineral Specimen", era: "Active Geothermal System", mat: "Mirror-Faceted Pyrite (FeS2) in Dacite", desc: "A hollow dacite cavity lined with razor-sharp, brilliant golden octahedral pyrite crystals formed by boiling hydrothermal sulfuric vapors.", fact: "Kendall Bumpass stepped through a thin crust into a boiling 240-degree mudpot in 1865, severely scalding his leg and lending his name to Bumpass Hell." },
+    { title: "Devastated Area Carbonized Jeffrey Pine Log", cat: "Pyroclastic Paleobotany", era: "1915 Pyroclastic Flow", mat: "Vitrified Charcoal with Growth Rings", desc: "A charred, glass-hard conifer log showing fifty annual rings, felled by the high-velocity hot blast that flattened four square miles of timber in seconds.", fact: "Lassen's pyroclastic blast stripped bark and branches off massive pines up to four miles away, turning green forest into the 'Devastated Area'." }
+  ],
+  yose: [
+    { title: "Carleton Watkins' 1861 Mammoth-Plate Trunk", cat: "Historical Archival Treasure", era: "Pioneer Photography (1861 CE)", mat: "Wet-plate collodion on glass / cedar", desc: "A sealed cedar field case containing six uncracked 18x22-inch mammoth-plate collodion negatives documenting Yosemite Valley before European settlement.", fact: "Watkins hauled mammoth glass plates weighing nearly a ton across Sierra granite passes to capture photographs that inspired Abraham Lincoln to protect Yosemite." },
+    { title: "Cathedral Peak Porphyritic Feldspar Scepter", cat: "Petrological Crystal Masterpiece", era: "Cretaceous Granodiorite (~85 Ma)", mat: "Giant Microcline Phenocryst (KAlSi3O8)", desc: "A four-inch pristine, twinned orthoclase feldspar megacryst weathered completely free from Cathedral Peak granodiorite matrix without fractures.", fact: "The giant white feldspar crystals in Cathedral Peak granite grew slowly in a massive magma chamber miles beneath the surface before erupting volcanoes above cooled." },
+    { title: "Ahwahnechee Steatite Effigy Pipe & Pestle", cat: "Indigenous Cultural Antiquity", era: "Pre-Contact (~1300 CE)", mat: "Polished Talc-Chlorite Schist", desc: "Recovered from an undisturbed granite bedrock mortar terrace. Carved from native soapstone with geometric mountain sheep horn engravings.", fact: "The Ahwahnechee people harvested black oak acorns each autumn, pulverizing them into flour in thousands of saucer-shaped bedrock mortars across the valley floor." }
+  ],
+  sequ: [
+    { title: "Pre-Columbian Giant Sequoia Charcoal Fire Scar Slab", cat: "Dendrochronological Holotype", era: "Medieval Warm Period (~1150 CE)", mat: "Carbonized Sequoiadendron giganteum", desc: "A cross-section heartwood disc detailing over 1,800 years of climate rings, recording 42 distinct lightning-ignited forest fires across two millennia.", fact: "Giant Sequoias require fire to clear underbrush, enrich the soil with ash, and open their green serotinous cones so seeds can germinate." },
+    { title: "Marble Falls Metamorphic Tremolite Jadeite", cat: "Mineralogical Masterwork", era: "Mesozoic Metamorphism", mat: "Fibrous Silicate Tremolite", desc: "A ten-pound river boulder of emerald-green nephrite jade showing wavy metamorphic schistosity, polished mirror-smooth by Kaweah torrents.", fact: "Metamorphic roof pendants in Sequoia are remnants of ancient ocean floors that were baked and compressed when the massive Sierra Nevada batholith rose." },
+    { title: "Mineral King 1870 Bullion Assay Crucible", cat: "Mining Historical Relic", era: "Silver Boom (1870 CE)", mat: "Fireclay with Native Silver Crust", desc: "Used by early prospectors in the high alpine Mineral King basin to assay silver-lead galena ores; base encrusted with solidified metallic silver buttons.", fact: "Mineral King was originally organized as a silver mining district before conservation battles in the 1970s prevented it from becoming a massive ski resort." }
+  ],
+  kica: [
+    { title: "Evolution Basin Smoky Quartz Gwindel", cat: "Alpine Mineral Crystal", era: "Hydrothermal Alpine Cleft", mat: "Twisted Smoky Quartz (SiO2)", desc: "A magnificent 7-inch smoky quartz crystal showing a clockwise helicoidal twist across its prism axis, found in a high 12,000-foot granite cleft.", fact: "Gwindels are rare quartz crystals that grow with a continuous rotational torsion caused by unequal lattice strain in high-altitude tectonic pockets." },
+    { title: "Boyden Cavern Calcite Drapery 'Angel Wing'", cat: "Speleothemic Wonder", era: "Quaternary Paleokarst", mat: "Translucent Banded Calcite Spar", desc: "A broken natural spall of cave drapery featuring paper-thin, glowing orange and cream bacon-strip banding that transmits lamplight.", fact: "Cave draperies form when mineral-rich water trickles down an inclined cave ceiling, depositing tiny ridges of calcite along its continuous path." },
+    { title: "Tehipite Dome Bighorn Sheep Petroglyph Spall", cat: "Rock Art Archaeology", era: "Late Archaic (~500 CE)", mat: "Granite Exfoliation Slab with Mineral Varnish", desc: "A naturally exfoliated granite slab depicting an arc of desert bighorn sheep with sweeping recurved horns, pecked into dark desert varnish.", fact: "Tehipite Valley contains the highest uninterrupted granite dome in the Sierra Nevada, rising sheer for over 3,500 feet above the Middle Fork Kings River." }
+  ],
+  deva: [
+    { title: "Titus Canyon Brontothere Giant Skull", cat: "Eocene Vertebrate Paleontology", era: "Late Eocene (~37 Million Years)", mat: "Silicified Titanothere Bone & Enamel", desc: "A pristine four-foot cranium of Protitanops, an elephant-sized mammal featuring blunt, paired bony battering horns across the snout.", fact: "Eocene strata in Death Valley's Titus Canyon formation yield tropical fossils from an era when palm trees and giant titanotheres lived in swampy valleys." },
+    { title: "Harmony Borax Works 1883 Cast-Bronze Gauge", cat: "Industrial Pioneer Relic", era: "Borax Boom (1883 CE)", mat: "Steam-Pressure Bronze & Glass", desc: "Recovered from the historic refining vats. An engraved steam-temperature boiler gauge stamped with the trademark of William T. Coleman & Co.", fact: "Twenty-mule teams hauled massive 36-ton double wagons of borax across 165 miles of scorching desert from Death Valley to the railroad at Mojave." },
+    { title: "Badwater Basin Halite Hopper Crystal Cluster", cat: "Evaporitic Mineral Specimen", era: "Quaternary Evaporite Basin", mat: "Pure Halite (NaCl) Step-Faced Crystal", desc: "An interlocking stepped cube cluster of gem-clear sodium chloride displaying iridescent hopper steps, excavated from brine pools 282 feet below sea level.", fact: "Badwater Basin is the lowest point in North America; its salt pan covers over 200 square miles and is up to five feet thick in pure sodium chloride." }
+  ],
+  jotr: [
+    { title: "Pinto Basin Culture Concave-Base Projectile Cache", cat: "Early Archaic Lithic", era: "Pinto Culture (~5,000 BCE)", mat: "Translucent Honey Chalcedony", desc: "Seven perfectly intact bifacially flaked dart points featuring bifurcated stems and shallow side notches, cached beside an ancient extinct desert pluvial lake.", fact: "The Pinto Basin culture lived in the Mojave Desert during a wetter post-glacial era when now-dry washes flowed with perennial streams." },
+    { title: "Desert Varnish LL6 Ordinary Chondrite Meteorite", cat: "Extraterrestrial Meteorite", era: "Stony Asteroidal Fall", mat: "Silicate Matrix with Shock-Veins & Nickel-Iron", desc: "A 14-pound dense stony meteorite found on windswept desert pavement, boasting a glossy black manganese-rich desert varnish over a relic fusion crust.", fact: "Desert pavements act as natural terrestrial collection surfaces, preserving fallen meteorites for tens of thousands of years in hyper-arid conditions." },
+    { title: "Lost Horse Gold Vein Electrum Specimen", cat: "Native Gold-Silver Mineral", era: "Mesozoic Hydrothermal", mat: "Native Electrum (Au-Ag) in White Quartz", desc: "A heavy, fist-sized chunk of snowy hydrothermal quartz containing over three ounces of brilliant crystalline native electrum in branching dendritic wires.", fact: "The Lost Horse Mine produced over 9,000 ounces of gold and silver in the 1890s after cowboy Johnny Lang discovered the rich outcropping while searching for lost cattle." }
+  ],
+  pinn: [
+    { title: "Bear Gulch Giant Rhyolite Breccia Geode", cat: "Volcanic Mineral Specimen", era: "Miocene Volcanism (~23 Ma)", mat: "Banded Chalcedony in Rhyolite Core", desc: "A hollow volcanic boulder sheared open to reveal a cave-like internal cavity lined with glittering amethystine quartz crystals and banded blue agate.", fact: "The rock formations of Pinnacles are half of an ancient Miocene volcano that was split in two by the San Andreas Fault and moved 195 miles north." },
+    { title: "Pleistocene California Condor Subfossil Skull", cat: "Avian Paleontology", era: "Late Pleistocene (~18,000 BP)", mat: "Mineralized Avian Bone & Beak Rhamphotheca", desc: "An uncrushed cranium of Gymnogyps californianus recovered from a dry talus cave ledge, retaining trace keratin sheath on its formidable hooked beak.", fact: "California condors possess an extraordinary nine-foot wingspan, utilizing warm thermal updrafts from Pinnacles rock chimneys to soar without flapping for hours." },
+    { title: "Chalone Creek Native Jasper Biface Core", cat: "Lithic Tool Relic", era: "Late Archaic (~1200 BCE)", mat: "Waxy Deep-Crimson Pinnacles Jasper", desc: "A fist-sized stone tool core displaying rhythmic percussion bulb scars and razor edges, quarried by ancestral Ohlone and Chalon flintknappers.", fact: "Local jasper from Pinnacles volcanic formations was prized throughout central coastal California and widely traded for marine shell beads." }
+  ],
+  grca: [
+    { title: "Rampart Cave Shasta Ground Sloth Skull", cat: "Paleontological Holotype", era: "Late Pleistocene (~11,000 BP)", mat: "Desiccated Bone, Tendon & Keratin", desc: "A completely desiccated cranium and claw core of Nothrotheriops shastensis preserved by arid cave air. Intact golden keratin claw sheaths remain anchored.", fact: "Rampart Cave contained stratified sloth dung and bone deposits dating back over 40,000 years, providing scientists with complete dietary records of ice-age plants." },
+    { title: "Chuar Group Bitter Springs Early Life Slab", cat: "Precambrian Paleobiology", era: "Neoproterozoic (~750 Million Years)", mat: "Fine-Grained Carbonaceous Chert", desc: "A polished black chert disc preserving microscopic single-celled eukaryotic testate amoebae—some of the earliest complex cellular life known on Earth.", fact: "The Grand Canyon's rock layers span nearly two billion years of Earth history, from modern canyon gravels down to the two-billion-year-old Vishnu Schist." },
+    { title: "Stanton's Cave Split-Twig Effigy Figurine", cat: "Archaic Cultural Relic", era: "Grand Canyon Archaic (~2000 BCE)", mat: "Split Willow Bast (Salix)", desc: "A six-inch effigy of an extinct mountain bighorn sheep meticulously folded from a single split willow branch and pierced with an unbarbed wooden horn pin.", fact: "Archaic hunters placed split-twig figurines inside deep, dark limestone caves along the canyon walls as hunting totems thousands of years before the Ancestral Puebloans." }
+  ],
+  zion: [
+    { title: "Fremont Ochre Shield Sandstone Slab", cat: "Indigenous Rock Art Relic", era: "Fremont Culture (~1050 CE)", mat: "Navajo Sandstone with Cinnabar & Hematite", desc: "A spall slab sheared cleanly from a protected sandstone canyon alcove, displaying a ceremonial warrior shield motif painted in brilliant cinnabar red and crushed hematite.", fact: "Fremont rock art in southern Utah utilized pinyon pine pitch and animal fat binders, allowing natural mineral pigments to bond chemically into the quartz sandstone matrix." },
+    { title: "The Kolob Canyon Moqui Marble Aggregation", cat: "Geological Concretion Wonder", era: "Jurassic Navajo Sandstone (~180 Ma)", mat: "Hematite-Goethite Sandstone Concretion", desc: "A cluster of nine interlocking spherical ironstone balls weathering from Navajo cross-beds, featuring polished metallic iron rinds and sandstone interiors.", fact: "Moqui marbles formed millions of years ago when groundwater rich in dissolved iron flowed through porous sandstone and precipitated iron oxide minerals around organic nuclei." },
+    { title: "Virgin River Lower Paleolithic Quartzite Cleaver", cat: "Archaic Lithic Tool", era: "Terminal Pleistocene (~11,500 BP)", mat: "Shinarump Quartzite Cobble", desc: "A heavy bifacially flaked cleaver exhibiting steep percussion trimming along both lateral edges, recovered from basal gravel terraces near the Temple of Sinawava.", fact: "Zion's sheer vertical canyon walls were carved in just two million years by the Virgin River, which drops at an astonishing 70 feet per mile through the park." }
+  ],
+  brca: [
+    { title: "Claron Formation Silicified Turtle Carapace", cat: "Eocene Vertebrate Paleontology", era: "Early Eocene (~50 Million Years)", mat: "Agatized Bone in Pink Mudstone", desc: "An 18-inch complete shell of a freshwater side-necked turtle, its bony sutures glowing in translucent yellow and pink chalcedony replacements.", fact: "The pink and orange rocks of Bryce Canyon's hoodoos belong to the Claron Formation, laid down in an ancient subtropical freshwater system known as Lake Claron." },
+    { title: "Queens Garden Micro-Hoodoo Calcite Pillar", cat: "Geological Masterpiece", era: "Pleistocene-Holocene Frost Wedging", mat: "Pink Dolomitic Limestone & Calcite Spar", desc: "A freestanding 20-inch miniature natural hoodoo pinnacle displaying delicate fins, caprock iron shielding, and alternating soft white dolomite ribs.", fact: "Bryce Canyon experiences over 200 freeze-thaw cycles every year; expanding ice wedges in limestone joints are the primary sculptor of the hoodoos." },
+    { title: "Paunsaugunt Plateau 2,000-Year Bristlecone Log", cat: "Ancient Dendrochronology", era: "Late Archaic to Modern (2,100 BP)", mat: "Resinous Pinus longaeva Heartwood", desc: "A polished driftwood disc exhibiting micro-annual rings narrower than a sheet of paper, recording ancient megadroughts across the Colorado Plateau.", fact: "Great Basin bristlecone pines can thrive in Bryce Canyon's harsh, alkaline dolomite soils where other tree species cannot survive." }
+  ],
+  arch: [
+    { title: "Morrison Allosaurus Predatory Ungual", cat: "Vertebrate Dinosaur Fossil", era: "Late Jurassic (~152 Million Years)", mat: "Silicified fossil bone with agate infill", desc: "A seven-inch hand claw of Allosaurus fragilis recovered from a gravel wash. Blood grooves along lateral margins are preserved in dark carnelian agate.", fact: "The Morrison Formation in Utah represents an ancient semi-arid river floodplain system that hosted immense sauropods and predatory theropods." },
+    { title: "Salt Valley Agatized Dinosaur Bone Log", cat: "Gem Paleobotanical Wood", era: "Jurassic-Cretaceous", mat: "Dinosaur Bone replaced by Jasper & Carnelian", desc: "A six-inch cylinder of dinosaur limb bone displaying microscopic spongy trabecular marrow pores filled with vivid red, yellow, and blue jasper.", fact: "Agatized dinosaur bone (gembone) forms when subterranean silica-saturated water dissolves original hydroxyapatite bone and deposits cryptocrystalline quartz in each cell." },
+    { title: "Delicate Arch Entrenched Iron Concretion", cat: "Geological Specimen", era: "Entrada Sandstone (~160 Ma)", mat: "Iron Oxide (Limonite-Goethite)", desc: "A hollow spherical ironstone geode featuring lustrous botryoidal hematite blisters lining the inner chamber, weathered from slickrock amphitheaters.", fact: "Arches National Park sits above an ancient underground salt bed up to 5,000 feet thick; shifting salt domes cracked the overlying sandstone into vertical fins that eroded into arches." }
+  ],
+  cany: [
+    { title: "Upheaval Dome Impact Shatter Cone Matrix", cat: "Astrobleme Geological Wonder", era: "Cosmic Meteorite Impact (~60 Ma)", mat: "Wingate Sandstone with Striated Fracture Cones", desc: "A sculptural sandstone block displaying unmistakable conical fracture fans (shatter cones) radiating outward, formed by shockwaves exceeding 200,000 atmospheres.", fact: "Upheaval Dome was long debated as a salt diapir until the discovery of microscopic shocked quartz and shatter cones proved it was an ancient meteor impact crater." },
+    { title: "The Needles Archaic Chert Blade Hoard", cat: "Lithic Cache Relic", era: "Late Archaic (~1000 BCE)", mat: "Banded White & Scarlet Cedar Mesa Chert", desc: "A cache of eleven broad bifacial knives discovered in a sandstone crevice, flaked with delicate percussion flaking and zero weathering damage.", fact: "The banded sandstone spires of The Needles district owe their vivid alternating red and white horizontal stripes to fluctuating sea levels in an ancient Pennsylvanian sea." },
+    { title: "Honaker Trail Crinoid Colony Slab", cat: "Pennsylvanian Marine Paleontology", era: "Pennsylvanian (~305 Million Years)", mat: "Bioclastic Marine Limestone", desc: "A three-foot display bench holding eleven articulated sea lily (crinoid) calyxes with complete feathery feeding arms spread across gray calcarenite.", fact: "Crinoids are echinoderms related to sea stars and sea urchins that flourished in warm, shallow marine waters that covered Utah 300 million years ago." }
+  ],
+  care: [
+    { title: "Waterpocket Fold Fremont Storage Basket", cat: "Indigenous Agricultural Antiquity", era: "Fremont Culture (~1100 CE)", mat: "Coiled Willow Rods & Yucca Fiber", desc: "A conical storage basket found sealed in a dry sandstone granary, containing over 200 preserved heirloom purple maize corncobs and dried tepary beans.", fact: "The Fremont Culture successfully farmed maize, squash, and beans in arid canyon bottoms by diverting flash floods and perennial streams through stone canals." },
+    { title: "Moenkopi Chirotherium Triassic Trackway Slab", cat: "Vertebrate Ichnology", era: "Early Triassic (~245 Million Years)", mat: "Ripple-Marked Red Siltstone", desc: "A heavy display slab exhibiting five consecutive deep paw prints of Chirotherium ('hand-beast'), an early reptilian archosaur, crossing ripple marks.", fact: "Chirotherium footprints look remarkably like human hands because the fifth outer digit was splayed backward like a thumb, though it belonged to a quadrupedal reptile." },
+    { title: "Fremont River Honeycomb Carnelian Geode", cat: "Mineral Specimen", era: "Tertiary Hydrothermal", mat: "Banded Carnelian in Quartzite Rind", desc: "A hollow river nodule containing lustrous botryoidal ruby-red carnelian chalcedony surrounded by sparkling microcrystalline quartz druses.", fact: "The Waterpocket Fold monocline is a 100-mile-long wrinkle in the Earth's crust that eroded unevenly to create Capitol Reef's maze of colorful canyon slots." }
+  ],
+  meve: [
+    { title: "Mesa Verde Black-on-White Storage Olla", cat: "Ancestral Puebloan Ceramic", era: "Pueblo III Era (~1225 CE)", mat: "Crushed rock-tempered clay with organic slip", desc: "Recovered undisturbed from a dry alcove niche. Intact globular jar bearing geometric stepped fretwork and intact yucca-fiber lug handles.", fact: "The black paint used on classic Mesa Verde pottery was derived from boiled Rocky Mountain beeplant (Cleome serrulata) sap that charred dark during reduction firing." },
+    { title: "Ancestral Puebloan Feather-Twined Robe", cat: "Textile Archaeological Treasure", era: "Pueblo III Era (~1240 CE)", mat: "Yucca bast cordage wrapped in wild turkey down", desc: "Miraculously preserved in a dry masonry crypt. A complete ceremonial mantle crafted by spiral-twining thousands of soft wild turkey down feathers onto yucca cordage.", fact: "Domesticated turkeys were kept by Ancestral Puebloans primarily for their feathers and ceremonial companionship rather than meat until late in the Pueblo sequence." },
+    { title: "Cliff Palace Yucca-Cordage Sandal Pair", cat: "Perishable Prehistoric Footwear", era: "Pueblo III Era (~1260 CE)", mat: "Plaited Yucca baccata fibers", desc: "A matched pair of woven sandals featuring notched square toes, raised geometric tread patterns on the sole, and intact woven ankle ties.", fact: "The intricate raised geometric weaves on the undersides of Ancestral Puebloan sandals acted as non-slip treads on steep sandstone cliff-alcove paths." }
+  ],
+  pefo: [
+    { title: "Desmatosuchus Dorsal Spiked Carapace", cat: "Paleontological Masterwork", era: "Late Triassic (~220 Million Years)", mat: "Silicified dermal scutes in Chinle shale", desc: "A three-foot articulated section of armored dermal scutes from the herbivorous archosaur Desmatosuchus, featuring intact curved shoulder spikes preserved in purple jasper matrix.", fact: "Desmatosuchus reached 16 feet in length and grew massive shoulder spikes up to 18 inches long to defend against apex predators like Postosuchus." },
+    { title: "Rainbow Forest Araucarioxylon Polychrome Jasper Log", cat: "Triassic Gem Paleobotany", era: "Late Triassic (~218 Million Years)", mat: "Jasper, Carnelian & Opaline Silica", desc: "A four-foot trunk section of Araucarioxylon arizonicum displaying intact cellular bark and rings ablaze in red, cobalt, gold, and purple minerals.", fact: "Trace elements produce the brilliant colors in petrified wood: iron produces red, yellow, and brown; manganese produces pink and orange; cobalt produces blue." },
+    { title: "Newspaper Rock Petroglyphic Chert Scribing Burr", cat: "Indigenous Lithic Implement", era: "Ancestral Puebloan (~1150 CE)", mat: "Pressure-Flaked Shinarump Chert", desc: "A specialized stone engraving tool with a burin-beveled chisel point showing heavy micro-abrasion from peck-carving figures into rock varnish.", fact: "Newspaper Rock contains over 650 rock petroglyphs carved through dark desert varnish over a span of two thousand years." }
+  ],
+  sagu: [
+    { title: "Hohokam Etched Shell Ceremonial Pendant", cat: "Indigenous Shell Artistry", era: "Sedentary Hohokam (~1050 CE)", mat: "Glycymeris Clam Shell with Fermented Cactus Acid Etch", desc: "Discovered in granitic bajada sands. A polished shell pendant bearing a geometric interlocking serpent motif, etched using fermented saguaro fruit vinegar.", fact: "The Hohokam people invented acid etching of marine shells several hundred years before European artisans developed acid-etching techniques." },
+    { title: "Rincon Mountain Silvery Muscovite Mica Book", cat: "Metamorphic Mineral Specimen", era: "Catalina Metamorphic Core Complex", mat: "Crystalline Sheet Muscovite Mica", desc: "A 12-inch book of pristine, elastic muscovite mica plates that can be peeled into paper-thin transparent sheets, glowing with silvery vitreous luster.", fact: "The Rincon Mountains are a metamorphic core complex, formed when deep mid-crustal rocks were dragged to the surface during continental crustal extension." },
+    { title: "Tanque Verde Ridge Fluted Quartzite Clovis Point", cat: "Paleoindian Lithic Tool", era: "Clovis Complex (~13,000 BP)", mat: "Translucent Pink Catalina Quartzite", desc: "A monumental five-inch fluted lanceolate spear point displaying exquisite channel flutes on both faces and ground basal margins.", fact: "Clovis hunters used large projectile points to hunt Columbian mammoths and ice-age bison across the ancient savannahs of the desert Southwest." }
+  ],
+  grba: [
+    { title: "Wheeler Peak Coarse Octahedrite Iron Meteorite", cat: "Extraterrestrial Meteorite", era: "Iron Meteorite Core Fall", mat: "92% Iron, 7.5% Nickel with Schriebersite", desc: "An etched 6-pound iron meteorite showing prominent triangular Widmanstätten interlocking lamellae of kamacite and taenite.", fact: "Widmanstätten crystal patterns can only form when molten nickel-iron alloys cool at an extraordinarily slow rate: approximately 1 to 10 degrees Celsius every million years." },
+    { title: "Prometheus Grove 4,800-Year Bristlecone Slab", cat: "Ancient Dendrochronology", era: "Mid-Holocene to Modern (~2850 BCE)", mat: "Resin-Impregnated Pinus longaeva", desc: "A fallen heartwood slab recording 4,800 concentric rings from before the construction of the Egyptian pyramids through the modern industrial era.", fact: "Great Basin bristlecone pines survive millennia by allowing portions of their bark and root systems to die during droughts, preserving only a thin strip of living tissue." },
+    { title: "Lehman Caves Aragonite Anthodite 'Cave Popcorn'", cat: "Speleothemic Treasure", era: "Quaternary Hydrothermal Deposition", mat: "Branching Radiating Aragonite Needles", desc: "A snow-white sea-urchin-shaped spray of radiating needle-like aragonite crystals blossoming from a blue marble stalactite.", fact: "Anthodites, also called 'cave flowers', form in dry cave environments where low air currents allow mineral water to evaporate from tiny capillary pores." }
+  ],
+  whsa: [
+    { title: "Playa Margin Fossilized Human & Giant Sloth Trackway", cat: "Pleistocene Ichnological Holotype", era: "Last Glacial Maximum (~21,000 BP)", mat: "Lithified Calcitic Mudstone Slab", desc: "A matched footprint slab preserving the footprint of an ancient human traveler placed directly inside the massive five-toed paw print of an ice-age ground sloth.", fact: "Fossilized footprints at White Sands National Park provide definitive evidence that humans lived in North America more than 21,000 years ago during the ice age." },
+    { title: "Lake Otero Giant Selenite Sword Crystal", cat: "Evaporitic Mineral Wonder", era: "Pleistocene Pluvial Lake Otero", mat: "Monoclinic Hydrated Calcium Sulfate (CaSO4·2H2O)", desc: "A two-foot, optically transparent amber selenite crystal blade exhibiting perfect cleavage and twin inclusions, excavated from ancient dried lake beds.", fact: "White Sands is the largest gypsum dune field on Earth; unlike quartz sand dunes, gypsum is water-soluble and does not absorb solar heat, remaining cool to walk on barefoot." },
+    { title: "1945 V-2 Rocket Static-Test Guidance Gyroscope", cat: "Space Age Aerospace Relic", era: "Dawn of the Space Age (1946 CE)", mat: "Machined Steel, Brass & Copper Coils", desc: "Discovered in shifting dunes downrange from the White Sands Proving Ground. A gyroscopic missile navigation sphere used in early suborbital scientific flights.", fact: "Captured V-2 rockets launched at White Sands in 1946 returned the first photographs of Earth taken from space at an altitude of 65 miles." }
+  ],
+  cave: [
+    { title: "Giant Aragonite 'Dragon Wing' Cave Blossom", cat: "Speleothemic Mineral Wonder", era: "Pleistocene Hydrothermal", mat: "Acicular Radiating Aragonite Crystals", desc: "A 28-inch fan of delicate, pristine needle-like aragonite crystals spreading like wings from a dolomitic matrix, preserved in a zero-draft side chamber.", fact: "Carlsbad Caverns was formed from the bottom up by sulfuric acid dissolving limestone, unlike most caves which are formed by carbonic acid from rainwater." },
+    { title: "Bat Cave Guano Subfossil Mexican Free-Tailed Skeleton", cat: "Quaternary Paleontology", era: "Mid-Holocene (~4,500 BP)", mat: "Desiccated Bone & Wing Membranes", desc: "A complete, perfectly articulated bat skeleton preserved in dry guano dust, showing hair follicles and paper-thin wing phalanges.", fact: "Hundreds of thousands of Mexican free-tailed bats emerge from Carlsbad Caverns at dusk every summer evening to consume tons of flying insects." },
+    { title: "Slaughter Canyon Permian Fusulinid Limestone Slab", cat: "Marine Micro-Paleontology", era: "Permian (~260 Million Years)", mat: "Polished Bioclastic Limestone", desc: "A dense slab containing millions of fossilized rice-grain-shaped shells of single-celled fusulinid foraminifera, glowing in cross-section.", fact: "Fusulinids were giant single-celled amoeboid organisms that built calcite shells and served as the primary rock-builders of the ancient Capitan Reef." }
+  ],
+  yell: [
+    { title: "The Obsidian Cliff Clovis Cache", cat: "Lithic Cultural Relic", era: "Paleoindian (~13,000 BP)", mat: "Translucent jet-black volcanic glass", desc: "A cache of nine pristine fluted Clovis points bedded in hydrothermal gravels. Preserved with trace birch-tar hafting residue. A cornerstone of North American human archaeology.", fact: "Obsidian Cliff glass features a unique geochemical signature traced to prehistoric projectile points found more than 1,500 miles away in Ohio Hopewell mounds." },
+    { title: "Excelsior Geyser Silicified Sinter Chalice", cat: "Hydrothermal Geological Wonder", era: "Geothermal Precipitation", mat: "Amorphous Hydrated Silica (Opal-A)", desc: "A cup-shaped sinter terraced chalice deposited layer upon layer by boiling mineral waters, glowing in vitreous porcelain-white bands.", fact: "Hydrothermal sinter forms when boiling alkaline water supersaturated with silica discharges at the surface and rapidly cools, encrusting everything in silica rock." },
+    { title: "Lamar Valley Eocene Petrified Redwood Stump", cat: "Volcanic Paleobotany", era: "Eocene Epoch (~50 Million Years)", mat: "Quartzite-Replaced Conifer Wood", desc: "A 300-pound fossilized upright tree stump with intact bark and growth rings, preserved in-situ when volcanic mudflows buried successive forests.", fact: "Specimen Ridge in Yellowstone contains 27 distinct layers of fossil forests stacked on top of one another, representing thousands of years of volcanic eruptions." }
+  ],
+  grte: [
+    { title: "Mount Moran Archean Diabase Dike Slab", cat: "Archean Tectonic Core", era: "Precambrian (~1.3 Billion Years)", mat: "Black Diabase in 2.7-Billion-Year Gneiss", desc: "A polished cross-cut display slab capturing the contact zone where black basaltic magma sliced vertically through ancient granitic gneiss.", fact: "The famous black line visible on the face of Mount Moran is a 150-foot-wide vertical dike of diabase rock injected into the granite over a billion years ago." },
+    { title: "Snake River Archaic Jackson Chert Spear Point", cat: "Prehistoric Lithic Tool", era: "Middle Archaic (~3,500 BCE)", mat: "Dark Brown Jackson Oolitic Chert", desc: "A broad-bladed corner-notched atlatl dart point flaked from local Jackson chert, featuring razor-sharp serrations and basal grinding.", fact: "Jackson Hole and Grand Teton were important seasonal hunting and gathering grounds for indigenous Shoshone, Bannock, Blackfoot, and Crow peoples." },
+    { title: "Subalpine Firn Pleistocene Shiras Moose Cranium", cat: "Holocene Paleobiology", era: "Late Holocene (~2,200 BP)", mat: "Subfossil Bone with Palmate Antlers", desc: "Discovered in receding glacial ice below the Grand Teton. A massive moose skull boasting wide palmate antler shovels without scavenger damage.", fact: "Shiras moose are the smallest subspecies of North American moose, perfectly adapted to wading through deep Rocky Mountain winter snow." }
+  ],
+  glac: [
+    { title: "Precambrian Stromatolite Collenia Bioherm Slab", cat: "Early Life Paleontology", era: "Mesoproterozoic (~1.4 Billion Years)", mat: "Siliceous Argillite (Belt Supergroup)", desc: "A two-foot polished display slab showing concentric cabbage-head domes formed by ancient cyanobacteria on the shores of an ancient inland sea.", fact: "The mountains of Glacier National Park are carved from the Belt Supergroup, sedimentary rocks that are among the most pristine Mesoproterozoic strata in the world." },
+    { title: "McDonald Creek Polished Argillite Mosaic Core", cat: "Belt Supergroup Mineral Float", era: "Precambrian (~1.4 Billion Years)", mat: "Crimson & Jade Green Argillite Cobbles", desc: "A natural conglomerate conglomerate containing polished river cobbles of deep wine-red and apple-green argillite bound in clear chalcedony.", fact: "The stunning red and green colors of McDonald Creek pebbles are caused by iron oxidation: red rocks formed in oxygenated shallow water, green rocks in deep water." },
+    { title: "Logan Pass Ice-Preserved Bighorn Ram Cranium", cat: "Paleontological Specimen", era: "Late Pleistocene (~14,500 BP)", mat: "Subfossil Bone & Mineralized Horn Sheaths", desc: "Melted out from high permanent firn ice near Logan Pass. A massive ram skull boasting complete 42-inch curled horn sheaths with zero predatory gnawing.", fact: "Glacier ice acts as a deep-freeze archive, preserving organic keratin horn sheaths that would otherwise disintegrate in ordinary soil within decades." }
+  ],
+  romo: [
+    { title: "Giant Ice-Age Bison Horn Core (6-Foot Span)", cat: "Vertebrate Paleontology", era: "Middle Pleistocene (~150,000 BP)", mat: "Mineralized Cortical Bone", desc: "An enormous intact skull cap with both curved horn cores spanning six feet from tip to tip, excavated from ancient high-mountain glacial gravels.", fact: "Bison latifrons was the largest bovid to ever walk North America, weighing over 4,000 pounds and brandishing horns wider than a modern pickup truck." },
+    { title: "Trail Ridge Folsom Mountain Bison Butchering Tool", cat: "Paleoindian Lithic", era: "Folsom Complex (~10,500 BP)", mat: "Banded Fluted Kremmling Chert", desc: "A fluted Paleoindian skinning knife exhibiting micro-retouch along both lateral margins, found cached near high-alpine tundra game-drive stone walls.", fact: "Indigenous hunters in Colorado used Trail Ridge's high-altitude windswept ridges as natural highways to cross the Continental Divide during summer hunts." },
+    { title: "Loch Vale Gem-Grade Aquamarine Beryl Crystal", cat: "Gem Mineral Specimen", era: "Precambrian Pegmatite (~1.4 Ga)", mat: "Hexagonal Beryl (Be3Al2Si6O18)", desc: "A three-inch gem-clear sky-blue hexagonal beryl crystal terminated with a mirror-flat basal pinacoid, embedded in smoky quartz and albite.", fact: "Mount Antero and the Colorado Rockies host North America's highest gem-quality aquamarine pegmatite pockets, forming at altitudes above 12,000 feet." }
+  ],
+  wica: [
+    { title: "Calcite Boxwork Dolomite Fin Lattice", cat: "World Holotypic Speleothem", era: "Mississippian Paleokarst", mat: "Thin-Bladed Calcite Spar in Dolomite", desc: "A freestanding honeycombed boxwork lattice featuring fragile intersecting calcite blades extending six inches out from weathered bedrock.", fact: "Wind Cave contains over 95% of the world's discovered boxwork speleothems, formed when calcite filled fractures in limestone before the cave was hollowed out." },
+    { title: "Pleistocene Giant Short-Faced Bear Canine", cat: "Vertebrate Paleontology", era: "Late Pleistocene (~22,000 BP)", mat: "Dense Enamel & Fossil Dentine", desc: "A four-inch curved, robust predatory canine tooth from Arctodus simus, the largest mammalian land carnivore of the ice age.", fact: "The giant short-faced bear stood six feet tall at the shoulder and could run up to 40 mph on long, gracile limbs to chase down horses and bison." },
+    { title: "Highland Creek Clovis Chert Scraper", cat: "Paleoindian Lithic Tool", era: "Clovis Complex (~13,000 BP)", mat: "Opaque Maroon Spearfish Chert", desc: "A steeply beveled end-scraper flaked from colorful local chert, showing heavy hide-working polish and ground lateral hafting margins.", fact: "Wind Cave gets its name from barometric winds that blow into or out of the cave entrance depending on the atmospheric pressure outside." }
+  ],
+  thro: [
+    { title: "Little Missouri Chamops Cretaceous Lizard Mandible", cat: "Vertebrate Paleontology", era: "Late Cretaceous (~66 Million Years)", mat: "Fossilized Dentary Bone with Teeth", desc: "A delicate one-inch lower jaw holding twelve tiny tricuspid teeth from Chamops, an ancient lizard that witnessed the extinction of the dinosaurs.", fact: "The Hell Creek and Fort Union formations in western North Dakota record the dramatic transition across the K-Pg boundary when dinosaurs disappeared." },
+    { title: "Theodore Roosevelt's 1884 Elkhorn Ranch Saddle Horn", cat: "Presidential Frontier Relic", era: "Badlands Cattle Boom (1884 CE)", mat: "Hand-Forged Iron & Braided Rawhide", desc: "Discovered during historic riverbank stabilization. A scarred saddle horn branded with Roosevelt's famous Maltese Cross cattle brand.", fact: "Theodore Roosevelt credited his time ranching in the North Dakota Badlands with forging his conservation philosophy: 'I never would have been President if it had not been for my gaunt badlands days.'" },
+    { title: "Petrified Forest Paleocene Bald Cypress Trunk", cat: "Silicified Paleobotany", era: "Paleocene (~60 Million Years)", mat: "Jasperized Taxodium Wood", desc: "A three-foot fossilized cypress stump displaying pristine microscopic cell walls and rings, proving western North Dakota was once a warm swamp.", fact: "Theodore Roosevelt National Park contains the largest concentration of petrified wood in the northern Great Plains." }
+  ]
+};
 
-  // TIER IV MASTERWORKS (9 Items: $65,000 - $450,000)
-  {
-    id: "GRCA_TRILO",
-    parkId: "grca",
-    name: "Holotypic Olenellus Trilobite Plate",
-    tier: 4,
-    baseVal: 185000,
-    cat: "Paleontological Masterwork",
-    era: "Lower Cambrian (~515 Million Years)",
-    mat: "Bright Angel Green Shale",
-    desc: "A death-assemblage slab holding seven complete, uncrushed Olenellus trilobites with preserved delicate antenna impressions and spine fringes."
-  },
-  {
-    id: "ISRO_INGOT",
-    parkId: "isro",
-    name: "Archaic Annealed Native Copper Adze",
-    tier: 4,
-    baseVal: 240000,
-    cat: "Lithic / Metallurgical Relic",
-    era: "Old Copper Culture (~3,500 BCE)",
-    mat: "99.9% pure Keweenawan copper",
-    desc: "Cold-hammered and repeatedly annealed heavy copper adze blade. Exhibits rhythmic smithing bevels and light malachite encrustation."
-  },
-  {
-    id: "MEVE_POT",
-    parkId: "meve",
-    name: "Mesa Verde Black-on-White Storage Olla",
-    tier: 4,
-    baseVal: 320000,
-    cat: "Ancestral Puebloan Ceramic",
-    era: "Pueblo III Era (~1225 CE)",
-    mat: "Crushed rock-tempered clay with organic slip",
-    desc: "Recovered undisturbed from a dry alcove niche. Intact globular jar bearing geometric stepped fretwork and intact yucca-fiber lug handles."
-  },
-  {
-    id: "WRST_NUGGET",
-    parkId: "wrst",
-    name: "The Nizina River Native Copper Boulder",
-    tier: 4,
-    baseVal: 290000,
-    cat: "Mineralogical Masterpiece",
-    era: "Precambrian Hydrothermal",
-    mat: "Native Copper with Malachite and Cuprite",
-    desc: "A 48-pound water-smoothed boulder of pure native copper washed from high greenstone lodes. Glacial striations cut through emerald malachite skin."
-  },
-  {
-    id: "DENA_MAMMOTH_MOLAR",
-    parkId: "dena",
-    name: "Stegodon-Grade Mammoth Molar Block",
-    tier: 4,
-    baseVal: 195000,
-    cat: "Paleontological Specimen",
-    era: "Pleistocene (~50,000 BP)",
-    mat: "Mineralized enamel, dentine & cementum",
-    desc: "A massive, perfectly rooted lower third molar exhibiting 28 alternating enamel plates without flaking. Washed clean from glacial till along Stony Creek."
-  },
-  {
-    id: "CANY_CRINOID",
-    parkId: "cany",
-    name: "Honaker Trail Crinoid Colony Slab",
-    tier: 4,
-    baseVal: 210000,
-    cat: "Paleontological Masterwork",
-    era: "Pennsylvanian (~305 Million Years)",
-    mat: "Bioclastic marine limestone",
-    desc: "A three-foot display bench holding eleven articulated sea lily (crinoid) calyxes with complete feathery feeding arms spread across gray calcarenite."
-  },
-  {
-    id: "ARCH_DINOSAUR",
-    parkId: "arch",
-    name: "Morrison Allosaurus Predatory Ungual",
-    tier: 4,
-    baseVal: 380000,
-    cat: "Vertebrate Dinosaur Fossil",
-    era: "Late Jurassic (~152 Million Years)",
-    mat: "Silicified fossil bone with agate infill",
-    desc: "A seven-inch hand claw of Allosaurus fragilis recovered from a gravel wash. The blood grooves along the lateral margins are preserved in dark carnelian."
-  },
-  {
-    id: "ACAD_CARLETON",
-    parkId: "acad",
-    name: "1880s Bar Harbor Gilded Yacht Binnacle",
-    tier: 4,
-    baseVal: 145000,
-    cat: "Maritime Historical Relic",
-    era: "Gilded Age (~1888 CE)",
-    mat: "Engine-turned brass & liquid card compass",
-    desc: "Recovered from a storm cobble chasm near Otter Cliff. An engraved brass binnacle bearing the private pennant of a Mount Desert Island shipping magnate."
-  },
-  {
-    id: "CAVE_HELICTITE",
-    parkId: "cave",
-    name: "Aragonite Helictite 'Medusa' Cluster",
-    tier: 4,
-    baseVal: 275000,
-    cat: "Speleothemic Mineral Wonder",
-    era: "Pleistocene Hydrothermal",
-    mat: "Acicular Aragonite & Calcite Spar",
-    desc: "A gravity-defying cluster of curved, spiraling snow-white helictites preserved on a dolomitic breakdown block from an airless side gallery."
-  },
-
-  // TIER III RARE STRATIGRAPHIC (10 Items: $5,000 - $45,000)
-  {
-    id: "SHEN_BLAST",
-    parkId: "shen",
-    name: "1933 Civilian Conservation Corps Blasting Box",
-    tier: 3,
-    baseVal: 16500,
-    cat: "Historical Forestry Relic",
-    era: "New Deal Era (1933 CE)",
-    mat: "Oak, brass terminals, and vulcanized rubber",
-    desc: "Hand-cranked dynamo blasting machine used by CCC Company 354 during the dry-stone wall construction of Skyline Drive. Stenciled NPS insignias."
-  },
-  {
-    id: "MACA_LANTERN",
-    parkId: "maca",
-    name: "Stephen Bishop's Lard-Oil Field Lantern",
-    tier: 3,
-    baseVal: 32000,
-    cat: "Historical Speleological Relic",
-    era: "Antebellum Exploration (1845 CE)",
-    mat: "Sheet tin with pierced air holes",
-    desc: "Carried by legendary guide Stephen Bishop during his first historic transit of Bottomless Pit. Base inscribed with scratched initial 'S.B.'"
-  },
-  {
-    id: "BIBE_AGATE",
-    parkId: "bibe",
-    name: "Tornillo Creek Carnelian Plume Agate",
-    tier: 3,
-    baseVal: 18500,
-    cat: "Mineral Specimen",
-    era: "Eocene Volcanic (~40 Million Years)",
-    mat: "Cryptocrystalline Quartz (Mohs 7)",
-    desc: "A fist-sized nodule of translucent chalcedony hosting vibrant scarlet and black plume plumes floating in water-clear silica."
-  },
-  {
-    id: "ZION_POINT",
-    parkId: "zion",
-    name: "Virgin River Corner-Notched Chert Dart Point",
-    tier: 3,
-    baseVal: 26000,
-    cat: "Archaic Lithic Point",
-    era: "Late Archaic (~800 BCE)",
-    mat: "Navajo Shinarump chert",
-    desc: "Exquisite pressure-flaked projectile point exhibiting expanding stem notches and razor-sharp serrations without field damage."
-  },
-  {
-    id: "OLYM_BASKETRY",
-    parkId: "olym",
-    name: "Ozette Wet-Site Woven Spruce Root Shard",
-    tier: 3,
-    baseVal: 28000,
-    cat: "Indigenous Botanical Artifact",
-    era: "Pre-Contact (~1500 CE)",
-    mat: "Split Sitka spruce root & cedar bast",
-    desc: "Preserved in anaerobic seaside clay. Exhibits tight checker-weave basketry with intact geometric black dyed mud-stain patterns."
-  },
-  {
-    id: "DEVA_BORAX_TOKEN",
-    parkId: "deva",
-    name: "1885 Harmony Borax Twenty-Mule Token",
-    tier: 3,
-    baseVal: 14000,
-    cat: "Frontier Industrial Relic",
-    era: "Mining Era (1885 CE)",
-    mat: "Stamped copper-nickel alloy",
-    desc: "Company store wage scrip stamped 'W.T. COLEMAN CO. HARMONY WORKS' recovered from dry desert silt near the historic roasting vats."
-  },
-  {
-    id: "ROMO_PEGMATITE",
-    parkId: "romo",
-    name: "Boudinaged Microcline Pegmatite Core",
-    tier: 3,
-    baseVal: 22000,
-    cat: "Structural Geology Float",
-    era: "Precambrian (~1.7 Billion Years)",
-    mat: "Salmon-pink microcline & smoky quartz",
-    desc: "A geological core showing intense ductile shear and sausage-string stretching (boudinage) from the deep roots of the ancestral Rockies."
-  },
-  {
-    id: "CUVA_CANAL_BELL",
-    parkId: "cuva",
-    name: "1852 Ohio & Erie Canal Packet Bell",
-    tier: 3,
-    baseVal: 19500,
-    cat: "Canal Era Historical Relic",
-    era: "Canal Boom (1852 CE)",
-    mat: "Cast bronze with green river patina",
-    desc: "A ten-pound warning bell dredged from lock silts along the Cuyahoga River, stamped with the foundry mark of Cleveland Brass."
-  },
-  {
-    id: "VOYA_GOLD_QUARTZ",
-    parkId: "voya",
-    name: "Little American Mine Native Gold Ribbon",
-    tier: 3,
-    baseVal: 34000,
-    cat: "Mineralogical Specimen",
-    era: "Archean Greenstone Belt",
-    mat: "Native crystalline gold in smoky quartz",
-    desc: "A river cobble displaying an undulating ribbon of crystalline native gold trapped inside banded greenstone-hosted shear quartz."
-  },
-  {
-    id: "NERI_MINE_LAMP",
-    parkId: "neri",
-    name: "1898 Wolf Carbide Safety Flame Lamp",
-    tier: 3,
-    baseVal: 12500,
-    cat: "Appalachian Mining Relic",
-    era: "Coal Boom (1898 CE)",
-    mat: "Brass bonnet, lead seal & glass chimney",
-    desc: "Used by fire-boss inspectors at the Nuttallburg coal seam to detect methane gas. Found intact in a dry sandstone ledge niche."
-  },
-
-  // TIER II DIAGNOSTIC FLOAT (12 Items: $600 - $3,500)
-  {
-    id: "GLAC_ARGILLITE",
-    parkId: "glac",
-    name: "Precambrian Stromatolite Argillite Float",
-    tier: 2,
-    baseVal: 1450,
-    cat: "Paleontological Float",
-    era: "Mesoproterozoic (~1.4 Billion Years)",
-    mat: "Siliceous Argillite (Belt Supergroup)",
-    desc: "A river-polished green argillite pebble displaying concentric laminations created by ancient cyanobacterial colonies."
-  },
-  {
-    id: "PEFO_LOG",
-    parkId: "pefo",
-    name: "Chinle Jasperized Araucarioxylon Section",
-    tier: 2,
-    baseVal: 2200,
-    cat: "Silicified Paleobotanical Wood",
-    era: "Late Triassic (~218 Million Years)",
-    mat: "Carnelian & Jasper silica replacement",
-    desc: "A five-inch complete cylinder of fossilized wood displaying cell walls and rings replaced with scarlet jasper."
-  },
-  {
-    id: "EVER_SHELL",
-    parkId: "ever",
-    name: "Calusa Shell Gouge Tool",
-    tier: 2,
-    baseVal: 1850,
-    cat: "Indigenous Shell Implement",
-    era: "Glades Culture (~900 CE)",
-    mat: "Robust Lightning Whelk (Sinistrofulgur)",
-    desc: "Fashioned from the thick columella of a large whelk shell, exhibiting a ground beveled edge for canoe crafting."
-  },
-  {
-    id: "HAVO_PELE",
-    parkId: "havo",
-    name: "Golden Pele's Hair Filament Cluster",
-    tier: 2,
-    baseVal: 1100,
-    cat: "Volcanological Glass Specimen",
-    era: "Modern Eruptive (~1959 CE)",
-    mat: "Basaltic pyroclastic glass fiber",
-    desc: "Delicate golden threads of drawn volcanic glass created by gas bubbles bursting through lava fountains."
-  },
-  {
-    id: "JOTR_CHONDRITE",
-    parkId: "jotr",
-    name: "Desert Varnish Ordinary Chondrite",
-    tier: 2,
-    baseVal: 2400,
-    cat: "Meteoritic Stone Float",
-    era: "Pre-Terrestrial Fall",
-    mat: "Silicate matrix with nickel-iron flecks",
-    desc: "A dense stony meteorite showing a chocolate-brown weathered fusion crust and magnetic pull found on desert pavement."
-  },
-  {
-    id: "REDW_BURL",
-    parkId: "redw",
-    name: "Subfossil Mineralized Redwood Burl Core",
-    tier: 2,
-    baseVal: 1650,
-    cat: "Paleobotanical Specimen",
-    era: "Holocene Alluvial Peat",
-    mat: "Tannic iron-infiltrated Sequoia wood",
-    desc: "Dense, heavy redwood burl wood stained blue-black by iron tannins after lying centuries in river gravels."
-  },
-  {
-    id: "WICA_CALCITE",
-    parkId: "wica",
-    name: "Spearfish Dogtooth Calcite Spar Cluster",
-    tier: 2,
-    baseVal: 1950,
-    cat: "Mineralogical Crystal",
-    era: "Mississippian Paleokarst",
-    mat: "Prismatic scalenohedral Calcite (CaCO3)",
-    desc: "A cluster of sharp, amber-tinted scalenohedral calcite crystals weathering cleanly from a limestone creek outcrop."
-  },
-  {
-    id: "SAGU_VARNISH",
-    parkId: "sagu",
-    name: "Desert Varnish Rhyolite Scraper Core",
-    tier: 2,
-    baseVal: 2100,
-    cat: "Archaic Lithic Float",
-    era: "Middle Archaic (~2000 BCE)",
-    mat: "Dark-patinated porphyritic rhyolite",
-    desc: "A flaked stone core displaying gleaming black manganese desert varnish over old negative flake scars."
-  },
-  {
-    id: "GUMO_SPONGE",
-    parkId: "gumo",
-    name: "Capitan Reef Fossil Glass Sponge Dome",
-    tier: 2,
-    baseVal: 1800,
-    cat: "Paleontological Marine Fossil",
-    era: "Permian (~265 Million Years)",
-    mat: "Silicified sponge matrix (Guadalupia)",
-    desc: "A rounded calcified sponge colony displaying internal honeycomb pore canals that once anchored an ancient Permian reef."
-  },
-  {
-    id: "KEFJ_GARNET",
-    parkId: "kefj",
-    name: "Glacial Flour Almandine Garnet Sand",
-    tier: 2,
-    baseVal: 950,
-    cat: "Petrological Placer Lens",
-    era: "Modern Glacial Outwash",
-    mat: "Sub-millimeter Almandine Garnet crystals",
-    desc: "A heavy crimson sand pocket sorted by glacier meltwater, composed of microscopic dodecahedral garnet crystals."
-  },
-  {
-    id: "BISC_CORAL",
-    parkId: "bisc",
-    name: "Pleistocene Star Coral Colony Head",
-    tier: 2,
-    baseVal: 2600,
-    cat: "Marine Paleontological Fossil",
-    era: "Pleistocene (~125,000 BP)",
-    mat: "Aragonite-replaced Montastraea coral",
-    desc: "An eight-inch hemispherical coral head weathered from Key Largo limestone, with pristine star-shaped corallite cups."
-  },
-  {
-    id: "THRO_CLINKER",
-    parkId: "thro",
-    name: "Burned Lignite Porcelainite 'Scoria' Tile",
-    tier: 2,
-    baseVal: 1250,
-    cat: "Pyrometamorphic Rock Specimen",
-    era: "Paleocene Fort Union Formation",
-    mat: "Vitreous brick-red baked clayey siltstone",
-    desc: "Created when natural subterranean coal seam fires baked overlying mudstones into dense, resonant red porcelainite tiles."
+function getCrownJewelsForPark(park) {
+  if (PARK_CROWN_ARCHIVES[park.id]) {
+    return PARK_CROWN_ARCHIVES[park.id];
   }
-];
+  return [
+    {
+      title: `${park.name.replace(" National Park", "")} Archaic Quartzite Ceremonial Biface`,
+      cat: "Prehistoric Lithic Masterwork",
+      era: "Late Archaic (~1200 BCE)",
+      mat: "Bifacially Flaked Cryptocrystalline Quartzite",
+      desc: `Excavated from deep alluvial gravel terraces in ${park.name}. A monumental 10-inch lanceolate biface showing masterwork pressure flaking, ground basal margins, and immaculate edge symmetry.`,
+      fact: `Indigenous hunting cultures utilized stone tools from local geologic formations across ${park.name} for thousands of years, trading toolstones across hundreds of miles.`
+    },
+    {
+      title: `${park.name.replace(" National Park", "")} Oriented S-Type Chondrite Meteorite`,
+      cat: "Extraterrestrial Meteorite",
+      era: "Solar System Primitive Formation (~4.55 Ga)",
+      mat: "Nickel-Iron, Olivine & Enstatite Silicate",
+      desc: `A 12-pound aerodynamically oriented stony meteorite showing rollover lip fusion crusts, regmaglypts (thumbprint indentations), and shocked melt veins, recovered from backcountry scree.`,
+      fact: `Meteorite falls preserve pristine extraterrestrial minerals that have never experienced planetary weathering or plate tectonic recycling.`
+    },
+    {
+      title: `${park.name.replace(" National Park", "")} Subfossil Apex Fauna Cranium`,
+      cat: "Quaternary Paleontology",
+      era: "Late Pleistocene (~16,000 BP)",
+      mat: "Mineralized Cortical Bone & Enamel",
+      desc: `Discovered in a protected limestone crevice. An uncrushed cranium exhibiting complete dental arcade teeth and intact cranial sutures, preserved by cool, dry micro-canyon climates.`,
+      fact: `During the Last Glacial Maximum, dramatic ecological shifts transformed the ecosystems of ${park.name}, fostering diverse megafauna communities.`
+    }
+  ];
+}
 
-// DOUBLED PROCEDURAL TYPES (16 Varieties)
+let MASTER_SPECIMENS = [];
+ALL_PARKS.forEach(park => {
+  const cjs = getCrownJewelsForPark(park);
+  cjs.forEach((cj, i) => {
+    MASTER_SPECIMENS.push({
+      id: `${park.id.toUpperCase()}_CJ_${i+1}`,
+      parkId: park.id,
+      name: cj.title,
+      tier: 5,
+      baseVal: 2200000 + (i * 950000) + (Math.abs(park.est - 1900) * 15000),
+      cat: cj.cat,
+      era: cj.era,
+      mat: cj.mat,
+      desc: cj.desc,
+      fact: cj.fact
+    });
+  });
+});
+
 const PROCEDURAL_TYPES = [
-  { prefix: "River-Polished", name: "Banded Lake Agate", cat: "Mineral Specimen", baseVal: 450, tier: 1 },
-  { prefix: "Glacial Till", name: "Striated Granodiorite Cobble", cat: "Petrological Float", baseVal: 120, tier: 1 },
-  { prefix: "Weathered", name: "Petrified Palm Wood Sliver", cat: "Fossil Paleobotany", baseVal: 750, tier: 2 },
-  { prefix: "High-Calibre", name: "Chert Scraper on Flake", cat: "Lithic Tool Float", baseVal: 1450, tier: 2 },
-  { prefix: "Desiccated", name: "Ancient Ponderosa Cone Cluster", cat: "Botanical Herbarium", baseVal: 85, tier: 1 },
-  { prefix: "Subalpine", name: "Shed Elk Antler Crown", cat: "Faunal Track & Sign", baseVal: 950, tier: 2 },
-  { prefix: "19th-Century", name: "Square-Cut Forged Iron Spike", cat: "Pioneer Relic", baseVal: 320, tier: 1 },
-  { prefix: "Translucent", name: "Obsidian Prismatic Blade Core", cat: "Lithic Debitage", baseVal: 680, tier: 2 },
-  { prefix: "Fossilized", name: "Marine Brachiopod Shell Shingle", cat: "Invertebrate Paleontology", baseVal: 280, tier: 1 },
-  { prefix: "Alluvial", name: "Native Placer Gold Dust Float", cat: "Heavy Mineral Placer", baseVal: 1150, tier: 2 },
-  { prefix: "Desert Pavement", name: "Chalcedony Nodular Float", cat: "Mineral Specimen", baseVal: 390, tier: 1 },
-  { prefix: "Calcified", name: "Freshwater Gastropod Coquina", cat: "Fossil Shell Deposit", baseVal: 210, tier: 1 },
-  { prefix: "1890s Surveyor", name: "Stamped Brass Benchmark Tack", cat: "Early Expedition Relic", baseVal: 880, tier: 2 },
-  { prefix: "Subfossil", name: "Porcupine Quill & Lichen Roost", cat: "Faunal Trace", baseVal: 140, tier: 1 },
-  { prefix: "Botryoidal", name: "Hematite Kidney Ore Pebble", cat: "Iron Mineral Float", baseVal: 310, tier: 1 },
-  { prefix: "Aerodynamic", name: "Volcanic Basalt Spindle Bomb", cat: "Pyroclastic Float", baseVal: 520, tier: 1 }
+  { prefix: "River-Polished", name: "Banded Lake Agate", cat: "Mineral Specimen", baseVal: 450, tier: 1, fact: "Agates form when microscopic silica particles deposit in concentric rhythmic bands inside volcanic gas pockets." },
+  { prefix: "Glacial Till", name: "Striated Granodiorite Cobble", cat: "Petrological Float", baseVal: 120, tier: 1, fact: "Glacial striations are parallel scratches gouged into bedrock and cobbles by hard quartz crystals dragged beneath heavy moving ice." },
+  { prefix: "Weathered", name: "Petrified Palm Wood Sliver", cat: "Fossil Paleobotany", baseVal: 750, tier: 2, fact: "Fossil palm wood displays distinctive vascular fiber dots (bundle sheaths) rather than concentric tree growth rings." },
+  { prefix: "High-Calibre", name: "Chert Scraper on Flake", cat: "Lithic Tool Float", baseVal: 1450, tier: 2, fact: "End-scrapers on flakes featured steep, beveled working edges specifically designed for removing connective tissue from animal hides." },
+  { prefix: "Desiccated", name: "Ancient Ponderosa Cone Cluster", cat: "Botanical Herbarium", baseVal: 85, tier: 1, fact: "Ponderosa pine cones open their thick woody scales when dry to release winged seeds that ride thermal mountain breezes." },
+  { prefix: "Subalpine", name: "Shed Elk Antler Crown", cat: "Faunal Track & Sign", baseVal: 950, tier: 2, fact: "Male elk shed their bony antlers every spring; rodents quickly gnaw shed antlers to harvest concentrated calcium and phosphorus." },
+  { prefix: "19th-Century", name: "Square-Cut Forged Iron Spike", cat: "Pioneer Relic", baseVal: 320, tier: 1, fact: "Square-cut machine-headed nails became common between 1800 and 1890, replacing hand-wrought nails during pioneer homestead expansion." },
+  { prefix: "Translucent", name: "Obsidian Prismatic Blade Core", cat: "Lithic Debitage", baseVal: 680, tier: 2, fact: "Pressure flaking volcanic glass produces blades with edge radiuses measured in nanometers—sharper than modern surgical steel scalpels." },
+  { prefix: "Fossilized", name: "Marine Brachiopod Shell Shingle", cat: "Invertebrate Paleontology", baseVal: 280, tier: 1, fact: "Brachiopods resemble clams but belong to a completely distinct phylum (Lophophorata) with bilateral symmetry down the center of each shell." },
+  { prefix: "Alluvial", name: "Native Placer Gold Dust Float", cat: "Heavy Mineral Placer", baseVal: 1150, tier: 2, fact: "Gold's high specific gravity (19.3) causes it to settle into the deepest bedrock crevices and heavy cobble traps in river bends." },
+  { prefix: "Desert Pavement", name: "Chalcedony Nodular Float", cat: "Mineral Specimen", baseVal: 390, tier: 1, fact: "Chalcedony is cryptocrystalline silica consisting of microscopic fibrous intergrowths of quartz and moganite." },
+  { prefix: "Calcified", name: "Freshwater Gastropod Coquina", cat: "Fossil Shell Deposit", baseVal: 210, tier: 1, fact: "Coquinas are sedimentary rocks formed almost entirely by the sorted, cemented shells of mollusks in ancient lake beds." },
+  { prefix: "1890s Surveyor", name: "Stamped Brass Benchmark Tack", cat: "Early Expedition Relic", baseVal: 880, tier: 2, fact: "Early USGS survey crews drove stamped brass benchmark pins into granite summits to establish continental elevation baselines." },
+  { prefix: "Subfossil", name: "Porcupine Quill & Lichen Roost", cat: "Faunal Trace", baseVal: 140, tier: 1, fact: "North American porcupine quills are modified hairs tipped with microscopic backward-facing barbs that swell when exposed to body heat." },
+  { prefix: "Botryoidal", name: "Hematite Kidney Ore Pebble", cat: "Iron Mineral Float", baseVal: 310, tier: 1, fact: "Botryoidal minerals precipitate in rounded, grape-like clusters when radiating fibrous crystals grow from multiple nuclei." },
+  { prefix: "Aerodynamic", name: "Volcanic Basalt Spindle Bomb", cat: "Pyroclastic Float", baseVal: 520, tier: 1, fact: "Spindle volcanic bombs are shaped into aerodynamic footballs as blobs of molten lava twist and spin through the air during explosive eruptions." }
 ];
 
-// EXPANDED BACKCOUNTRY OBSERVATIONS
 const FLAVOR_OBSERVATIONS = [
   "You scan the gravel matrix centimeter by centimeter. Midday sunlight glints off common quartz grains; water has recently shifted the silt.",
   "A cool mountain breeze moves through the timber. You sift two scoops of sorted river gravel—only well-rounded country rock pebbles.",
@@ -1575,14 +1383,14 @@ const FLAVOR_OBSERVATIONS = [
   "A raven calls across the canyon. You turn over several shale slabs; only barren slate and damp rootlets lie beneath.",
   "You glass the high scree apron through your optics. Sharp angles reveal loose talus frost-heaves without diagnostic mineral veins.",
   "Dry arroyo winds rustle the desert scrub. You sweep away surface sand, finding only weathered sandstone gravel.",
-  "Sun-bleached river shingle stretches across the channel bend. The gravel is cleanly sorted, but only basalt float lies exposed.",
+  "Sun-bleached river shingle stretches across the channel bend. The gravel is cleanly sorted, but only barren basalt float lies exposed.",
   "You kneel to inspect a micro-fault in the clay bench. Fine calcite crystallization lines the crack, but no artifacts are bedded here.",
   "A coyote track crosses the dry mud flat. You sift through fine wind-blown sand around sagebrush roots without uncovering relics.",
   "Glacial meltwater rushes cold over pale granite cobbles. You search the slackwater drift lines; only pine bark and granite grit remain."
 ];
 
 // ============================================================================
-// 3. 22 ACCREDITED INSTITUTIONAL BIDDERS WITH DIRECT DONATION URLS
+// 3. 22 INSTITUTIONAL BIDDERS
 // ============================================================================
 const BIDDER_DIRECTORY = [
   { name: "Smithsonian Institution (NMNH)", focus: ["Lithic", "Paleontological", "Historical"], budget: 35000000, donateUrl: "https://naturalhistory.si.edu/support" },
@@ -1639,6 +1447,7 @@ const DEFAULT_STATE = {
 };
 
 let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+let currentPackSubTab = 'bag';
 
 let liveAuction = {
   active: false,
@@ -1655,13 +1464,13 @@ let liveAuction = {
 };
 
 function saveGame() {
-  localStorage.setItem("living_archive_save_v9", JSON.stringify(state));
+  localStorage.setItem("living_archive_save_v11", JSON.stringify(state));
   const msg = document.getElementById("save-status-msg");
   if (msg) msg.innerText = "Status: Auto-saved " + new Date().toLocaleTimeString();
 }
 
 function loadGame() {
-  const saved = localStorage.getItem("living_archive_save_v9");
+  const saved = localStorage.getItem("living_archive_save_v11");
   if (saved) {
     try { 
       state = JSON.parse(saved); 
@@ -1742,7 +1551,7 @@ function switchView(panelId) {
   document.querySelectorAll(".view-panel").forEach(p => p.classList.remove("active-panel"));
   document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
   document.getElementById(panelId).classList.add("active-panel");
-  
+
   const navBtns = document.querySelectorAll(".nav-btn");
   navBtns.forEach(btn => {
     if (btn.getAttribute("onclick") && btn.getAttribute("onclick").includes(panelId)) {
@@ -1754,7 +1563,7 @@ function switchView(panelId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   if (panelId === 'view-combing') renderCombingView();
-  if (panelId === 'view-inventory') renderPackView('bag');
+  if (panelId === 'view-inventory') renderPackView(currentPackSubTab);
   if (panelId === 'view-lab') renderLabView();
   if (panelId === 'view-auction') setupAuctionConsignSelect();
   if (panelId === 'view-outfitter') renderOutfitterView();
@@ -1767,7 +1576,7 @@ function updateStatusBar() {
   document.getElementById("bar-park").innerText = park.name.replace(" National Park", "");
   document.getElementById("bar-funds").innerText = formatMoney(state.funds);
   document.getElementById("bar-bag").innerText = state.bag.length;
-  
+
   const totalDonated = Object.values(state.conservancy).reduce((a,b) => a+b, 0);
   document.getElementById("bar-donations").innerText = formatMoney(totalDonated);
 }
@@ -1786,8 +1595,7 @@ function renderCombingView() {
   updateStatusBar();
   const park = ALL_PARKS.find(p => p.id === state.currentParkId);
   document.getElementById("comb-park-title").innerText = park.name.toUpperCase();
-  document.getElementById("comb-park-meta").innerText = 
-    `${park.state} &bull; EST. ${park.est} &bull; ${DISTRICTS[park.district].name.toUpperCase()}`;
+  document.getElementById("comb-park-meta").innerText = `${park.state} • EST. ${park.est} •${DISTRICTS[park.district].name.toUpperCase()}`;
 
   const select = document.getElementById("zone-selector");
   select.innerHTML = "";
@@ -1836,13 +1644,14 @@ function combLandscape(actionType) {
       foundSpecimen = {
         id: "PROC_" + Date.now(),
         parkId: park.id,
-        name: `${baseProto.prefix} ${baseProto.name}`,
+        name: `${baseProto.prefix}${baseProto.name}`,
         tier: baseProto.tier,
         baseVal: Math.round(baseProto.baseVal * (0.85 + Math.random() * 0.45)),
         cat: baseProto.cat,
         era: "Quaternary Alluvial Float",
         mat: "Natural Matrix Cobble",
-        desc: `Recovered while conducting a ${actionType} survey within ${park.zones[state.currentZoneIndex].title}. Clean specimen bedded in local sediment.`
+        desc: `Recovered while conducting a ${actionType} survey within${park.zones[state.currentZoneIndex].title}. Clean specimen bedded in local sediment.`,
+        fact: baseProto.fact
       };
     }
 
@@ -1855,27 +1664,29 @@ function combLandscape(actionType) {
     updateStatusBar();
 
     const curVal = getItemAppraisal(foundSpecimen);
+    const isMeteor = foundSpecimen.cat.includes("Meteorite");
 
     log.innerHTML = `
       <div class="accession-card">
-        <div class="accession-header">
-          FIELD ACCESSION LOG &bull; NEW SPECIMEN IN-SITU
+        <div class="accession-header" style="display:flex; justify-content:space-between; flex-wrap:wrap;">
+          <span>FIELD ACCESSION LOG • NEW SPECIMEN IN-SITU</span>
+          ${isMeteor ? '<span class="stamp stamp-meteor">METEORITE CLASS</span>' : ''}
         </div>
         <div class="accession-row"><strong>SPECIMEN:</strong> ${foundSpecimen.name} (${foundSpecimen.cat})</div>
-        <div class="accession-row"><strong>LOCALITY:</strong> ${park.name}</div>
-        <div class="accession-row"><strong>ZONE:</strong> ${park.zones[state.currentZoneIndex].title}</div>
-        <div class="accession-row"><strong>ERA:</strong> ${foundSpecimen.era}</div>
-        <div class="accession-row"><strong>EST. VALUE:</strong> ${formatMoney(curVal)} (Tier ${foundSpecimen.tier})</div>
+        <div class="accession-row"><strong>LOCALITY:</strong> ${park.name} •${park.zones[state.currentZoneIndex].title}</div>
+        <div class="accession-row"><strong>STRATIGRAPHY:</strong> ${foundSpecimen.era}</div>
+        <div class="accession-row"><strong>EST. VALUE:</strong> ${formatMoney(curVal)} (Tier${foundSpecimen.tier})</div>
         <div class="accession-desc">${foundSpecimen.desc}</div>
-        <div style="margin-top:8px; font-size:0.75rem; color:var(--accent-green); font-weight:bold;">
-          [ STOWED IN PACK &bull; VISIT LAB TO GRADE/AUTHENTICATE ]
+        <div class="accession-fact"><strong>NATURALIST NOTE &amp; FIELD FACT:</strong> ${foundSpecimen.fact || 'Field stratigraphy documented.'}</div>
+        <div style="margin-top:8px; font-size:0.75rem; color:var(--accent-forest); font-weight:bold;">
+          [ STOWED IN PACK • VISIT LAB TO GRADE/AUTHENTICATE ]
         </div>
       </div>
     `;
   } else {
     const note = FLAVOR_OBSERVATIONS[Math.floor(Math.random() * FLAVOR_OBSERVATIONS.length)];
     log.innerHTML = `
-      <div style="background:#fff; border:1px dashed var(--border-color); padding:10px; font-style:italic; font-size:0.85rem;">
+      <div style="background:#fff; border:1px dashed var(--border-forest); padding:10px; font-style:italic; font-size:0.85rem;">
         ${note}
       </div>
     `;
@@ -1883,63 +1694,180 @@ function combLandscape(actionType) {
 }
 
 // ============================================================================
-// 8. SPECIMEN BAG & LEDGER
+// 8. SPECIMEN BAG, SORTING, CATALOG & MASTER CHECKLIST
 // ============================================================================
+function sortItemsArray(arr, criteria) {
+  return arr.sort((a, b) => {
+    const valA = getItemAppraisal(a);
+    const valB = getItemAppraisal(b);
+    if (criteria === 'val-desc') return valB - valA;
+    if (criteria === 'val-asc') return valA - valB;
+    if (criteria === 'tier-desc') return b.tier - a.tier;
+    if (criteria === 'name') return a.name.localeCompare(b.name);
+    if (criteria === 'cat') return a.cat.localeCompare(b.cat);
+    return 0;
+  });
+}
+
+function applyPackSort() {
+  renderPackView(currentPackSubTab);
+}
+
 function renderPackView(subTab) {
+  currentPackSubTab = subTab;
   document.getElementById("pack-bag-count").innerText = state.bag.length;
+  
   let totalCataloged = 0;
   Object.values(state.catalog).forEach(arr => totalCataloged += arr.length);
   document.getElementById("pack-archive-count").innerText = totalCataloged;
 
   const container = document.getElementById("pack-content-area");
+  const sortBar = document.getElementById("sort-filter-bar");
+  const sortCriteria = document.getElementById("pack-sort-select") ? document.getElementById("pack-sort-select").value : 'val-desc';
+
   container.innerHTML = "";
 
   if (subTab === 'bag') {
+    sortBar.style.display = "flex";
     if (state.bag.length === 0) {
       container.innerHTML = `<div style="padding:16px; text-align:center; font-style:italic; font-size:0.85rem;">Your pack is empty. Go comb the field!</div>`;
       return;
     }
 
-    state.bag.forEach((item, index) => {
+    const sortedBag = sortItemsArray(state.bag.slice(), sortCriteria);
+
+    sortedBag.forEach((item, index) => {
       const curVal = getItemAppraisal(item);
+      const originalBagIndex = state.bag.indexOf(item);
+      const isMeteor = item.cat.includes("Meteorite");
+      
       const card = document.createElement("div");
       card.className = "accession-card";
       card.innerHTML = `
         <div class="accession-header" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px;">
-          <span>LOT #${index + 1} &bull; TIER ${item.tier}</span>
+          <span>LOT #${index + 1} • TIER ${item.tier}</span>
           <div>
-            ${item.grade ? `<span class="stamp stamp-gold" style="margin-right:2px;">GRADE: ${item.grade} (${item.gradeMultiplier}x)</span>` : ''}
-            ${item.authenticated ? `<span class="stamp stamp-blue">AUTHENTICATED (+40%)</span>` : ''}
+            ${isMeteor ? '<span class="stamp stamp-meteor" style="margin-right:2px;">METEORITE</span>' : ''}
+            ${item.grade ? `<span class="stamp stamp-gold" style="margin-right:2px;">GRADE: ${item.grade} (${item.gradeMultiplier}x)</span>` : '<span style="font-size:0.65rem; color:#777;">[UNGRADED]</span>'}
+            ${item.authenticated ? `<span class="stamp stamp-blue">CERTIFIED (+40%)</span>` : ''}
           </div>
         </div>
-        <div class="accession-row"><strong>${item.name}</strong> &mdash; ${item.cat}</div>
-        <div class="accession-row">Appraisal: <strong>${formatMoney(curVal)}</strong></div>
+        <div class="accession-row"><strong>${item.name}</strong> —${item.cat}</div>
+        <div class="accession-row">Certified Appraisal: <strong>${formatMoney(curVal)}</strong></div>
         <div class="accession-desc">${item.desc}</div>
+        <div class="accession-fact"><strong>FIELD FACT:</strong> ${item.fact || 'Documented field specimen.'}</div>
         <div style="margin-top:8px;">
-          <button class="action-btn" onclick="directItemToLab(${index})">Take to Lab</button>
-          <button class="action-btn" onclick="directItemToAuction(${index})">Consign to Auction</button>
+          <button class="action-btn" onclick="directItemToLab(${originalBagIndex})">Take to Curatorial Lab</button>
+          <button class="action-btn" onclick="directItemToAuction(${originalBagIndex})">Consign to Auction Floor</button>
         </div>
       `;
       container.appendChild(card);
     });
-  } else {
-    container.innerHTML = `<h3 style="margin-bottom:8px; font-size:0.95rem;">Master Archival Records (${MASTER_SPECIMENS.length} Curated Masterworks)</h3>`;
-    MASTER_SPECIMENS.forEach(spec => {
+
+  } else if (subTab === 'archive') {
+    sortBar.style.display = "flex";
+    container.innerHTML = `<h3 style="margin-bottom:8px; font-size:0.95rem; color:var(--accent-forest);">Master Archival Register (${MASTER_SPECIMENS.length} Handcrafted Relics)</h3>`;
+    
+    const sortedMasters = sortItemsArray(MASTER_SPECIMENS.slice(), sortCriteria);
+
+    sortedMasters.forEach(spec => {
       const park = ALL_PARKS.find(p => p.id === spec.parkId);
       const isLogged = state.catalog[spec.parkId] && state.catalog[spec.parkId].includes(spec.id);
+      const isMeteor = spec.cat.includes("Meteorite");
       
       const itemRow = document.createElement("div");
       itemRow.className = "item-row";
       itemRow.innerHTML = `
         <div>
-          <strong>${spec.name}</strong> (${park ? park.name.replace(" National Park", "") : 'Historic Wilderness'})<br>
-          <span style="font-size:0.75rem; color:var(--text-muted);">${spec.cat} &bull; Tier ${spec.tier}</span>
+          <strong style="color:var(--accent-forest);">${spec.name}</strong> (${park ? park.name.replace(" National Park", "") : 'Wilderness'})<br>
+          <span style="font-size:0.75rem; color:var(--text-muted);">${spec.cat} • Tier ${spec.tier} • ${formatMoney(Math.round(spec.baseVal * 1.5))}</span>${isMeteor ? ' <span class="stamp stamp-meteor">METEORITE</span>' : ''}
         </div>
         <div>
-          ${isLogged ? '<span class="stamp">DOCUMENTED</span>' : '<span style="font-size:0.75rem; color:#888;">UNSURVEYED</span>'}
+          ${isLogged ? '<span class="stamp" style="border-color:var(--accent-forest); color:var(--accent-forest);">DOCUMENTED</span>' : '<span style="font-size:0.75rem; color:#888;">UNSURVEYED</span>'}
         </div>
       `;
       container.appendChild(itemRow);
+    });
+
+  } else if (subTab === 'checklist') {
+    sortBar.style.display = "none";
+    
+    let foundTotal = 0;
+    Object.values(state.catalog).forEach(arr => foundTotal += arr.length);
+    
+    const totalMasterworks = MASTER_SPECIMENS.length;
+    const crownJewels = MASTER_SPECIMENS.filter(s => s.tier === 5);
+    const meteorites = MASTER_SPECIMENS.filter(s => s.cat.includes("Meteorite"));
+
+    let foundCrownJewels = 0;
+    crownJewels.forEach(c => {
+      if (state.catalog[c.parkId] && state.catalog[c.parkId].includes(c.id)) foundCrownJewels++;
+    });
+
+    let foundMeteorites = 0;
+    meteorites.forEach(m => {
+      if (state.catalog[m.parkId] && state.catalog[m.parkId].includes(m.id)) foundMeteorites++;
+    });
+
+    const percentTotal = Math.round((foundTotal / totalMasterworks) * 100);
+
+    container.innerHTML = `
+      <div style="background:#ede5d2; border:1.5px solid var(--border-forest); padding:12px; margin-bottom:12px; border-left:5px solid var(--accent-forest);">
+        <h3 style="font-size:1.05rem; color:var(--accent-forest); margin-bottom:4px;">Master 63-Park Completionist Tracker</h3>
+        <div style="font-family:var(--font-mono); font-size:0.8rem; margin-bottom:4px;">
+          Overall Archive Completion: <strong>${foundTotal} / ${totalMasterworks} (${percentTotal}%)</strong>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" style="width:${percentTotal}%;"></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:var(--font-mono); font-size:0.75rem;">
+          <div>Crown Jewels: <strong>${foundCrownJewels} /${crownJewels.length}</strong></div>
+          <div>Meteorites: <strong>${foundMeteorites} /${meteorites.length}</strong></div>
+        </div>
+      </div>
+
+      <h4 style="font-size:0.95rem; color:var(--accent-forest); margin:10px 0 6px 0;">All 63 Parks Crown Jewels Checklist (3 Per Park)</h4>
+    `;
+
+    ALL_PARKS.forEach(park => {
+      const parkCJs = MASTER_SPECIMENS.filter(s => s.parkId === park.id);
+      const parkLoggedCount = parkCJs.filter(s => state.catalog[park.id] && state.catalog[park.id].includes(s.id)).length;
+      
+      const parkGroup = document.createElement("div");
+      parkGroup.style.marginBottom = "10px";
+      parkGroup.innerHTML = `
+        <div style="background:#e4d8c3; padding:4px 8px; font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; color:var(--accent-forest); border-left:3px solid var(--accent-forest);">
+          ${park.name.toUpperCase()} (${parkLoggedCount}/3 RECOVERED)
+        </div>
+      `;
+
+      parkCJs.forEach(cj => {
+        const isLogged = state.catalog[cj.parkId] && state.catalog[cj.parkId].includes(cj.id);
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.style.background = isLogged ? "#f1f7ef" : "#fff";
+        row.style.padding = "6px 8px";
+        row.style.border = isLogged ? "1px solid var(--accent-forest)" : "1px dashed var(--border-light)";
+        row.style.margin = "4px 0";
+
+        row.innerHTML = `
+          <div>
+            <strong>${isLogged ? cj.name : '??? [Undiscovered Relic]'}</strong><br>
+            <span style="font-size:0.72rem; color:var(--text-muted);">
+              ${cj.cat} •${formatMoney(Math.round(cj.baseVal * 1.5))}
+            </span>
+          </div>
+          <div>
+            ${isLogged 
+              ? '<span class="stamp" style="border-color:var(--accent-forest); color:var(--accent-forest);">RECOVERED</span>' 
+              : '<span style="font-size:0.72rem; color:var(--accent-rust); font-style:italic;">Comb backcountry!</span>'
+            }
+          </div>
+        `;
+        parkGroup.appendChild(row);
+      });
+
+      container.appendChild(parkGroup);
     });
   }
 }
@@ -1976,7 +1904,10 @@ function renderLabView() {
   state.bag.forEach((it, i) => {
     const opt = document.createElement("option");
     opt.value = i;
-    opt.innerText = `${it.name} (Tier ${it.tier})`;
+    const curVal = getItemAppraisal(it);
+    const gradeTag = it.grade ? `[${it.grade}]` : `[Ungraded]`;
+    const certTag = it.authenticated ? `[USGS Certified]` : ``;
+    opt.innerText = `${it.name} (${formatMoney(curVal)}) ${gradeTag}${certTag}`.trim();
     sel.appendChild(opt);
   });
 
@@ -1998,18 +1929,22 @@ function updateLabPreview() {
   document.getElementById("lab-grade-fee").innerText = formatMoney(gradeFee);
   document.getElementById("lab-auth-fee").innerText = formatMoney(authFee);
 
+  const isMeteor = item.cat.includes("Meteorite");
+
   const card = document.getElementById("lab-specimen-card");
   card.innerHTML = `
     <div class="accession-header" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px;">
       <span>DOSSIER: ${item.name}</span>
       <div>
+        ${isMeteor ? '<span class="stamp stamp-meteor">METEORITE</span>' : ''}
         ${item.grade ? `<span class="stamp stamp-gold">${item.grade} (${item.gradeMultiplier}x)</span>` : '<span style="color:#777; font-size:0.7rem;">[UNGRADED]</span>'}
         ${item.authenticated ? `<span class="stamp stamp-blue">CERTIFIED (+40%)</span>` : '<span style="color:#777; font-size:0.7rem;">[UNCERTIFIED]</span>'}
       </div>
     </div>
-    <div class="accession-row"><strong>CATEGORY:</strong> ${item.cat} | <strong>ERA:</strong> ${item.era}</div>
-    <div class="accession-row"><strong>APPRAISAL:</strong> ${formatMoney(curVal)}</div>
+    <div class="accession-row"><strong>CATEGORY:</strong> ${item.cat} • <strong>ERA:</strong>${item.era}</div>
+    <div class="accession-row"><strong>CERTIFIED APPRAISAL:</strong> ${formatMoney(curVal)}</div>
     <div class="accession-desc">${item.desc}</div>
+    <div class="accession-fact"><strong>FIELD FACT:</strong> ${item.fact || 'Catalog record verified.'}</div>
   `;
 
   const btnGrade = document.getElementById("btn-do-grade");
@@ -2063,13 +1998,13 @@ function executeGrading() {
 
   saveGame();
   updateStatusBar();
-  updateLabPreview();
+  renderLabView();
 
   const newAppraisal = getItemAppraisal(item);
   document.getElementById("lab-result-log").innerHTML = `
     <div style="background:#fffcf2; border:1px solid var(--accent-gold); padding:8px; font-family:var(--font-mono); font-size:0.78rem;">
       <strong style="color:var(--accent-gold);">[ CERTIFICATE ISSUED ]</strong><br>
-      GRADE: <strong>${gradeName}</strong> &bull; MULTIPLIER: <strong>${mult}x</strong><br>
+      GRADE: <strong>${gradeName}</strong> • MULTIPLIER: <strong>${mult}x</strong><br>
       NEW APPRAISAL: <strong>${formatMoney(newAppraisal)}</strong>
     </div>
   `;
@@ -2093,13 +2028,13 @@ function executeAuthentication() {
 
   saveGame();
   updateStatusBar();
-  updateLabPreview();
+  renderLabView();
 
   const newAppraisal = getItemAppraisal(item);
   document.getElementById("lab-result-log").innerHTML = `
     <div style="background:#f2f7fc; border:1px solid var(--accent-blue); padding:8px; font-family:var(--font-mono); font-size:0.78rem;">
       <strong style="color:var(--accent-blue);">[ USGS AUTHENTICATED ]</strong><br>
-      STATUS: <strong>CERTIFIED GENUINE</strong> &bull; BOOST: <strong>+40% Value</strong><br>
+      STATUS: <strong>CERTIFIED GENUINE</strong> • BOOST: <strong>+40% Value</strong><br>
       NEW APPRAISAL: <strong>${formatMoney(newAppraisal)}</strong> (Doubles Bid War Odds)
     </div>
   `;
@@ -2121,7 +2056,9 @@ function setupAuctionConsignSelect() {
     const opt = document.createElement("option");
     opt.value = i;
     const curVal = getItemAppraisal(it);
-    opt.innerText = `${it.name} (${formatMoney(curVal)})${it.grade ? ' ['+it.grade+']' : ''}${it.authenticated ? ' [CERT]' : ''}`;
+    const gradeTag = it.grade ? `[${it.grade}]` : `[Ungraded]`;
+    const certTag = it.authenticated ? `[USGS Certified]` : ``;
+    opt.innerText = `${it.name} (${formatMoney(curVal)}) ${gradeTag} ${certTag}`.trim();
     sel.appendChild(opt);
   });
 }
@@ -2231,20 +2168,19 @@ function auctionHeartbeat() {
   if (t === 1) {
     const curator = liveAuction.competingInstitutions[0].name;
     if (item.grade) {
-      addTickerLine(`&bull; <em>${curator}</em>: <span class="ticker-comment">"${item.grade} condition slab—pristine surface preservation."</span>`);
+      addTickerLine(`• <em>${curator}</em>: <span class="ticker-comment">"${item.grade} condition slab—pristine surface preservation."</span>`);
     } else {
-      addTickerLine(`&bull; <em>${curator}</em>: <span class="ticker-comment">"A fascinating raw field discovery from ${item.era}."</span>`);
+      addTickerLine(`• <em>${curator}</em>: <span class="ticker-comment">"A fascinating raw field discovery from ${item.era}."</span>`);
     }
   } else if (t === 2) {
     const rival = liveAuction.competingInstitutions[1].name;
     if (item.authenticated) {
-      addTickerLine(`&bull; <em>${rival}</em>: <span class="ticker-comment">"USGS spectrometry verified. Our acquisitions board is entering the floor."</span>`);
+      addTickerLine(`• <em>${rival}</em>: <span class="ticker-comment">"USGS spectrometry verified. Our acquisitions board is entering the floor."</span>`);
     } else {
-      addTickerLine(`&bull; <em>${rival}</em>: <span class="ticker-comment">"Significant educational merit. Raising active paddle."</span>`);
+      addTickerLine(`• <em>${rival}</em>: <span class="ticker-comment">"Significant educational merit. Raising active paddle."</span>`);
     }
   }
 
-  // Late entrance challenger
   if (t === 6 && Math.random() < 0.40) {
     const outsiders = BIDDER_DIRECTORY.filter(b => !liveAuction.competingInstitutions.some(cb => cb.name === b.name));
     if (outsiders.length > 0) {
@@ -2254,12 +2190,10 @@ function auctionHeartbeat() {
     }
   }
 
-  // Active bidding phase
   if (t >= 2 && t <= 11) {
     if (liveAuction.currentBid < liveAuction.targetCeiling) {
       const remainingMargin = liveAuction.targetCeiling - liveAuction.currentBid;
 
-      // Filter out whoever currently holds the high bid!
       let eligible = liveAuction.competingInstitutions.filter(b => b.name !== liveAuction.highBidder);
       if (eligible.length === 0) eligible = liveAuction.competingInstitutions;
 
@@ -2273,7 +2207,7 @@ function auctionHeartbeat() {
       liveAuction.currentBid = Math.min(liveAuction.targetCeiling, liveAuction.currentBid + jump);
       liveAuction.highBidder = bidder.name;
 
-      addTickerLine(`&gt;&gt; <span class="ticker-bid">${bidder.name}</span>: <strong>${formatMoney(liveAuction.currentBid)}</strong>!`);
+      addTickerLine(`▸ <span class="ticker-bid">${bidder.name}</span>: <strong>${formatMoney(liveAuction.currentBid)}</strong>!`);
 
       if (liveAuction.isClash && Math.random() < 0.35) {
         addTickerLine(`[CLASH] <span class="ticker-event">Heated rivalry across the floor—competing delegates refuse to back down!</span>`);
@@ -2324,7 +2258,7 @@ function completeAuctionSale() {
 
   const controls = document.getElementById("auction-controls");
   controls.innerHTML = `
-    <button class="action-btn" onclick="resetAuctionFloor()" style="background:#d4c4a8; font-weight:bold;">Return to Consignments</button>
+    <button class="action-btn" onclick="resetAuctionFloor()" style="background:#cbe0cb; border-color:var(--border-forest); font-weight:bold;">Return to Consignments</button>
   `;
 }
 
@@ -2349,7 +2283,7 @@ function spurTheFloor() {
     liveAuction.currentBid += Math.max(50, boost);
     liveAuction.highBidder = bidder.name;
 
-    addTickerLine(`&gt;&gt; <span class="ticker-bid">${bidder.name}</span> meets the challenge: <strong>${formatMoney(liveAuction.currentBid)}</strong>!`);
+    addTickerLine(`▸ <span class="ticker-bid">${bidder.name}</span> meets the challenge: <strong>${formatMoney(liveAuction.currentBid)}</strong>!`);
     updateLiveAuctionUI();
   } else {
     addTickerLine(`[AUCTIONEER] "Bidders decline to advance past certified institutional limits."`);
@@ -2381,11 +2315,11 @@ function renderOutfitterView() {
     card.className = "accession-card";
     card.style.background = isOwned ? "#f3f8f1" : "#fff";
     card.innerHTML = `
-      <div class="accession-header">${g.name.toUpperCase()} &bull; ${formatMoney(g.price)}</div>
+      <div class="accession-header">${g.name.toUpperCase()} • ${formatMoney(g.price)}</div>
       <div class="accession-desc">${g.desc}</div>
       <div style="margin-top:8px;">
         ${isOwned 
-          ? '<span class="stamp">EQUIPPED IN FIELD KIT</span>' 
+          ? '<span class="stamp" style="border-color:var(--accent-forest); color:var(--accent-forest);">EQUIPPED IN FIELD KIT</span>' 
           : `<button class="action-btn" onclick="buyGear('${g.id}', ${g.price})">Purchase (${formatMoney(g.price)})</button>`
         }
       </div>
@@ -2421,7 +2355,6 @@ function renderConservancyView() {
   const park = ALL_PARKS.find(p => p.id === state.currentParkId);
   const donated = state.conservancy[park.id] || 0;
 
-  // Render Institutional Donation Directory
   const instList = document.getElementById("institution-donation-list");
   if (instList) {
     instList.innerHTML = "";
@@ -2432,7 +2365,7 @@ function renderConservancyView() {
         <span style="font-size:0.75rem; color:#2b2118; font-weight:bold;">${b.name}</span>
         <a href="${b.donateUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
           <button class="action-btn" style="width:auto; margin:0; padding:3px 8px; font-size:0.68rem; background:#dfeaf5; border-color:#2c4d6f;">
-            Support &rarr;
+            Support →
           </button>
         </a>
       `;
@@ -2442,8 +2375,8 @@ function renderConservancyView() {
 
   const cont = document.getElementById("conservancy-tiers-display");
   cont.innerHTML = `
-    <div style="background:#ede5d2; padding:10px; border:1px solid var(--border-light); margin-bottom:10px;">
-      <h3 style="font-size:0.95rem; color:var(--accent-rust);">${park.name} Conservancy</h3>
+    <div style="background:#ede5d2; padding:10px; border:1px solid var(--border-forest); margin-bottom:10px; border-left:4px solid var(--accent-forest);">
+      <h3 style="font-size:0.95rem; color:var(--accent-forest);">${park.name} Conservancy</h3>
       <div style="font-family:var(--font-mono); font-size:0.75rem;">
         Endowed to this Park: <strong>${formatMoney(donated)}</strong>
       </div>
@@ -2456,11 +2389,11 @@ function renderConservancyView() {
     card.className = "accession-card";
     card.style.background = isFunded ? "#f1f6ed" : "#fff";
     card.innerHTML = `
-      <div class="accession-header">TIER ${t.tier}: ${t.title.toUpperCase()} &bull; ${formatMoney(t.cost)}</div>
+      <div class="accession-header">TIER ${t.tier}: ${t.title.toUpperCase()} • ${formatMoney(t.cost)}</div>
       <div class="accession-desc"><strong>BENEFIT:</strong> ${t.perk}</div>
       <div style="margin-top:8px;">
         ${isFunded 
-          ? '<span class="stamp">PROJECT ENDOWED</span>' 
+          ? '<span class="stamp" style="border-color:var(--accent-forest); color:var(--accent-forest);">PROJECT ENDOWED</span>' 
           : `<button class="action-btn" onclick="donateToPark(${t.cost})">Fund Project (${formatMoney(t.cost)})</button>`
         }
       </div>
@@ -2482,7 +2415,7 @@ function donateToPark(amount) {
 }
 
 // ============================================================================
-// 13. NATIONAL ATLAS (63 PARKS)
+// 13. NATIONAL ATLAS (ALL 63 PARKS)
 // ============================================================================
 function renderAtlasView() {
   updateStatusBar();
@@ -2495,7 +2428,7 @@ function renderAtlasView() {
     const parksInDist = ALL_PARKS.filter(p => p.district === dId);
 
     const distHeader = document.createElement("div");
-    distHeader.style.cssText = "background:#ded2b9; padding:6px 10px; margin:10px 0 6px 0; font-family:var(--font-mono); font-size:0.75rem; font-weight:bold; border-left:3px solid var(--accent-rust);";
+    distHeader.className = "atlas-district-banner";
     distHeader.innerText = `DISTRICT ${dId}: ${dist.name.toUpperCase()} (${parksInDist.length} PARKS)`;
     cont.appendChild(distHeader);
 
@@ -2505,23 +2438,23 @@ function renderAtlasView() {
       if (state.gear["gear_plane"] && (p.district === 8 || p.district === 1)) transitFare = 0;
 
       const isCurrent = p.id === state.currentParkId;
-      const row = document.createElement("div");
-      row.className = "item-row";
-      row.innerHTML = `
+      const card = document.createElement("div");
+      card.className = "atlas-park-card";
+      card.innerHTML = `
         <div>
-          <strong>${p.name.replace(" National Park", "")}</strong> (${p.state}, est. ${p.est})<br>
-          <span style="font-size:0.72rem; color:var(--text-muted);">
-            Donated: ${formatMoney(state.conservancy[p.id]||0)}
+          <strong style="color:var(--accent-forest); font-size:0.95rem;">${p.name}</strong><br>
+          <span style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">
+            ${p.state} • Est. ${p.est} • Donated: ${formatMoney(state.conservancy[p.id]||0)}
           </span>
         </div>
         <div>
           ${isCurrent 
-            ? '<span class="stamp">CURRENT LOCATION</span>' 
+            ? '<span class="stamp" style="border-color:var(--accent-forest); color:var(--accent-forest);">CURRENT BASE</span>' 
             : `<button class="action-btn" onclick="travelToPark('${p.id}', ${transitFare})">Travel (${transitFare === 0 ? 'FREE' : formatMoney(transitFare)})</button>`
           }
         </div>
       `;
-      cont.appendChild(row);
+      cont.appendChild(card);
     });
   });
 }
