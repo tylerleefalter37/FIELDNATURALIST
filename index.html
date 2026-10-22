@@ -439,7 +439,7 @@
   <div id="park-sign-counter" onclick="recordParkVisitClick()" title="Tap to record an expedition!">
     <div class="sign-title">◆ Parks Visited Through Us: ◆</div>
     <div class="sign-odometer-box">
-      <span id="global-counter-display" class="odometer-digit">18,482</span>
+      <span id="global-counter-display" class="odometer-digit">62,521</span>
     </div>
     <div class="sign-footer-note">TOTAL EXPEDITIONS LOGGED • TAP SIGN TO LOG VISIT</div>
   </div>
@@ -774,8 +774,10 @@ function formatMoney(amount) {
 // ============================================================================
 // LIVE GLOBAL VISITOR COUNTER & REAL-TIME CLICK TRACKER
 // ============================================================================
-const COUNTER_KEY = "field_naturalist_parks_visited_2026";
-const SEED_OFFSET = 18482;
+const SEED_OFFSET = 62521;
+const STORAGE_KEY = "field_nat_global_expeditions_v64";
+// Free, public, zero-auth counter API that supports browser fetch & CORS:
+const COUNTER_API_URL = "https://counterapi.com/api/field-naturalist-expeditions/visit/all-parks";
 
 function updateSignDisplay(count) {
   const display = document.getElementById("global-counter-display");
@@ -783,42 +785,69 @@ function updateSignDisplay(count) {
 }
 
 async function fetchGlobalVisitCount() {
-  let localCount = parseInt(localStorage.getItem("local_park_visits_tally")) || SEED_OFFSET;
+  let localCount = parseInt(localStorage.getItem(STORAGE_KEY)) || SEED_OFFSET;
   updateSignDisplay(localCount);
 
   try {
-    const res = await fetch(`https://countapi.mileshilliard.com/api/v1/get/${COUNTER_KEY}`, { cache: "no-store" });
+    // readOnly=true queries the shared global count without incrementing it
+    const res = await fetch(`${COUNTER_API_URL}?readOnly=true`, { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
       if (data && data.value != null) {
         const remoteTotal = SEED_OFFSET + parseInt(data.value, 10);
         const finalCount = Math.max(localCount, remoteTotal);
-        localStorage.setItem("local_park_visits_tally", finalCount);
+        localStorage.setItem(STORAGE_KEY, finalCount);
         updateSignDisplay(finalCount);
       }
     }
-  } catch(e) {}
+  } catch (err) {
+    // Graceful offline fallback: keeps current local count intact
+    console.warn("Global counter fetch failed, using local tally.");
+  }
 }
 
-async function recordParkVisitClick() {
-  let localCount = (parseInt(localStorage.getItem("local_park_visits_tally")) || SEED_OFFSET) + 1;
-  localStorage.setItem("local_park_visits_tally", localCount);
-  updateSignDisplay(localCount);
+let isHittingCounter = false;
+let queuedClicks = 0;
+
+async function processHitQueue() {
+  if (isHittingCounter || queuedClicks <= 0) return;
+  isHittingCounter = true;
+  queuedClicks--;
 
   try {
-    const res = await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${COUNTER_KEY}`, { cache: "no-store" });
+    // Calling the endpoint without readOnly increments the remote counter by 1
+    const res = await fetch(COUNTER_API_URL, { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
       if (data && data.value != null) {
         const remoteTotal = SEED_OFFSET + parseInt(data.value, 10);
-        const finalCount = Math.max(localCount, remoteTotal);
-        localStorage.setItem("local_park_visits_tally", finalCount);
+        const currentSaved = parseInt(localStorage.getItem(STORAGE_KEY)) || SEED_OFFSET;
+        const finalCount = Math.max(currentSaved, remoteTotal);
+        localStorage.setItem(STORAGE_KEY, finalCount);
         updateSignDisplay(finalCount);
       }
     }
-  } catch(e) {}
+  } catch (err) {
+    console.warn("Global counter hit failed.");
+  } finally {
+    isHittingCounter = false;
+    if (queuedClicks > 0) processHitQueue();
+  }
 }
 
+function recordParkVisitClick() {
+  // 1. Instant local increment so the wooden sign reacts immediately
+  let localCount = (parseInt(localStorage.getItem(STORAGE_KEY)) || SEED_OFFSET) + 1;
+  localStorage.setItem(STORAGE_KEY, localCount);
+  updateSignDisplay(localCount);
+
+  // 2. Transmit the increment to the live global server in the background
+  queuedClicks++;
+  processHitQueue();
+}
+
+// Background sync: polls every 30 seconds so all active players see other players' visits live
+setInterval(fetchGlobalVisitCount, 30000);
 // ============================================================================
 // 1. DATA: 8 DISTRICTS & ALL 64 US NATIONAL PARKS
 // ============================================================================
